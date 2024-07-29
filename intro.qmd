@@ -1,0 +1,37 @@
+# Importance et notions de base
+
+## Pourquoi a-t-on besoin de méthodes statistiques ?
+
+Prenons 2 situations concrètes:  
+
+* Dans la première, nous jouons à pile ou face avec 10 pièces. On obtient après un lancer unique de chacune des pièces 3 faces et 7 piles. Pouvons-nous dire si ce lot de pièces est truqué?  
+* Dans la seconde, on échantillone une population de singes, et on observe 32 femelles et 54 mâles. Y a-t-il réellement plus de mâles dans la population?  
+
+
+## Variables
+
+* Variable = attribut mesuré pour chaque individu/observation.  
+* Types d’échelle de mesure:  
+   - Ratio: le 0 est clairement défini; ne peut pas être < 0.  
+   - Intervalle: le 0 est arbitraire; peut être < 0.  
+   - Ordinale: l’ordre est défini; les rangs n’indiquent pas nécessairement des différentes constantes.  
+   - Nominale/Catégorique: l’ordre est non défini.  
+   - Continue: présente une infinité de valeurs possibles.  
+   - Discrète: nombre limité de valeurs possibles.
+
+## Types de statistiques
+
+* Descriptives: le but est d’illustrer les données;  
+* Paramétriques: on suppose que la/les variables(s) suivent une distribution particulière;  
+* Non paramétriques: on ne fait aucune supposition concernant la distribution de la/les variables(s).  
+
+
+## Qu'est-ce qu'une distribution?
+
+Fonction qui exprime la fréquence (densité de probabilité) des différentes valeurs pouvant être prise par une variable.
+
+
+
+
+
+

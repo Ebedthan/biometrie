@@ -1,0 +1,42 @@
+project:
+  type: book
+  output-dir: docs
+
+website:
+  sidebar:
+    style: "floating"
+    search: true
+    contents: auto
+
+book:
+  title: "Biométrie et expérimentation végétale"
+  reader-mode: true
+  
+  page-footer:
+    left: |
+      Biométrie et expérimentation par Anicet Ebou.
+    #right: |
+    # This book was built with <a href="https://quarto.org/">Quarto</a>.
+  #cover-image: cover.jpg
+  #favicon: cover.jpg
+  author: "Anicet Ebou"
+  site-url: https://ebedthan.github.io/biometrie/
+  repo-url: https://github.com/Ebedthan/biometrie/
+  repo-branch: main
+  repo-actions: [issue]
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - chapter1.qmd
+
+#bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    author-meta: "Anicet Ebou"
+    callout-appearance: simple
+    code-link: true
+
+editor: visual
+
