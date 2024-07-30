@@ -63,6 +63,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -139,7 +141,20 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#pourquoi-a-t-on-besoin-de-méthodes-statistiques" id="toc-pourquoi-a-t-on-besoin-de-méthodes-statistiques" class="nav-link active" data-scroll-target="#pourquoi-a-t-on-besoin-de-méthodes-statistiques"><span class="header-section-number">1.1</span> Pourquoi a-t-on besoin de méthodes statistiques ?</a></li>
   <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">1.2</span> Variables</a></li>
   <li><a href="#types-de-statistiques" id="toc-types-de-statistiques" class="nav-link" data-scroll-target="#types-de-statistiques"><span class="header-section-number">1.3</span> Types de statistiques</a></li>
-  <li><a href="#quest-ce-quune-distribution" id="toc-quest-ce-quune-distribution" class="nav-link" data-scroll-target="#quest-ce-quune-distribution"><span class="header-section-number">1.4</span> Qu’est-ce qu’une distribution?</a></li>
+  <li><a href="#quest-ce-quune-distribution" id="toc-quest-ce-quune-distribution" class="nav-link" data-scroll-target="#quest-ce-quune-distribution"><span class="header-section-number">1.4</span> Qu’est-ce qu’une distribution?</a>
+  <ul class="collapse">
+  <li><a href="#distribution-normale" id="toc-distribution-normale" class="nav-link" data-scroll-target="#distribution-normale"><span class="header-section-number">1.4.1</span> Distribution normale</a></li>
+  </ul></li>
+  <li><a href="#les-probabilités-vous-aident-à-prendre-une-décision-concernant-vos-résultats" id="toc-les-probabilités-vous-aident-à-prendre-une-décision-concernant-vos-résultats" class="nav-link" data-scroll-target="#les-probabilités-vous-aident-à-prendre-une-décision-concernant-vos-résultats"><span class="header-section-number">1.5</span> Les probabilités vous aident à prendre une décision concernant vos résultats</a>
+  <ul class="collapse">
+  <li><a href="#présentation" id="toc-présentation" class="nav-link" data-scroll-target="#présentation"><span class="header-section-number">1.5.1</span> Présentation</a></li>
+  <li><a href="#tests-statistiques-et-niveaux-de-signification" id="toc-tests-statistiques-et-niveaux-de-signification" class="nav-link" data-scroll-target="#tests-statistiques-et-niveaux-de-signification"><span class="header-section-number">1.5.2</span> Tests statistiques et niveaux de signification</a></li>
+  <li><a href="#exemple-de-calcul-direct-de-la-p-valeur" id="toc-exemple-de-calcul-direct-de-la-p-valeur" class="nav-link" data-scroll-target="#exemple-de-calcul-direct-de-la-p-valeur"><span class="header-section-number">1.5.3</span> Exemple de calcul direct de la p-valeur</a></li>
+  <li><a href="#passage-intermédiaire-par-une-statistique" id="toc-passage-intermédiaire-par-une-statistique" class="nav-link" data-scroll-target="#passage-intermédiaire-par-une-statistique"><span class="header-section-number">1.5.4</span> Passage intermédiaire par une statistique</a></li>
+  <li><a href="#effet-de-la-taille-de-léchantillon-n" id="toc-effet-de-la-taille-de-léchantillon-n" class="nav-link" data-scroll-target="#effet-de-la-taille-de-léchantillon-n"><span class="header-section-number">1.5.5</span> Effet de la taille de l’échantillon (n)</a></li>
+  </ul></li>
+  <li><a href="#test-uni--vs-bidirectionnel" id="toc-test-uni--vs-bidirectionnel" class="nav-link" data-scroll-target="#test-uni--vs-bidirectionnel"><span class="header-section-number">1.6</span> Test uni- <em>vs</em> bidirectionnel</a></li>
+  <li><a href="#types-derreurs" id="toc-types-derreurs" class="nav-link" data-scroll-target="#types-derreurs"><span class="header-section-number">1.7</span> Types d’erreurs</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -206,6 +221,179 @@ ul.task-list li input[type="checkbox"] {
 <section id="quest-ce-quune-distribution" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="quest-ce-quune-distribution"><span class="header-section-number">1.4</span> Qu’est-ce qu’une distribution?</h2>
 <p>Fonction qui exprime la fréquence (densité de probabilité) des différentes valeurs pouvant être prise par une variable.</p>
+<section id="distribution-normale" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="distribution-normale"><span class="header-section-number">1.4.1</span> Distribution normale</h3>
+<ul>
+<li>Tendance centrale: moyenne arithmétique <span class="math inline">\(\mu = \frac{\sum_{i=1}^{N} X_i}{N}\)</span></li>
+<li>Dispersion: variance <span class="math inline">\(\sigma^2 = \frac{\sum (X_i - \mu)^2}{N}\)</span>.</li>
+</ul>
+</section>
+</section>
+<section id="les-probabilités-vous-aident-à-prendre-une-décision-concernant-vos-résultats" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="les-probabilités-vous-aident-à-prendre-une-décision-concernant-vos-résultats"><span class="header-section-number">1.5</span> Les probabilités vous aident à prendre une décision concernant vos résultats</h2>
+<section id="présentation" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="présentation"><span class="header-section-number">1.5.1</span> Présentation</h3>
+<p>La plupart des sciences sont comparatives. Les chercheurs ont souvent besoin de savoir si un traitement expérimental particulier a eu un effet, ou s’il existe des différences entre une variable particulière mesurée à plusieurs endroits différents. Par exemple, un nouveau médicament a-t-il un effet sur la tension artérielle, un régime riche en vitamine C réduit-il le risque de cancer du foie chez l’homme, ou existe-t-il une relation entre la couverture végétale et la densité de la population de lapins ? Mais lorsque vous faites ce genre de comparaisons, les différences entre les traitements ou entre les zones échantillonnées peuvent être réelles ou peuvent simplement être le type de variation qui se produit par hasard entre les échantillons d’une même population.</p>
+</section>
+<section id="tests-statistiques-et-niveaux-de-signification" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="tests-statistiques-et-niveaux-de-signification"><span class="header-section-number">1.5.2</span> Tests statistiques et niveaux de signification</h3>
+<p>Un test statistique est une aide à la décision concernant une hypothèse (alternative <em>vs</em> nulle).</p>
+<p>L’idée maîtresse à la base de tout test d’hypothèse statistique:</p>
+<ul>
+<li>Je suppose que <span class="math inline">\(H_0\)</span> (hypothèse nulle) est vraie (pas de différence/relation);<br>
+</li>
+<li>Je calcule la p-valeur, c’est à dire la probabilité d’obtenir une différence/relation au moins aussi forte que celle que j’ai observée dans mon échantillon (qui est un fait établi);<br>
+</li>
+<li>Si cette p-valeur est faible, alors il est probable que <span class="math inline">\(H_0\)</span> soit fausse: la différence mesurée est simplement une mauvaise estimation d’une différence nulle.</li>
+</ul>
+<p>Le statisticien Sir Ronald Fisher a proposé que, si la probabilité d’obtenir cette différence ou une différence plus extrême entre le résultat attendu et le résultat réel est inférieure à 5 %, il convient de conclure que la différence est statistiquement significative (Fisher, 1954). Le choix de 5% (qui correspond à 1/20 ou 0,05) n’a pas de raison biologique. C’est la probabilité que de nombreux chercheurs utilisent comme « niveau de signification statistique » standard.</p>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Attention: ce seuil n’est pas une valeur magique, les statistiques ce n’est pas blanc <em>vs</em> noir, vrai <em>vs</em> faux, significatif <em>vs</em> non significatif…</p>
+</div>
+</div>
+</div>
+</section>
+<section id="exemple-de-calcul-direct-de-la-p-valeur" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="exemple-de-calcul-direct-de-la-p-valeur"><span class="header-section-number">1.5.3</span> Exemple de calcul direct de la p-valeur</h3>
+<p>Prenons un exemple de sac contenant 1000 boules blanches et noires. On en tire 6 au hasard. On veut tester l’hypothèse qu’il y a 500 blanches et 500 noires: <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mathbb{P}(blanche) = 0,5\)</span> <em>vs</em> <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mathbb{P}(blanche) ≠ 0,5\)</span>.</p>
+<table class="table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 24%">
+<col style="width: 11%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nombre de boules noires</th>
+<th>Nombre de boules blanches</th>
+<th>Probabilité</th>
+<th>Pourcentage de cas pouvant donner ce resultat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6</td>
+<td>0</td>
+<td>1/64</td>
+<td>1,56</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>1</td>
+<td>6/64</td>
+<td>9,38</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>2</td>
+<td>15/64</td>
+<td>23,44</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>3</td>
+<td>20/64</td>
+<td>31,25</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>4</td>
+<td>15/64</td>
+<td>23,44</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>5</td>
+<td>6/64</td>
+<td>9,38</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>6</td>
+<td>1/64</td>
+<td>1,56</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td></td>
+<td>64/64</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p>La probabilité de n’obtenir aucune boule blanche sur 6 boules tirées est de 1,56%. On rejette l’hypothèse nulle <span class="math inline">\(H_0\)</span> puisque <span class="math inline">\(p &lt; 2,5\%\)</span> (test bidirectionnel).</p>
+</section>
+<section id="passage-intermédiaire-par-une-statistique" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="passage-intermédiaire-par-une-statistique"><span class="header-section-number">1.5.4</span> Passage intermédiaire par une statistique</h3>
+<p>Dans la majorité des cas, on ne peut pas calculer directement la p-valeur. L’alternative est de calculer une statistique qui quantifie la différence entre les données observées et les données attendues sous <span class="math inline">\(H_0\)</span>. On calcule ensuite la p-valeur en comparant la valeur de la statistique à sa distribution théorique sous <span class="math inline">\(H_0\)</span>.</p>
+<section id="inférence-à-une-moyenne" class="level4" data-number="1.5.4.1">
+<h4 data-number="1.5.4.1" class="anchored" data-anchor-id="inférence-à-une-moyenne"><span class="header-section-number">1.5.4.1</span> Inférence à une moyenne</h4>
+<p>On peut par exemple être amené à comparer la moyenne d’un échantillon à la moyenne d’une population dont la variance est connue. Pour un tel test on a:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu = \mu_0\)</span>; <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mu ≠ \mu_0\)</span>.<br>
+</li>
+<li>Statistique de test: <span class="math inline">\(Z_{obs} = \frac{\bar{Y} - \mu_0}{ESM} = \frac{\bar{Y} - \mu_0}{\frac{\sigma}{\sqrt{n}}} \sim N(0, 1)\)</span></li>
+</ul>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Erreur standard à la moyenne (ESM): le terme “erreur” remplace celui de “déviation” quand on parle de la variation de moyennes plutôt que de la variation de mesures individuelles.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="et-si-les-paramètres-sont-inconnus" class="level4" data-number="1.5.4.2">
+<h4 data-number="1.5.4.2" class="anchored" data-anchor-id="et-si-les-paramètres-sont-inconnus"><span class="header-section-number">1.5.4.2</span> Et si les paramètres sont inconnus ?</h4>
+<p>Si on ne connaît pas la variance réelle de la population, il faut tenir compte des biais possibles dus à la taille de l’échantillon (n).</p>
+<p>On a alors:</p>
+<ul>
+<li>Statistique de test (<span class="math inline">\(S^2\)</span> est la variance de l’échantillon): <span class="math inline">\(t_{obs} = \frac{\bar{X} - \mu_0}{ESM} = \frac{\bar{X} - \mu_0}{\frac{S}{\sqrt{n -1 }}} \sim St(n-1)\)</span>.<br>
+</li>
+<li>Degrés de liberté: nombre d’observations dans l’échantillon libres de varier quand on estime la variance.</li>
+</ul>
+<p>Plus n est petit, plus la distribution est large car S sous-estime σ. Quand n = ∞, Student = Normale.</p>
+</section>
+</section>
+<section id="effet-de-la-taille-de-léchantillon-n" class="level3" data-number="1.5.5">
+<h3 data-number="1.5.5" class="anchored" data-anchor-id="effet-de-la-taille-de-léchantillon-n"><span class="header-section-number">1.5.5</span> Effet de la taille de l’échantillon (n)</h3>
+<p>Plus l’échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle <span class="math inline">\(\mu\)</span>: <span class="math display">\[ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}\]</span>.</p>
+</section>
+</section>
+<section id="test-uni--vs-bidirectionnel" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="test-uni--vs-bidirectionnel"><span class="header-section-number">1.6</span> Test uni- <em>vs</em> bidirectionnel</h2>
+<p>L’hypothèse nulle est toujours “il n’existe pas de” différence/relation… Cela revient à dire qu’une certaine quantité est égale à 0. L’hypothèse alternative est soit:</p>
+<ul>
+<li>Cette quantité est différente de 0 (test bidirectionnel);<br>
+</li>
+<li>Cette quantité est supérieure/inférieure à 0 (test unidirectionnel).</li>
+</ul>
+<p>Ainsi on a:</p>
+<ul>
+<li>Test bidirectionnel:
+<ul>
+<li><span class="math inline">\(H_0\)</span> : <span class="math inline">\(\mu = \mu_0\)</span> ou <span class="math inline">\(t = 0\)</span></li>
+<li><span class="math inline">\(H_A\)</span> : <span class="math inline">\(\mu ≠ \mu_0\)</span> ou <span class="math inline">\(t ≠ 0\)</span></li>
+</ul></li>
+<li>Test unidirectionnel:
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu = \mu_0\)</span> ou <span class="math inline">\(t = 0\)</span></li>
+<li><span class="math inline">\(H_{A1}\)</span>: <span class="math inline">\(\mu &gt; \mu_0\)</span> ou <span class="math inline">\(t &gt; 0\)</span></li>
+<li><span class="math inline">\(H_{A2}\)</span>: <span class="math inline">\(\mu &lt; \mu_0\)</span> ou <span class="math inline">\(t &lt; 0\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="types-derreurs" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="types-derreurs"><span class="header-section-number">1.7</span> Types d’erreurs</h2>
+<p>Quand on prend une décision concernqnt une hypothèse sur la base d’un échantillon donné, <em>on n’est jamais sûr de prendre la bonne décision</em>!! On peut se tromper de 2 manières:</p>
 
 
 </section>
