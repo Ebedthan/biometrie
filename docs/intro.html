@@ -201,15 +201,59 @@ ul.task-list li input[type="checkbox"] {
 <p>Rappelons ici quelques distributions usuelles.</p>
 <section id="distribution-uniforme-continue" class="level4" data-number="1.1.3.1"><h4 data-number="1.1.3.1" class="anchored" data-anchor-id="distribution-uniforme-continue">
 <span class="header-section-number">1.1.3.1</span> Distribution uniforme (continue)</h4>
+<p>Bien que les origines historiques de la conception de la distribution uniforme ne soient pas concluantes, on suppose que le terme “uniforme” est né du concept d’équiprobabilité dans les jeux de dés (notez que les jeux de dés auraient un espace d’échantillonnage uniforme discret et non continu).</p>
 <p>Les paramètres de la distribution uniforme sont:</p>
 <ul>
 <li>Moyenne: <span class="math inline">\(\frac{1}{2}(a + b)\)</span>.<br>
 </li>
 <li>Variance: <span class="math inline">\(\frac{1}{12}(b - a)^2\)</span>.</li>
 </ul>
-<p>La fonction de densité de la loi uniforme est: <span class="math display">\[\left\{\begin{array}{ll}\frac{1}{b - a} &amp; \mbox{for x \in [a, b]} \\ 0 &amp; \mbox{otherwise}\end{array}\right\]</span></p>
-</section><section id="distribution-normale" class="level4" data-number="1.1.3.2"><h4 data-number="1.1.3.2" class="anchored" data-anchor-id="distribution-normale">
-<span class="header-section-number">1.1.3.2</span> Distribution normale</h4>
+<p>La fonction de densité de la loi uniforme est:</p>
+<p><span class="math display">\[
+f(x) = \left\{\begin{array}{ll}\frac{1}{b - a} &amp; \mbox{for } a \leq x \leq b, \\ 0 &amp; \mbox{otherwise}\end{array}\right.
+\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="distribution-binomiale" class="level4" data-number="1.1.3.2"><h4 data-number="1.1.3.2" class="anchored" data-anchor-id="distribution-binomiale">
+<span class="header-section-number">1.1.3.2</span> Distribution binomiale</h4>
+<p>La distribution binomiale est fréquemment utilisée pour modéliser le nombre de succès dans un échantillon de taille <span class="math inline">\(n\)</span> tiré avec remplacement d’une population de taille <span class="math inline">\(N\)</span>.</p>
+<p>Les paramètres de la distribution binomiale sont:</p>
+<ul>
+<li><p>Moyenne: <span class="math inline">\(\mu = np\)</span>.</p></li>
+<li><p>Variance: <span class="math inline">\(\sigma^2 = npq\)</span>.</p></li>
+</ul>
+<p>La fonction de densité de la loi binomiale est:</p>
+<p><span class="math display">\[
+f(k, n, p) = \binom{n}{k}p^k (1-p)^{n-k}
+\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="distribution-de-poisson" class="level4" data-number="1.1.3.3"><h4 data-number="1.1.3.3" class="anchored" data-anchor-id="distribution-de-poisson">
+<span class="header-section-number">1.1.3.3</span> Distribution de Poisson</h4>
+<p>La distribution de Poisson est une distribution de probabilité discrète qui exprime la probabilité qu’un nombre donné d’événements se produisent dans un intervalle de temps fixe si ces événements se produisent avec un taux moyen constant connu et indépendamment du temps écoulé depuis le dernier événement.</p>
+<p>Les paramètres de la distribution de Poisson sont:</p>
+<ul>
+<li><p>Moyenne: <span class="math inline">\(\mu = \lambda\)</span></p></li>
+<li><p>Variance: <span class="math inline">\(\sigma^2 = \lambda\)</span></p></li>
+</ul>
+<p>La fonction de densité de probabilité de la distribution de Poisson est:</p>
+<p><span class="math display">\[
+f(k; \lambda) = \frac{\lambda^k e^{-\lambda}}{k!}
+\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="distribution-normale" class="level4" data-number="1.1.3.4"><h4 data-number="1.1.3.4" class="anchored" data-anchor-id="distribution-normale">
+<span class="header-section-number">1.1.3.4</span> Distribution normale</h4>
+<p>Les distributions normales sont importantes en statistique et sont souvent utilisées dans les sciences naturelles et sociales pour représenter des variables aléatoires à valeur réelle dont la distribution n’est pas connue. Leur importance est en partie due au théorème de la limite centrale. Ce théorème stipule que, sous certaines conditions, la moyenne de nombreux échantillons (observations) d’une variable aléatoire de moyenne et de variance finies est elle-même une variable aléatoire, dont la distribution converge vers une distribution normale à mesure que le nombre d’échantillons augmente. Par conséquent, les quantités physiques qui sont censées être la somme de nombreux processus indépendants, tels que les erreurs de mesure, ont souvent des distributions qui sont presque normales.</p>
 <p>Les paramètres de la distribution normale sont:</p>
 <ul>
 <li>Moyenne: <span class="math inline">\(\mu = \frac{\sum_{i=1}^{N} X_i}{N}\)</span>.</li>
@@ -219,10 +263,24 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">\[ f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}\]</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<p><img src="intro_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section></section></section><section id="pourquoi-a-t-on-besoin-de-méthodes-statistiques" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="pourquoi-a-t-on-besoin-de-méthodes-statistiques">
+</section><section id="distribution-t-de-student" class="level4" data-number="1.1.3.5"><h4 data-number="1.1.3.5" class="anchored" data-anchor-id="distribution-t-de-student">
+<span class="header-section-number">1.1.3.5</span> Distribution t de Student</h4>
+<p>En probabilité et en statistique, la distribution <span class="math inline">\(t\)</span> de Student (ou simplement la distribution <span class="math inline">\(t\)</span>) <span class="math inline">\(t_\nu\)</span> est une distribution de probabilité continue qui généralise la distribution normale standard. Comme cette dernière, elle est symétrique autour de zéro et en forme de cloche.</p>
+<p>La fonction de densité de probabilité de la distribution de <span class="math inline">\(t\)</span> est:</p>
+<p><span class="math display">\[
+f(t) = \frac{\Gamma(\frac{\nu + 1}{2})}{\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})} (1 + \frac{t^2}{\nu}) ^ {-(\nu + 1)/2}
+\]</span></p>
+<p>ou <span class="math inline">\(\nu\)</span> est le nombre de dégrés de libertés et <span class="math inline">\(\Gamma\)</span> est la fonction Gamma.</p>
+<p>La distribution t de Student avec <span class="math inline">\(\nu\)</span> degrés de liberté peut être définie comme la distribution de la variable aléatoire <span class="math inline">\(T\)</span> avec <span class="math display">\[T = \frac{Z}{\sqrt{V/\nu}} = Z\sqrt{\frac{\nu}{V}}\]</span></p>
+<p>avec</p>
+<ul>
+<li><p><span class="math inline">\(Z\)</span> est une normale standard avec une valeur attendue de 0 et une variance de 1 ;</p></li>
+<li><p><span class="math inline">\(V\)</span> suit une distribution de khi-deux (<span class="math inline">\(\chi^2\)</span>) avec <span class="math inline">\(\nu\)</span> dégrés de liberté;</p></li>
+<li><p><span class="math inline">\(Z\)</span> et <span class="math inline">\(V\)</span> sont indépendants.</p></li>
+</ul></section></section></section><section id="pourquoi-a-t-on-besoin-de-méthodes-statistiques" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="pourquoi-a-t-on-besoin-de-méthodes-statistiques">
 <span class="header-section-number">1.2</span> Pourquoi a-t-on besoin de méthodes statistiques ?</h2>
 <section id="présentation" class="level3" data-number="1.2.1"><h3 data-number="1.2.1" class="anchored" data-anchor-id="présentation">
 <span class="header-section-number">1.2.1</span> Présentation</h3>
@@ -260,10 +318,10 @@ ul.task-list li input[type="checkbox"] {
 <p>Prenons un exemple de sac contenant 1000 boules blanches et noires. On en tire 6 au hasard. On veut tester l’hypothèse qu’il y a 500 blanches et 500 noires: <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mathbb{P}(blanche) = 0,5\)</span> <em>vs</em> <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mathbb{P}(blanche) ≠ 0,5\)</span>.</p>
 <table class="table">
 <colgroup>
-<col style="width: 22%">
-<col style="width: 24%">
-<col style="width: 11%">
-<col style="width: 41%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 37%">
 </colgroup>
 <thead><tr class="header">
 <th>Nombre de boules noires</th>

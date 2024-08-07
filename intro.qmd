@@ -4,20 +4,20 @@
 
 ### Types de statistiques
 
-* **Descriptives**: le but est d’illustrer les données;  
-* **Paramétriques**: on suppose que la/les variables(s) suivent une distribution particulière;  
-* **Non paramétriques**: on ne fait aucune supposition concernant la distribution de la/les variables(s).  
+-   **Descriptives**: le but est d'illustrer les données;\
+-   **Paramétriques**: on suppose que la/les variables(s) suivent une distribution particulière;\
+-   **Non paramétriques**: on ne fait aucune supposition concernant la distribution de la/les variables(s).
 
 ### Variables
 
-* Une variable est un attribut mesuré pour chaque individu/observation.  
-* Types d’échelle de mesure:  
-   - Ratio: le 0 est clairement défini; ne peut pas être < 0.  
-   - Intervalle: le 0 est arbitraire; peut être < 0.  
-   - Ordinale: l’ordre est défini; les rangs n’indiquent pas nécessairement des différentes constantes.  
-   - Nominale/Catégorique: l’ordre est non défini.  
-   - Continue: présente une infinité de valeurs possibles.  
-   - Discrète: nombre limité de valeurs possibles.
+-   Une variable est un attribut mesuré pour chaque individu/observation.\
+-   Types d'échelle de mesure:
+    -   Ratio: le 0 est clairement défini; ne peut pas être \< 0.\
+    -   Intervalle: le 0 est arbitraire; peut être \< 0.\
+    -   Ordinale: l'ordre est défini; les rangs n'indiquent pas nécessairement des différentes constantes.\
+    -   Nominale/Catégorique: l'ordre est non défini.\
+    -   Continue: présente une infinité de valeurs possibles.\
+    -   Discrète: nombre limité de valeurs possibles.
 
 ### Qu'est-ce qu'une distribution?
 
@@ -27,21 +27,158 @@ Rappelons ici quelques distributions usuelles.
 
 #### Distribution uniforme (continue)
 
-Les paramètres de la distribution uniforme sont:  
+Bien que les origines historiques de la conception de la distribution uniforme ne soient pas concluantes, on suppose que le terme "uniforme" est né du concept d'équiprobabilité dans les jeux de dés (notez que les jeux de dés auraient un espace d'échantillonnage uniforme discret et non continu).
 
-* Moyenne: $\frac{1}{2}(a + b)$.  
-* Variance: $\frac{1}{12}(b - a)^2$.  
+Les paramètres de la distribution uniforme sont:
 
-La fonction de densité de la loi uniforme est: 
-$$\left\{\begin{array}{ll}\frac{1}{b - a} & \mbox{for x \in [a, b]} \\ 0 & \mbox{otherwise}\end{array}\right$$
+-   Moyenne: $\frac{1}{2}(a + b)$.\
+-   Variance: $\frac{1}{12}(b - a)^2$.
 
+La fonction de densité de la loi uniforme est:
+
+$$
+f(x) = \left\{\begin{array}{ll}\frac{1}{b - a} & \mbox{for } a \leq x \leq b, \\ 0 & \mbox{otherwise}\end{array}\right.
+$$
+
+```{r, echo=FALSE}
+# Load necessary library
+library(ggplot2)
+
+# Define a function to plot the uniform distribution
+plot_uniform_distribution <- function(mins, maxs, xlim = c(-1, 1), points = 1000) {
+  # Create a data frame to hold the x values and densities for each min and max
+  data <- data.frame()
+  
+  # Loop through each combination of min and max
+  for (min_val in mins) {
+    for (max_val in maxs) {
+      x <- seq(xlim[1], xlim[2], length.out = points)
+      y <- ifelse(x >= min_val & x <= max_val, 1 / (max_val - min_val), 0)
+      temp <- data.frame(x = x, y = y, min = factor(min_val), max = factor(max_val))
+      data <- rbind(data, temp)
+    }
+  }
+  
+  # Plot using ggplot2
+  p <- ggplot(data, aes(x = x, y = y, color = min, linetype = max)) +
+    geom_line() +
+    labs(title = "Uniform Distribution",
+         x = "x",
+         y = "Density",
+         color = "Min",
+         linetype = "Max") +
+    theme_minimal()
+  
+  print(p)
+}
+
+# Define min and max values
+mins <- c(-2)
+maxs <- c(2)
+
+# Plot the uniform distributions
+plot_uniform_distribution(mins, maxs, xlim = c(-4, 4))
+```
+
+#### Distribution binomiale
+
+La distribution binomiale est fréquemment utilisée pour modéliser le nombre de succès dans un échantillon de taille $n$ tiré avec remplacement d'une population de taille $N$.
+
+Les paramètres de la distribution binomiale sont:
+
+-   Moyenne: $\mu = np$.
+
+-   Variance: $\sigma^2 = npq$.
+
+La fonction de densité de la loi binomiale est:
+
+$$
+f(k, n, p) = \binom{n}{k}p^k (1-p)^{n-k}
+$$
+
+```{r, echo=FALSE}
+# Load necessary libraries
+library(ggplot2)
+
+# Define a function to plot the binomial PMF
+plot_binomial_pmf <- function(n, p) {
+  # Create a data frame to hold the values and probabilities
+  x <- 0:n
+  y <- dbinom(x, size = n, prob = p)
+  data <- data.frame(x = x, y = y)
+  
+  # Plot using ggplot2
+  p <- ggplot(data, aes(x = factor(x), y = y)) +
+    geom_bar(stat = "identity", fill = "skyblue", color = "blue") +
+    labs(title = paste("Binomial Distribution PMF (n =", n, ", p =", p, ")"),
+         x = "Number of Successes",
+         y = "Probability") +
+    theme_minimal()
+  
+  print(p)
+}
+
+# Define parameters for the binomial distribution
+n <- 10  # number of trials
+p <- 0.5 # probability of success in each trial
+
+# Plot the binomial PMF
+plot_binomial_pmf(n, p)
+```
+
+#### Distribution de Poisson
+
+La distribution de Poisson est une distribution de probabilité discrète qui exprime la probabilité qu'un nombre donné d'événements se produisent dans un intervalle de temps fixe si ces événements se produisent avec un taux moyen constant connu et indépendamment du temps écoulé depuis le dernier événement.
+
+Les paramètres de la distribution de Poisson sont:
+
+-   Moyenne: $\mu = \lambda$
+
+-   Variance: $\sigma^2 = \lambda$
+
+La fonction de densité de probabilité de la distribution de Poisson est:
+
+$$
+f(k; \lambda) = \frac{\lambda^k e^{-\lambda}}{k!}
+$$
+
+```{r, echo=FALSE}
+# Load necessary libraries
+library(ggplot2)
+
+# Define a function to plot the Poisson PMF
+plot_poisson_pmf <- function(lambda, max_x = 15) {
+  # Create a data frame to hold the values and probabilities
+  x <- 0:max_x
+  y <- dpois(x, lambda = lambda)
+  data <- data.frame(x = x, y = y)
+  
+  # Plot using ggplot2
+  p <- ggplot(data, aes(x = factor(x), y = y)) +
+    geom_bar(stat = "identity", fill = "skyblue", color = "blue") +
+    labs(title = paste("Poisson Distribution PMF (lambda =", lambda, ")"),
+         x = "Number of Events",
+         y = "Probability") +
+    theme_minimal()
+  
+  print(p)
+}
+
+# Define parameter for the Poisson distribution
+lambda <- 7  # average rate (mean)
+
+# Plot the Poisson PMF
+plot_poisson_pmf(lambda)
+```
 
 #### Distribution normale
 
-Les paramètres de la distribution normale sont:  
+Les distributions normales sont importantes en statistique et sont souvent utilisées dans les sciences naturelles et sociales pour représenter des variables aléatoires à valeur réelle dont la distribution n'est pas connue. Leur importance est en partie due au théorème de la limite centrale. Ce théorème stipule que, sous certaines conditions, la moyenne de nombreux échantillons (observations) d'une variable aléatoire de moyenne et de variance finies est elle-même une variable aléatoire, dont la distribution converge vers une distribution normale à mesure que le nombre d'échantillons augmente. Par conséquent, les quantités physiques qui sont censées être la somme de nombreux processus indépendants, tels que les erreurs de mesure, ont souvent des distributions qui sont presque normales.
 
-*  Moyenne: $\mu = \frac{\sum_{i=1}^{N} X_i}{N}$.
-*  Variance: $\sigma^2 = \frac{\sum (X_i - \mu)^2}{N}$.
+Les paramètres de la distribution normale sont:
+
+-   Moyenne: $\mu = \frac{\sum_{i=1}^{N} X_i}{N}$.
+-   Variance: $\sigma^2 = \frac{\sum (X_i - \mu)^2}{N}$.
 
 La fonction de densité de la loi normale est:
 
@@ -88,6 +225,28 @@ variances <- c(1, 2, 0.5)
 plot_normal_distribution(means, variances)
 ```
 
+#### Distribution t de Student
+
+En probabilité et en statistique, la distribution $t$ de Student (ou simplement la distribution $t$) $t_\nu$ est une distribution de probabilité continue qui généralise la distribution normale standard. Comme cette dernière, elle est symétrique autour de zéro et en forme de cloche.
+
+La fonction de densité de probabilité de la distribution de $t$ est:
+
+$$
+f(t) = \frac{\Gamma(\frac{\nu + 1}{2})}{\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})} (1 + \frac{t^2}{\nu}) ^ {-(\nu + 1)/2}
+$$
+
+ou $\nu$ est le nombre de dégrés de libertés et $\Gamma$ est la fonction Gamma.
+
+La distribution t de Student avec $\nu$ degrés de liberté peut être définie comme la distribution de la variable aléatoire $T$ avec $$T = \frac{Z}{\sqrt{V/\nu}} = Z\sqrt{\frac{\nu}{V}}$$
+
+avec
+
+-   $Z$ est une normale standard avec une valeur attendue de 0 et une variance de 1 ;
+
+-   $V$ suit une distribution de khi-deux ($\chi^2$) avec $\nu$ dégrés de liberté;
+
+-   $Z$ et $V$ sont indépendants.
+
 ## Pourquoi a-t-on besoin de méthodes statistiques ?
 
 ### Présentation
@@ -96,35 +255,33 @@ La plupart des sciences sont comparatives. Les chercheurs ont souvent besoin de 
 
 **Les probabilités vous aident à prendre une décision concernant vos résultats**
 
-Prenons 2 situations concrètes:  
+Prenons 2 situations concrètes:
 
-* Dans la première, nous jouons à pile ou face avec 10 pièces. On obtient après un lancer unique de chacune des pièces 3 faces et 7 piles. Pouvons-nous dire si ce lot de pièces est truqué?  
-* Dans la seconde, on échantillone une population de singes, et on observe 32 femelles et 54 mâles. Y a-t-il réellement plus de mâles dans la population?  
+-   Dans la première, nous jouons à pile ou face avec 10 pièces. On obtient après un lancer unique de chacune des pièces 3 faces et 7 piles. Pouvons-nous dire si ce lot de pièces est truqué?\
+-   Dans la seconde, on échantillone une population de singes, et on observe 32 femelles et 54 mâles. Y a-t-il réellement plus de mâles dans la population?
 
 ### Tests statistiques et niveaux de signification
 
-Un test statistique est une aide à la décision concernant une hypothèse (alternative _vs_ nulle).  
+Un test statistique est une aide à la décision concernant une hypothèse (alternative *vs* nulle).
 
-L’idée maîtresse à la base de tout test d’hypothèse statistique:  
+L'idée maîtresse à la base de tout test d'hypothèse statistique:
 
-*  Je suppose que $H_0$ (hypothèse nulle) est vraie (pas de différence/relation);  
-*  Je calcule la p-valeur, c'est à dire la probabilité d’obtenir une différence/relation au moins aussi forte que celle que j’ai observée dans mon échantillon (qui est un fait établi);  
-*  Si cette p-valeur est faible, alors il est probable que $H_0$ soit fausse: la différence mesurée est simplement une mauvaise estimation d’une différence nulle.  
+-   Je suppose que $H_0$ (hypothèse nulle) est vraie (pas de différence/relation);\
+-   Je calcule la p-valeur, c'est à dire la probabilité d'obtenir une différence/relation au moins aussi forte que celle que j'ai observée dans mon échantillon (qui est un fait établi);\
+-   Si cette p-valeur est faible, alors il est probable que $H_0$ soit fausse: la différence mesurée est simplement une mauvaise estimation d'une différence nulle.
 
-Le statisticien Sir Ronald Fisher a proposé que, si la probabilité d'obtenir cette différence ou une différence plus extrême entre le résultat attendu et le résultat réel est inférieure à 5 %, il convient de conclure que la différence est statistiquement significative (Fisher, 1954).
-Le choix de 5% (qui correspond à 1/20 ou 0,05) n'a pas de raison biologique. C'est la probabilité que de nombreux chercheurs utilisent comme « niveau de signification statistique » standard.
+Le statisticien Sir Ronald Fisher a proposé que, si la probabilité d'obtenir cette différence ou une différence plus extrême entre le résultat attendu et le résultat réel est inférieure à 5 %, il convient de conclure que la différence est statistiquement significative (Fisher, 1954). Le choix de 5% (qui correspond à 1/20 ou 0,05) n'a pas de raison biologique. C'est la probabilité que de nombreux chercheurs utilisent comme « niveau de signification statistique » standard.
 
 ::: callout-warning
-Attention: ce seuil n’est pas une valeur magique, les statistiques ce n’est pas blanc _vs_ noir, vrai _vs_ faux, significatif _vs_ non significatif...
+Attention: ce seuil n'est pas une valeur magique, les statistiques ce n'est pas blanc *vs* noir, vrai *vs* faux, significatif *vs* non significatif...
 :::
 
 ### Exemple de calcul direct de la p-valeur
 
-Prenons un exemple de sac contenant 1000 boules blanches et noires. On en tire 6 au hasard.
-On veut tester l’hypothèse qu’il y a 500 blanches et 500 noires: $H_0$: $\mathbb{P}(blanche) = 0,5$ _vs_ $H_A$: $\mathbb{P}(blanche) ≠ 0,5$. 
+Prenons un exemple de sac contenant 1000 boules blanches et noires. On en tire 6 au hasard. On veut tester l'hypothèse qu'il y a 500 blanches et 500 noires: $H_0$: $\mathbb{P}(blanche) = 0,5$ *vs* $H_A$: $\mathbb{P}(blanche) ≠ 0,5$.
 
 | Nombre de boules noires | Nombre de boules blanches | Probabilité | Pourcentage de cas pouvant donner ce resultat |
-|-------------------------|---------------------------|-------------|-----------------------------------------------|
+|---------------|---------------|---------------|---------------------------|
 | 6                       | 0                         | 1/64        | 1,56                                          |
 | 5                       | 1                         | 6/64        | 9,38                                          |
 | 4                       | 2                         | 15/64       | 23,44                                         |
@@ -132,93 +289,83 @@ On veut tester l’hypothèse qu’il y a 500 blanches et 500 noires: $H_0$: $\m
 | 2                       | 4                         | 15/64       | 23,44                                         |
 | 1                       | 5                         | 6/64        | 9,38                                          |
 | 0                       | 6                         | 1/64        | 1,56                                          |
-| Total                   |                            | 64/64       | 100                                           |
+| Total                   |                           | 64/64       | 100                                           |
 
-La probabilité de n’obtenir aucune boule blanche sur 6 boules tirées est de 1,56%. On rejette l’hypothèse nulle $H_0$ puisque $p < 2,5\%$ (test bidirectionnel).
+La probabilité de n'obtenir aucune boule blanche sur 6 boules tirées est de 1,56%. On rejette l'hypothèse nulle $H_0$ puisque $p < 2,5\%$ (test bidirectionnel).
 
 ### Passage intermédiaire par une statistique
 
-Dans la majorité des cas, on ne peut pas calculer directement la p-valeur. L’alternative est de calculer une statistique qui quantifie la différence entre les données observées et les données attendues sous $H_0$.
-On calcule ensuite la p-valeur en comparant la valeur de la statistique à sa distribution théorique sous $H_0$. 
+Dans la majorité des cas, on ne peut pas calculer directement la p-valeur. L'alternative est de calculer une statistique qui quantifie la différence entre les données observées et les données attendues sous $H_0$. On calcule ensuite la p-valeur en comparant la valeur de la statistique à sa distribution théorique sous $H_0$.
 
 #### Inférence à une moyenne
 
-On peut par exemple être amené à comparer la moyenne d’un échantillon à la moyenne d’une population dont la variance est connue.
-Pour un tel test on a:  
+On peut par exemple être amené à comparer la moyenne d'un échantillon à la moyenne d'une population dont la variance est connue. Pour un tel test on a:
 
-* $H_0$: $\mu = \mu_0$; $H_A$: $\mu ≠ \mu_0$.  
-* Statistique de test: $Z_{obs} = \frac{\bar{Y} - \mu_0}{ESM} = \frac{\bar{Y} - \mu_0}{\frac{\sigma}{\sqrt{n}}} \sim N(0, 1)$
+-   $H_0$: $\mu = \mu_0$; $H_A$: $\mu ≠ \mu_0$.\
+-   Statistique de test: $Z_{obs} = \frac{\bar{Y} - \mu_0}{ESM} = \frac{\bar{Y} - \mu_0}{\frac{\sigma}{\sqrt{n}}} \sim N(0, 1)$
 
 ::: callout-note
-Erreur standard à la moyenne (ESM): le terme “erreur” remplace celui de “déviation” quand on parle de la variation de moyennes plutôt que de la variation de mesures individuelles.
+Erreur standard à la moyenne (ESM): le terme "erreur" remplace celui de "déviation" quand on parle de la variation de moyennes plutôt que de la variation de mesures individuelles.
 :::
-
 
 #### Et si les paramètres sont inconnus ?
 
-Si on ne connaît pas la variance réelle de la population, il faut tenir compte des biais possibles dus à la taille de l’échantillon (n).
+Si on ne connaît pas la variance réelle de la population, il faut tenir compte des biais possibles dus à la taille de l'échantillon (n).
 
-On a alors:  
+On a alors:
 
-* Statistique de test ($S^2$ est la variance de l'échantillon):  $t_{obs} = \frac{\bar{X} - \mu_0}{ESM} = \frac{\bar{X} - \mu_0}{\frac{S}{\sqrt{n -1 }}} \sim St(n-1)$.  
-* Degrés de liberté: nombre d’observations dans l’échantillon libres de varier quand on estime la variance.  
+-   Statistique de test ($S^2$ est la variance de l'échantillon): $t_{obs} = \frac{\bar{X} - \mu_0}{ESM} = \frac{\bar{X} - \mu_0}{\frac{S}{\sqrt{n -1 }}} \sim St(n-1)$.\
+-   Degrés de liberté: nombre d'observations dans l'échantillon libres de varier quand on estime la variance.
 
-Plus  n est petit, plus la distribution est large car S sous-estime σ. Quand n = ∞, Student = Normale.
+Plus n est petit, plus la distribution est large car S sous-estime σ. Quand n = ∞, Student = Normale.
 
 ### Effet de la taille de l'échantillon (n)
 
-Plus l’échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. 
-Intervalle de confiance à la moyenne réelle $\mu$:
-$$ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}$$.
+Plus l'échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle $\mu$: $$ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}$$.
 
-## Test uni- _vs_ bidirectionnel
+## Test uni- *vs* bidirectionnel
 
-L’hypothèse nulle est toujours “il n’existe pas de” différence/relation... Cela revient à dire qu’une certaine quantité est égale à 0.
-L’hypothèse alternative est soit:  
+L'hypothèse nulle est toujours "il n'existe pas de" différence/relation... Cela revient à dire qu'une certaine quantité est égale à 0. L'hypothèse alternative est soit:
 
-* Cette quantité est différente de 0 (test bidirectionnel);  
-* Cette quantité est supérieure/inférieure à 0 (test unidirectionnel). 
+-   Cette quantité est différente de 0 (test bidirectionnel);\
+-   Cette quantité est supérieure/inférieure à 0 (test unidirectionnel).
 
-Ainsi on a:  
+Ainsi on a:
 
-* Test bidirectionnel:  
-  - $H_0$ : $\mu = \mu_0$ ou $t = 0$
-  - $H_A$ : $\mu ≠ \mu_0$ ou $t ≠ 0$
-
-* Test unidirectionnel:
-  - $H_0$: $\mu = \mu_0$ ou $t = 0$
-  - $H_{A1}$: $\mu > \mu_0$ ou $t > 0$
-  - $H_{A2}$: $\mu < \mu_0$ ou $t < 0$
+-   Test bidirectionnel:
+    -   $H_0$ : $\mu = \mu_0$ ou $t = 0$
+    -   $H_A$ : $\mu ≠ \mu_0$ ou $t ≠ 0$
+-   Test unidirectionnel:
+    -   $H_0$: $\mu = \mu_0$ ou $t = 0$
+    -   $H_{A1}$: $\mu > \mu_0$ ou $t > 0$
+    -   $H_{A2}$: $\mu < \mu_0$ ou $t < 0$
 
 ## Types d'erreurs
 
 Quand on prend une décision concernqnt une hypothèse sur la base d'un échantillon donné, **on n'est jamais sûr de prendre la bonne décision!!**.
 
-On peut se tromper de 2 manières:  
+On peut se tromper de 2 manières:
 
-* $\alpha$ (probabilité d’erreur de type I: rejeter $H_0$ à tort) est traditionnellement fixé à 5%. Rien n’empêche de choisir un $\alpha$ plus petit ou plus grand;  
-* $1 - \beta$ (probabilité d’erreur de type II: accepter $H_0$ à tort) est la puissance du test. Elle dépend notamment de:  
-   *  La taille de l’effet: plus l’effet est grand, plus la probabilité de le détecter est grande;
-   *  La variance: plus le paramètre est connu avec précision, plus la probabilité d’en détecter une différence est grande. La précision augmente avec le nombre d’observation.
-
+-   $\alpha$ (probabilité d'erreur de type I: rejeter $H_0$ à tort) est traditionnellement fixé à 5%. Rien n'empêche de choisir un $\alpha$ plus petit ou plus grand;\
+-   $1 - \beta$ (probabilité d'erreur de type II: accepter $H_0$ à tort) est la puissance du test. Elle dépend notamment de:
+    -   La taille de l'effet: plus l'effet est grand, plus la probabilité de le détecter est grande;
+    -   La variance: plus le paramètre est connu avec précision, plus la probabilité d'en détecter une différence est grande. La précision augmente avec le nombre d'observation.
 
 ## Compromis entre $\alpha$ et $\beta$
 
-Il existe un compromis entre les probabilités d’erreur de type I ($\alpha$) et de type II ($\alpha$). Pour un même jeu de données, si on choisit de diminuer $\alpha$, on augmentera automatiquement $\beta$, et inversement.
+Il existe un compromis entre les probabilités d'erreur de type I ($\alpha$) et de type II ($\alpha$). Pour un même jeu de données, si on choisit de diminuer $\alpha$, on augmentera automatiquement $\beta$, et inversement.
 
 ## Les deux grands types de questions
 
-On peut différencier en général 3 types de jeux de données en fonction du nombre de variables mesurées sur chaque individu:  
+On peut différencier en général 3 types de jeux de données en fonction du nombre de variables mesurées sur chaque individu:
 
-* Univarié: une seule variable;  
-* Bivarié: 2 variables;  
-* Multivarié: plus de 2 variables;  
+-   Univarié: une seule variable;\
+-   Bivarié: 2 variables;\
+-   Multivarié: plus de 2 variables;
 
-On peut différencier 2 grandes classes de questions:  
+On peut différencier 2 grandes classes de questions:
 
-*  L’hypothèse porte sur l’existence de différence(s);  
-*  L’hypothèse porte sur l’existence d’une relation entre variables.  
+-   L'hypothèse porte sur l'existence de différence(s);\
+-   L'hypothèse porte sur l'existence d'une relation entre variables.
 
 ## Les grandes classes de méthodes d'analyse
-
-
