@@ -18,7 +18,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -131,11 +150,10 @@ ul.task-list li input[type="checkbox"] {
   <li>
 <a href="#pourquoi-a-t-on-besoin-de-m%C3%A9thodes-statistiques" id="toc-pourquoi-a-t-on-besoin-de-méthodes-statistiques" class="nav-link" data-scroll-target="#pourquoi-a-t-on-besoin-de-m%C3%A9thodes-statistiques"><span class="header-section-number">1.2</span> Pourquoi a-t-on besoin de méthodes statistiques ?</a>
   <ul class="collapse">
-<li><a href="#pr%C3%A9sentation" id="toc-présentation" class="nav-link" data-scroll-target="#pr%C3%A9sentation"><span class="header-section-number">1.2.1</span> Présentation</a></li>
-  <li><a href="#tests-statistiques-et-niveaux-de-signification" id="toc-tests-statistiques-et-niveaux-de-signification" class="nav-link" data-scroll-target="#tests-statistiques-et-niveaux-de-signification"><span class="header-section-number">1.2.2</span> Tests statistiques et niveaux de signification</a></li>
-  <li><a href="#exemple-de-calcul-direct-de-la-p-valeur" id="toc-exemple-de-calcul-direct-de-la-p-valeur" class="nav-link" data-scroll-target="#exemple-de-calcul-direct-de-la-p-valeur"><span class="header-section-number">1.2.3</span> Exemple de calcul direct de la p-valeur</a></li>
-  <li><a href="#passage-interm%C3%A9diaire-par-une-statistique" id="toc-passage-intermédiaire-par-une-statistique" class="nav-link" data-scroll-target="#passage-interm%C3%A9diaire-par-une-statistique"><span class="header-section-number">1.2.4</span> Passage intermédiaire par une statistique</a></li>
-  <li><a href="#effet-de-la-taille-de-l%C3%A9chantillon-n" id="toc-effet-de-la-taille-de-léchantillon-n" class="nav-link" data-scroll-target="#effet-de-la-taille-de-l%C3%A9chantillon-n"><span class="header-section-number">1.2.5</span> Effet de la taille de l’échantillon (n)</a></li>
+<li><a href="#tests-statistiques-et-niveaux-de-signification" id="toc-tests-statistiques-et-niveaux-de-signification" class="nav-link" data-scroll-target="#tests-statistiques-et-niveaux-de-signification"><span class="header-section-number">1.2.1</span> Tests statistiques et niveaux de signification</a></li>
+  <li><a href="#exemple-de-calcul-direct-de-la-p-valeur" id="toc-exemple-de-calcul-direct-de-la-p-valeur" class="nav-link" data-scroll-target="#exemple-de-calcul-direct-de-la-p-valeur"><span class="header-section-number">1.2.2</span> Exemple de calcul direct de la p-valeur</a></li>
+  <li><a href="#passage-interm%C3%A9diaire-par-une-statistique" id="toc-passage-intermédiaire-par-une-statistique" class="nav-link" data-scroll-target="#passage-interm%C3%A9diaire-par-une-statistique"><span class="header-section-number">1.2.3</span> Passage intermédiaire par une statistique</a></li>
+  <li><a href="#effet-de-la-taille-de-l%C3%A9chantillon-n" id="toc-effet-de-la-taille-de-léchantillon-n" class="nav-link" data-scroll-target="#effet-de-la-taille-de-l%C3%A9chantillon-n"><span class="header-section-number">1.2.4</span> Effet de la taille de l’échantillon (n)</a></li>
   </ul>
 </li>
   <li><a href="#test-uni--vs-bidirectionnel" id="toc-test-uni--vs-bidirectionnel" class="nav-link" data-scroll-target="#test-uni--vs-bidirectionnel"><span class="header-section-number">1.3</span> Test uni- <em>vs</em> bidirectionnel</a></li>
@@ -267,13 +285,23 @@ f(k; \lambda) = \frac{\lambda^k e^{-\lambda}}{k!}
 </div>
 </div>
 </section><section id="distribution-t-de-student" class="level4" data-number="1.1.3.5"><h4 data-number="1.1.3.5" class="anchored" data-anchor-id="distribution-t-de-student">
-<span class="header-section-number">1.1.3.5</span> Distribution t de Student</h4>
+<span class="header-section-number">1.1.3.5</span> Distribution <span class="math inline">\(t\)</span> de Student</h4>
 <p>En probabilité et en statistique, la distribution <span class="math inline">\(t\)</span> de Student (ou simplement la distribution <span class="math inline">\(t\)</span>) <span class="math inline">\(t_\nu\)</span> est une distribution de probabilité continue qui généralise la distribution normale standard. Comme cette dernière, elle est symétrique autour de zéro et en forme de cloche.</p>
+<p>Les paramètres de la distribution <span class="math inline">\(t\)</span> de Student sont:</p>
+<ul>
+<li><p>Moyenne: 0 pour <span class="math inline">\(\nu &gt; 1\)</span> et indéfini dans le cas contraire.</p></li>
+<li><p>Variance: <span class="math inline">\(\frac{\nu}{\nu - 2}\)</span> pour <span class="math inline">\(\nu &gt; 2\)</span>, <span class="math inline">\(\infty\)</span> pour <span class="math inline">\(1 &lt; \nu \leq 2\)</span>, indéfini dans les cas contraires.</p></li>
+</ul>
 <p>La fonction de densité de probabilité de la distribution de <span class="math inline">\(t\)</span> est:</p>
 <p><span class="math display">\[
 f(t) = \frac{\Gamma(\frac{\nu + 1}{2})}{\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})} (1 + \frac{t^2}{\nu}) ^ {-(\nu + 1)/2}
 \]</span></p>
 <p>ou <span class="math inline">\(\nu\)</span> est le nombre de dégrés de libertés et <span class="math inline">\(\Gamma\)</span> est la fonction Gamma.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 <p>La distribution t de Student avec <span class="math inline">\(\nu\)</span> degrés de liberté peut être définie comme la distribution de la variable aléatoire <span class="math inline">\(T\)</span> avec <span class="math display">\[T = \frac{Z}{\sqrt{V/\nu}} = Z\sqrt{\frac{\nu}{V}}\]</span></p>
 <p>avec</p>
 <ul>
@@ -282,17 +310,16 @@ f(t) = \frac{\Gamma(\frac{\nu + 1}{2})}{\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})} (1
 <li><p><span class="math inline">\(Z\)</span> et <span class="math inline">\(V\)</span> sont indépendants.</p></li>
 </ul></section></section></section><section id="pourquoi-a-t-on-besoin-de-méthodes-statistiques" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="pourquoi-a-t-on-besoin-de-méthodes-statistiques">
 <span class="header-section-number">1.2</span> Pourquoi a-t-on besoin de méthodes statistiques ?</h2>
-<section id="présentation" class="level3" data-number="1.2.1"><h3 data-number="1.2.1" class="anchored" data-anchor-id="présentation">
-<span class="header-section-number">1.2.1</span> Présentation</h3>
 <p>La plupart des sciences sont comparatives. Les chercheurs ont souvent besoin de savoir si un traitement expérimental particulier a eu un effet, ou s’il existe des différences entre une variable particulière mesurée à plusieurs endroits différents. Par exemple, un nouveau médicament a-t-il un effet sur la tension artérielle, un régime riche en vitamine C réduit-il le risque de cancer du foie chez l’homme, ou existe-t-il une relation entre la couverture végétale et la densité de la population de lapins ? Mais lorsque vous faites ce genre de comparaisons, les différences entre les traitements ou entre les zones échantillonnées peuvent être réelles ou peuvent simplement être le type de variation qui se produit par hasard entre les échantillons d’une même population.</p>
-<p><strong>Les probabilités vous aident à prendre une décision concernant vos résultats</strong></p>
 <p>Prenons 2 situations concrètes:</p>
 <ul>
 <li>Dans la première, nous jouons à pile ou face avec 10 pièces. On obtient après un lancer unique de chacune des pièces 3 faces et 7 piles. Pouvons-nous dire si ce lot de pièces est truqué?<br>
 </li>
 <li>Dans la seconde, on échantillone une population de singes, et on observe 32 femelles et 54 mâles. Y a-t-il réellement plus de mâles dans la population?</li>
-</ul></section><section id="tests-statistiques-et-niveaux-de-signification" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="tests-statistiques-et-niveaux-de-signification">
-<span class="header-section-number">1.2.2</span> Tests statistiques et niveaux de signification</h3>
+</ul>
+<p><strong>Les probabilités vous aident à prendre une décision concernant vos résultats.</strong></p>
+<section id="tests-statistiques-et-niveaux-de-signification" class="level3" data-number="1.2.1"><h3 data-number="1.2.1" class="anchored" data-anchor-id="tests-statistiques-et-niveaux-de-signification">
+<span class="header-section-number">1.2.1</span> Tests statistiques et niveaux de signification</h3>
 <p>Un test statistique est une aide à la décision concernant une hypothèse (alternative <em>vs</em> nulle).</p>
 <p>L’idée maîtresse à la base de tout test d’hypothèse statistique:</p>
 <ul>
@@ -313,15 +340,37 @@ f(t) = \frac{\Gamma(\frac{\nu + 1}{2})}{\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})} (1
 </div>
 </div>
 </div>
-</section><section id="exemple-de-calcul-direct-de-la-p-valeur" class="level3" data-number="1.2.3"><h3 data-number="1.2.3" class="anchored" data-anchor-id="exemple-de-calcul-direct-de-la-p-valeur">
-<span class="header-section-number">1.2.3</span> Exemple de calcul direct de la p-valeur</h3>
-<p>Prenons un exemple de sac contenant 1000 boules blanches et noires. On en tire 6 au hasard. On veut tester l’hypothèse qu’il y a 500 blanches et 500 noires: <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mathbb{P}(blanche) = 0,5\)</span> <em>vs</em> <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mathbb{P}(blanche) ≠ 0,5\)</span>.</p>
+</section><section id="exemple-de-calcul-direct-de-la-p-valeur" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="exemple-de-calcul-direct-de-la-p-valeur">
+<span class="header-section-number">1.2.2</span> Exemple de calcul direct de la p-valeur</h3>
+<p>Prenons un exemple de sac contenant 1000 boules blanches et noires. On en tire 6 au hasard <span class="citation" data-cites="mckillup2011">(<a href="#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>. On veut tester l’hypothèse qu’il y a 500 blanches et 500 noires: <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mathbb{P}(blanche) = 0,5\)</span> <em>vs</em> <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mathbb{P}(blanche) ≠ 0,5\)</span>.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepts basiques de probabilité
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La probabilité d’un événement ne peut varier qu’entre 0 et 1 (qui correspondent à 0 et 100%). Si un événement est certain de se produire, il a une probabilité de 1 ; alors que s’il est certain que l’événement ne se produira pas, il a une probabilité de 0.</p>
+<p>La probabilité d’un événement particulier est le nombre de résultats donnant cet événement, divisé par le nombre total de résultats possibles. Par exemple, lorsque vous jouez à pile ou face, il n’y a que deux résultats possibles : pile ou face. Ces deux événements s’excluent mutuellement : il est impossible d’obtenir les deux.</p>
+<p>Par conséquent, la probabilité d’obtenir un résultat positif est de 1 divisé par 2 = ½ (et donc la probabilité d’obtenir un résultat négatif est également de ½).</p>
+<p><strong>La règle de l’addition</strong></p>
+<p>La probabilité d’obtenir une tête ou une queue est de ½ + ½ = 1. Il s’agit d’un exemple de la règle de l’addition : lorsque plusieurs résultats s’excluent mutuellement, la probabilité d’obtenir l’un d’entre eux est la somme de leurs probabilités respectives. (Par conséquent, la probabilité d’obtenir un 1, un 2, un 3 ou un 4 en lançant un dé à six faces est de 4/6).</p>
+<p><strong>La règle de multiplication</strong></p>
+<p><strong>Événements indépendants.</strong> Pour calculer la probabilité conjointe de deux ou plusieurs événements indépendants (par exemple, un face suivi d’un autre face lors de deux lancers indépendants d’une pièce de monnaie), il suffit de multiplier les probabilités indépendantes entre elles. Par conséquent, la probabilité d’obtenir deux têtes lors de deux lancers d’une pièce est de ½ ½ = ¼. La probabilité d’obtenir un pile ou un face avec deux lancers est de ½, parce qu’il y a deux façons d’obtenir ce résultat : HT ou TH.</p>
+<p><strong>Événements connexes.</strong> Si les événements ne sont pas indépendants (par exemple, le premier événement est un nombre compris entre 1 et 3 inclus lors du lancer d’un dé à six faces et le second événement est un nombre pair), la règle de multiplication s’applique également, mais vous devez multiplier la probabilité d’un événement par la <strong>probabilité conditionnelle</strong> du second.</p>
+<p>Lorsqu’on lance un dé, la probabilité indépendante d’un nombre compris entre 1 et 3 est de <span class="math inline">\(3/6 = 1/2\)</span>, et la probabilité indépendante de tout nombre pair est également de <span class="math inline">\(1/2\)</span> (les nombres pairs sont 2, 4 ou 6 divisés par les six résultats possibles).</p>
+<p>Cependant, si vous avez déjà lancé un nombre de 1 à 3, la probabilité que cet ensemble restreint de résultats soit un nombre pair est de <span class="math inline">\(1/3\)</span> (parce que “2” est le seul nombre pair possible dans cet ensemble de trois résultats). Par conséquent, la probabilité des <strong>deux</strong> événements liés est de <span class="math inline">\(1/2 \times 1/3 = 1/6\)</span>. Vous pouvez examiner la situation dans l’autre sens : la probabilité d’obtenir un nombre pair en lançant un dé est de <span class="math inline">\(1/2\)</span> (vous obtiendriez les nombres 2, 4 ou 6) et la probabilité que l’un de ces nombres soit compris entre 1 et 3 est de <span class="math inline">\(1/3\)</span> (le nombre 2 parmi ces trois résultats). Par conséquent, la probabilité des deux résultats est à nouveau <span class="math inline">\(1/2 \times 1/3 = 1/6\)</span>.</p>
+</div>
+</div>
 <table class="table">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 37%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 30%">
 </colgroup>
 <thead><tr class="header">
 <th>Nombre de boules noires</th>
@@ -380,12 +429,16 @@ f(t) = \frac{\Gamma(\frac{\nu + 1}{2})}{\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})} (1
 </tr>
 </tbody>
 </table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="img/expected_number.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Les nombres attendus de chaque mélange possible de couleurs lors du tirage indépendant de six perles avec remplacement à 64 occasions différentes à partir d’une grande population contenant 50 % de noires et 50 % de blanches.</figcaption></figure>
+</div>
 <p>La probabilité de n’obtenir aucune boule blanche sur 6 boules tirées est de 1,56%. On rejette l’hypothèse nulle <span class="math inline">\(H_0\)</span> puisque <span class="math inline">\(p &lt; 2,5\%\)</span> (test bidirectionnel).</p>
-</section><section id="passage-intermédiaire-par-une-statistique" class="level3" data-number="1.2.4"><h3 data-number="1.2.4" class="anchored" data-anchor-id="passage-intermédiaire-par-une-statistique">
-<span class="header-section-number">1.2.4</span> Passage intermédiaire par une statistique</h3>
+</section><section id="passage-intermédiaire-par-une-statistique" class="level3" data-number="1.2.3"><h3 data-number="1.2.3" class="anchored" data-anchor-id="passage-intermédiaire-par-une-statistique">
+<span class="header-section-number">1.2.3</span> Passage intermédiaire par une statistique</h3>
 <p>Dans la majorité des cas, on ne peut pas calculer directement la p-valeur. L’alternative est de calculer une statistique qui quantifie la différence entre les données observées et les données attendues sous <span class="math inline">\(H_0\)</span>. On calcule ensuite la p-valeur en comparant la valeur de la statistique à sa distribution théorique sous <span class="math inline">\(H_0\)</span>.</p>
-<section id="inférence-à-une-moyenne" class="level4" data-number="1.2.4.1"><h4 data-number="1.2.4.1" class="anchored" data-anchor-id="inférence-à-une-moyenne">
-<span class="header-section-number">1.2.4.1</span> Inférence à une moyenne</h4>
+<section id="inférence-à-une-moyenne" class="level4" data-number="1.2.3.1"><h4 data-number="1.2.3.1" class="anchored" data-anchor-id="inférence-à-une-moyenne">
+<span class="header-section-number">1.2.3.1</span> Inférence à une moyenne</h4>
 <p>On peut par exemple être amené à comparer la moyenne d’un échantillon à la moyenne d’une population dont la variance est connue. Pour un tel test on a:</p>
 <ul>
 <li>
@@ -404,8 +457,8 @@ f(t) = \frac{\Gamma(\frac{\nu + 1}{2})}{\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})} (1
 </div>
 </div>
 </div>
-</section><section id="et-si-les-paramètres-sont-inconnus" class="level4" data-number="1.2.4.2"><h4 data-number="1.2.4.2" class="anchored" data-anchor-id="et-si-les-paramètres-sont-inconnus">
-<span class="header-section-number">1.2.4.2</span> Et si les paramètres sont inconnus ?</h4>
+</section><section id="et-si-les-paramètres-sont-inconnus" class="level4" data-number="1.2.3.2"><h4 data-number="1.2.3.2" class="anchored" data-anchor-id="et-si-les-paramètres-sont-inconnus">
+<span class="header-section-number">1.2.3.2</span> Et si les paramètres sont inconnus ?</h4>
 <p>Si on ne connaît pas la variance réelle de la population, il faut tenir compte des biais possibles dus à la taille de l’échantillon (n).</p>
 <p>On a alors:</p>
 <ul>
@@ -414,8 +467,8 @@ f(t) = \frac{\Gamma(\frac{\nu + 1}{2})}{\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})} (1
 <li>Degrés de liberté: nombre d’observations dans l’échantillon libres de varier quand on estime la variance.</li>
 </ul>
 <p>Plus n est petit, plus la distribution est large car S sous-estime σ. Quand n = ∞, Student = Normale.</p>
-</section></section><section id="effet-de-la-taille-de-léchantillon-n" class="level3" data-number="1.2.5"><h3 data-number="1.2.5" class="anchored" data-anchor-id="effet-de-la-taille-de-léchantillon-n">
-<span class="header-section-number">1.2.5</span> Effet de la taille de l’échantillon (n)</h3>
+</section></section><section id="effet-de-la-taille-de-léchantillon-n" class="level3" data-number="1.2.4"><h3 data-number="1.2.4" class="anchored" data-anchor-id="effet-de-la-taille-de-léchantillon-n">
+<span class="header-section-number">1.2.4</span> Effet de la taille de l’échantillon (n)</h3>
 <p>Plus l’échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle <span class="math inline">\(\mu\)</span>: <span class="math display">\[ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}\]</span>.</p>
 </section></section><section id="test-uni--vs-bidirectionnel" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="test-uni--vs-bidirectionnel">
 <span class="header-section-number">1.3</span> Test uni- <em>vs</em> bidirectionnel</h2>
@@ -488,6 +541,11 @@ f(t) = \frac{\Gamma(\frac{\nu + 1}{2})}{\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})} (1
 <span class="header-section-number">1.7</span> Les grandes classes de méthodes d’analyse</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-mckillup2011" class="csl-entry" role="listitem">
+McKillup, Steve. 2011. <span>“Statistics Explained,”</span> November. <a href="https://doi.org/10.1017/cbo9781139047500">https://doi.org/10.1017/cbo9781139047500</a>.
+</div>
+</div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
