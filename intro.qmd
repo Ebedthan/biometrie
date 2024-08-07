@@ -1,16 +1,16 @@
 # Importance et notions de base
 
-## Pourquoi a-t-on besoin de méthodes statistiques ?
+## Rappels sur les notions de base
 
-Prenons 2 situations concrètes:  
+### Types de statistiques
 
-* Dans la première, nous jouons à pile ou face avec 10 pièces. On obtient après un lancer unique de chacune des pièces 3 faces et 7 piles. Pouvons-nous dire si ce lot de pièces est truqué?  
-* Dans la seconde, on échantillone une population de singes, et on observe 32 femelles et 54 mâles. Y a-t-il réellement plus de mâles dans la population?  
+* **Descriptives**: le but est d’illustrer les données;  
+* **Paramétriques**: on suppose que la/les variables(s) suivent une distribution particulière;  
+* **Non paramétriques**: on ne fait aucune supposition concernant la distribution de la/les variables(s).  
 
+### Variables
 
-## Variables
-
-* Variable = attribut mesuré pour chaque individu/observation.  
+* Une variable est un attribut mesuré pour chaque individu/observation.  
 * Types d’échelle de mesure:  
    - Ratio: le 0 est clairement défini; ne peut pas être < 0.  
    - Intervalle: le 0 est arbitraire; peut être < 0.  
@@ -19,29 +19,87 @@ Prenons 2 situations concrètes:
    - Continue: présente une infinité de valeurs possibles.  
    - Discrète: nombre limité de valeurs possibles.
 
-## Types de statistiques
+### Qu'est-ce qu'une distribution?
 
-* Descriptives: le but est d’illustrer les données;  
-* Paramétriques: on suppose que la/les variables(s) suivent une distribution particulière;  
-* Non paramétriques: on ne fait aucune supposition concernant la distribution de la/les variables(s).  
+Une fonction qui exprime la fréquence (densité de probabilité) des différentes valeurs pouvant être prise par une variable.
+
+Rappelons ici quelques distributions usuelles.
+
+#### Distribution uniforme (continue)
+
+Les paramètres de la distribution uniforme sont:  
+
+* Moyenne: $\frac{1}{2}(a + b)$.  
+* Variance: $\frac{1}{12}(b - a)^2$.  
+
+La fonction de densité de la loi uniforme est: 
+$$\left\{\begin{array}{ll}\frac{1}{b - a} & \mbox{for x \in [a, b]} \\ 0 & \mbox{otherwise}\end{array}\right$$
 
 
-## Qu'est-ce qu'une distribution?
+#### Distribution normale
 
-Fonction qui exprime la fréquence (densité de probabilité) des différentes valeurs pouvant être prise par une variable.
+Les paramètres de la distribution normale sont:  
 
+*  Moyenne: $\mu = \frac{\sum_{i=1}^{N} X_i}{N}$.
+*  Variance: $\sigma^2 = \frac{\sum (X_i - \mu)^2}{N}$.
 
-### Distribution normale
+La fonction de densité de la loi normale est:
 
-* Tendance centrale: moyenne arithmétique $\mu = \frac{\sum_{i=1}^{N} X_i}{N}$
-* Dispersion: variance $\sigma^2 = \frac{\sum (X_i - \mu)^2}{N}$.
+$$ f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}$$
 
+```{r, echo=FALSE}
+# Load necessary libraries
+library(ggplot2)
 
-## Les probabilités vous aident à prendre une décision concernant vos résultats
+# Define a function to plot the normal distribution
+plot_normal_distribution <- function(means, variances, xlim = c(-10, 10), points = 1000) {
+  # Create a data frame to hold the x values and densities for each mean and variance
+  data <- data.frame()
+  
+  # Loop through each combination of mean and variance
+  for (mean in means) {
+    for (variance in variances) {
+      sd <- sqrt(variance)
+      x <- seq(xlim[1], xlim[2], length.out = points)
+      y <- dnorm(x, mean = mean, sd = sd)
+      temp <- data.frame(x = x, y = y, mean = factor(mean), variance = factor(variance))
+      data <- rbind(data, temp)
+    }
+  }
+  
+  # Plot using ggplot2
+  p <- ggplot(data, aes(x = x, y = y, color = mean, linetype = variance)) +
+    geom_line() +
+    labs(title = "Normal Distribution",
+         x = "x",
+         y = "Density",
+         color = "Mean",
+         linetype = "Variance") +
+    theme_minimal()
+  
+  print(p)
+}
+
+# Define means and variances
+means <- c(0, 2, -2)
+variances <- c(1, 2, 0.5)
+
+# Plot the normal distributions
+plot_normal_distribution(means, variances)
+```
+
+## Pourquoi a-t-on besoin de méthodes statistiques ?
 
 ### Présentation
 
 La plupart des sciences sont comparatives. Les chercheurs ont souvent besoin de savoir si un traitement expérimental particulier a eu un effet, ou s'il existe des différences entre une variable particulière mesurée à plusieurs endroits différents. Par exemple, un nouveau médicament a-t-il un effet sur la tension artérielle, un régime riche en vitamine C réduit-il le risque de cancer du foie chez l'homme, ou existe-t-il une relation entre la couverture végétale et la densité de la population de lapins ? Mais lorsque vous faites ce genre de comparaisons, les différences entre les traitements ou entre les zones échantillonnées peuvent être réelles ou peuvent simplement être le type de variation qui se produit par hasard entre les échantillons d'une même population.
+
+**Les probabilités vous aident à prendre une décision concernant vos résultats**
+
+Prenons 2 situations concrètes:  
+
+* Dans la première, nous jouons à pile ou face avec 10 pièces. On obtient après un lancer unique de chacune des pièces 3 faces et 7 piles. Pouvons-nous dire si ce lot de pièces est truqué?  
+* Dans la seconde, on échantillone une population de singes, et on observe 32 femelles et 54 mâles. Y a-t-il réellement plus de mâles dans la population?  
 
 ### Tests statistiques et niveaux de signification
 
@@ -134,6 +192,33 @@ Ainsi on a:
 
 ## Types d'erreurs
 
-Quand on prend une décision concernqnt une hypothèse sur la base d'un échantillon donné, *on n'est jamais sûr de prendre la bonne décision*!!
-On peut se tromper de 2 manières:
+Quand on prend une décision concernqnt une hypothèse sur la base d'un échantillon donné, **on n'est jamais sûr de prendre la bonne décision!!**.
+
+On peut se tromper de 2 manières:  
+
+* $\alpha$ (probabilité d’erreur de type I: rejeter $H_0$ à tort) est traditionnellement fixé à 5%. Rien n’empêche de choisir un $\alpha$ plus petit ou plus grand;  
+* $1 - \beta$ (probabilité d’erreur de type II: accepter $H_0$ à tort) est la puissance du test. Elle dépend notamment de:  
+   *  La taille de l’effet: plus l’effet est grand, plus la probabilité de le détecter est grande;
+   *  La variance: plus le paramètre est connu avec précision, plus la probabilité d’en détecter une différence est grande. La précision augmente avec le nombre d’observation.
+
+
+## Compromis entre $\alpha$ et $\beta$
+
+Il existe un compromis entre les probabilités d’erreur de type I ($\alpha$) et de type II ($\alpha$). Pour un même jeu de données, si on choisit de diminuer $\alpha$, on augmentera automatiquement $\beta$, et inversement.
+
+## Les deux grands types de questions
+
+On peut différencier en général 3 types de jeux de données en fonction du nombre de variables mesurées sur chaque individu:  
+
+* Univarié: une seule variable;  
+* Bivarié: 2 variables;  
+* Multivarié: plus de 2 variables;  
+
+On peut différencier 2 grandes classes de questions:  
+
+*  L’hypothèse porte sur l’existence de différence(s);  
+*  L’hypothèse porte sur l’existence d’une relation entre variables.  
+
+## Les grandes classes de méthodes d'analyse
+
 
