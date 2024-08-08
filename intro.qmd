@@ -229,6 +229,16 @@ variances <- c(1, 2, 0.5)
 plot_normal_distribution(means, variances)
 ```
 
+::: callout-important
+## Points clés à retenir
+
+-   La distribution normale est le terme approprié pour désigner une courbe de probabilité en cloche.
+
+-   Dans une distribution normale, la moyenne est égale à zéro et l'écart-type est de 1. L'asymétrie est nulle et l'aplatissement est de 3.
+
+-   Les distributions normales sont symétriques, mais toutes les distributions symétriques ne sont pas normales.
+:::
+
 #### Distribution $t$ de Student
 
 En probabilité et en statistique, la distribution $t$ de Student (ou simplement la distribution $t$) $t_\nu$ est une distribution de probabilité continue qui généralise la distribution normale standard. Comme cette dernière, elle est symétrique autour de zéro et en forme de cloche.
@@ -288,6 +298,16 @@ avec
 
 -   $Z$ et $V$ sont indépendants.
 
+::: callout-important
+## Points clés à retenir
+
+-   La distribution $t$ est une distribution de probabilité continue du score z lorsque l'écart-type estimé est utilisé au dénominateur plutôt que l'écart-type réel.
+
+-   La distribution $t$, comme la distribution normale, est en forme de cloche et symétrique, mais ses queues sont plus lourdes, ce qui signifie qu'elle a tendance à produire des valeurs très éloignées de sa moyenne.
+
+-   Les tests T sont utilisés en statistique pour estimer l'importance des résultats.
+:::
+
 ## Pourquoi a-t-on besoin de méthodes statistiques ?
 
 La plupart des sciences sont comparatives. Les chercheurs ont souvent besoin de savoir si un traitement expérimental particulier a eu un effet, ou s'il existe des différences entre une variable particulière mesurée à plusieurs endroits différents. Par exemple, un nouveau médicament a-t-il un effet sur la tension artérielle, un régime riche en vitamine C réduit-il le risque de cancer du foie chez l'homme, ou existe-t-il une relation entre la couverture végétale et la densité de la population de lapins ? Mais lorsque vous faites ce genre de comparaisons, les différences entre les traitements ou entre les zones échantillonnées peuvent être réelles ou peuvent simplement être le type de variation qui se produit par hasard entre les échantillons d'une même population.
@@ -344,7 +364,7 @@ Cependant, si vous avez déjà lancé un nombre de 1 à 3, la probabilité que c
 :::
 
 | Nombre de boules noires | Nombre de boules blanches | Probabilité | Pourcentage de cas pouvant donner ce resultat |
-|-----------------|-----------------|-----------------|----------------------|
+|-----------------|-----------------|-----------------|---------------------|
 | 6                       | 0                         | 1/64        | 1,56                                          |
 | 5                       | 1                         | 6/64        | 9,38                                          |
 | 4                       | 2                         | 15/64       | 23,44                                         |
@@ -370,7 +390,17 @@ On peut par exemple être amené à comparer la moyenne d'un échantillon à la 
 -   Statistique de test: $Z_{obs} = \frac{\bar{Y} - \mu_0}{ESM} = \frac{\bar{Y} - \mu_0}{\frac{\sigma}{\sqrt{n}}} \sim N(0, 1)$
 
 ::: callout-note
-Erreur standard à la moyenne (ESM): le terme "erreur" remplace celui de "déviation" quand on parle de la variation de moyennes plutôt que de la variation de mesures individuelles.
+**Score Z (Z-score)**
+
+Le score Z est une mesure statistique qui quantifie la distance entre un point de données et la moyenne d'un ensemble de données. Il est exprimé en termes d'écarts types. Il indique le nombre d'écarts types d'un point de données par rapport à la moyenne de la distribution.
+
+Si un score Z est égal à 0, cela signifie que le score du point de données est identique au score moyen. Un score Z de 1,0 indique une valeur qui se situe à un écart-type de la moyenne. Les scores Z peuvent être positifs ou négatifs, une valeur positive indiquant que le score est supérieur à la moyenne et une valeur négative indiquant qu'il est inférieur à la moyenne.
+
+$$ Z = \frac{x - \mu}{\sigma}$$
+
+**Erreur standard à la moyenne (ESM)**
+
+Le terme "erreur" remplace celui de "déviation" quand on parle de la variation de moyennes plutôt que de la variation de mesures individuelles.
 :::
 
 #### Et si les paramètres sont inconnus ?
@@ -386,21 +416,23 @@ Plus n est petit, plus la distribution est large car S sous-estime σ. Quand n =
 
 ### Effet de la taille de l'échantillon (n)
 
-Plus l'échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle $\mu$: $$ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}$$.
+Plus l'échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle $\mu$: $$ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}$$
+
+![L'effet de la taille de l'échantillon sur la précision et l'exactitude des valeurs de $\bar{X}$ en tant qu'estimations de $\mu$ [@mckillup2011]. ](img/confidence_interval.png)
 
 ## Test uni- *vs* bidirectionnel
 
-L'hypothèse nulle est toujours "il n'existe pas de" différence/relation... Cela revient à dire qu'une certaine quantité est égale à 0. L'hypothèse alternative est soit:
+L'hypothèse nulle est toujours **"il n'existe pas de"** différence/relation... Cela revient à dire qu'une certaine quantité est égale à 0. L'hypothèse alternative est soit:
 
--   Cette quantité est différente de 0 (test bidirectionnel);\
--   Cette quantité est supérieure/inférieure à 0 (test unidirectionnel).
+-   Cette quantité est **différente** de 0 (test bidirectionnel);\
+-   Cette quantité est **supérieure/inférieure** à 0 (test unidirectionnel).
 
 Ainsi on a:
 
--   Test bidirectionnel:
+-   Test **bidirectionnel**:
     -   $H_0$ : $\mu = \mu_0$ ou $t = 0$
     -   $H_A$ : $\mu ≠ \mu_0$ ou $t ≠ 0$
--   Test unidirectionnel:
+-   Test **unidirectionnel**:
     -   $H_0$: $\mu = \mu_0$ ou $t = 0$
     -   $H_{A1}$: $\mu > \mu_0$ ou $t > 0$
     -   $H_{A2}$: $\mu < \mu_0$ ou $t < 0$

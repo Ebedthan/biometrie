@@ -284,6 +284,23 @@ f(k; \lambda) = \frac{\lambda^k e^{-\lambda}}{k!}
 <p><img src="intro_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Points clés à retenir
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>La distribution normale est le terme approprié pour désigner une courbe de probabilité en cloche.</p></li>
+<li><p>Dans une distribution normale, la moyenne est égale à zéro et l’écart-type est de 1. L’asymétrie est nulle et l’aplatissement est de 3.</p></li>
+<li><p>Les distributions normales sont symétriques, mais toutes les distributions symétriques ne sont pas normales.</p></li>
+</ul>
+</div>
+</div>
 </section><section id="distribution-t-de-student" class="level4" data-number="1.1.3.5"><h4 data-number="1.1.3.5" class="anchored" data-anchor-id="distribution-t-de-student">
 <span class="header-section-number">1.1.3.5</span> Distribution <span class="math inline">\(t\)</span> de Student</h4>
 <p>En probabilité et en statistique, la distribution <span class="math inline">\(t\)</span> de Student (ou simplement la distribution <span class="math inline">\(t\)</span>) <span class="math inline">\(t_\nu\)</span> est une distribution de probabilité continue qui généralise la distribution normale standard. Comme cette dernière, elle est symétrique autour de zéro et en forme de cloche.</p>
@@ -308,7 +325,25 @@ f(t) = \frac{\Gamma(\frac{\nu + 1}{2})}{\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})} (1
 <li><p><span class="math inline">\(Z\)</span> est une normale standard avec une valeur attendue de 0 et une variance de 1 ;</p></li>
 <li><p><span class="math inline">\(V\)</span> suit une distribution de khi-deux (<span class="math inline">\(\chi^2\)</span>) avec <span class="math inline">\(\nu\)</span> dégrés de liberté;</p></li>
 <li><p><span class="math inline">\(Z\)</span> et <span class="math inline">\(V\)</span> sont indépendants.</p></li>
-</ul></section></section></section><section id="pourquoi-a-t-on-besoin-de-méthodes-statistiques" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="pourquoi-a-t-on-besoin-de-méthodes-statistiques">
+</ul>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Points clés à retenir
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>La distribution <span class="math inline">\(t\)</span> est une distribution de probabilité continue du score z lorsque l’écart-type estimé est utilisé au dénominateur plutôt que l’écart-type réel.</p></li>
+<li><p>La distribution <span class="math inline">\(t\)</span>, comme la distribution normale, est en forme de cloche et symétrique, mais ses queues sont plus lourdes, ce qui signifie qu’elle a tendance à produire des valeurs très éloignées de sa moyenne.</p></li>
+<li><p>Les tests T sont utilisés en statistique pour estimer l’importance des résultats.</p></li>
+</ul>
+</div>
+</div>
+</section></section></section><section id="pourquoi-a-t-on-besoin-de-méthodes-statistiques" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="pourquoi-a-t-on-besoin-de-méthodes-statistiques">
 <span class="header-section-number">1.2</span> Pourquoi a-t-on besoin de méthodes statistiques ?</h2>
 <p>La plupart des sciences sont comparatives. Les chercheurs ont souvent besoin de savoir si un traitement expérimental particulier a eu un effet, ou s’il existe des différences entre une variable particulière mesurée à plusieurs endroits différents. Par exemple, un nouveau médicament a-t-il un effet sur la tension artérielle, un régime riche en vitamine C réduit-il le risque de cancer du foie chez l’homme, ou existe-t-il une relation entre la couverture végétale et la densité de la population de lapins ? Mais lorsque vous faites ce genre de comparaisons, les différences entre les traitements ou entre les zones échantillonnées peuvent être réelles ou peuvent simplement être le type de variation qui se produit par hasard entre les échantillons d’une même population.</p>
 <p>Prenons 2 situations concrètes:</p>
@@ -370,7 +405,7 @@ Concepts basiques de probabilité
 <col style="width: 23%">
 <col style="width: 23%">
 <col style="width: 23%">
-<col style="width: 30%">
+<col style="width: 29%">
 </colgroup>
 <thead><tr class="header">
 <th>Nombre de boules noires</th>
@@ -453,7 +488,12 @@ Concepts basiques de probabilité
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Erreur standard à la moyenne (ESM): le terme “erreur” remplace celui de “déviation” quand on parle de la variation de moyennes plutôt que de la variation de mesures individuelles.</p>
+<p><strong>Score Z (Z-score)</strong></p>
+<p>Le score Z est une mesure statistique qui quantifie la distance entre un point de données et la moyenne d’un ensemble de données. Il est exprimé en termes d’écarts types. Il indique le nombre d’écarts types d’un point de données par rapport à la moyenne de la distribution.</p>
+<p>Si un score Z est égal à 0, cela signifie que le score du point de données est identique au score moyen. Un score Z de 1,0 indique une valeur qui se situe à un écart-type de la moyenne. Les scores Z peuvent être positifs ou négatifs, une valeur positive indiquant que le score est supérieur à la moyenne et une valeur négative indiquant qu’il est inférieur à la moyenne.</p>
+<p><span class="math display">\[ Z = \frac{x - \mu}{\sigma}\]</span></p>
+<p><strong>Erreur standard à la moyenne (ESM)</strong></p>
+<p>Le terme “erreur” remplace celui de “déviation” quand on parle de la variation de moyennes plutôt que de la variation de mesures individuelles.</p>
 </div>
 </div>
 </div>
@@ -469,18 +509,22 @@ Concepts basiques de probabilité
 <p>Plus n est petit, plus la distribution est large car S sous-estime σ. Quand n = ∞, Student = Normale.</p>
 </section></section><section id="effet-de-la-taille-de-léchantillon-n" class="level3" data-number="1.2.4"><h3 data-number="1.2.4" class="anchored" data-anchor-id="effet-de-la-taille-de-léchantillon-n">
 <span class="header-section-number">1.2.4</span> Effet de la taille de l’échantillon (n)</h3>
-<p>Plus l’échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle <span class="math inline">\(\mu\)</span>: <span class="math display">\[ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}\]</span>.</p>
+<p>Plus l’échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle <span class="math inline">\(\mu\)</span>: <span class="math display">\[ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="img/confidence_interval.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">L’effet de la taille de l’échantillon sur la précision et l’exactitude des valeurs de <span class="math inline">\(\bar{X}\)</span> en tant qu’estimations de <span class="math inline">\(\mu\)</span> <span class="citation" data-cites="mckillup2011">(<a href="#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption></figure>
+</div>
 </section></section><section id="test-uni--vs-bidirectionnel" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="test-uni--vs-bidirectionnel">
 <span class="header-section-number">1.3</span> Test uni- <em>vs</em> bidirectionnel</h2>
-<p>L’hypothèse nulle est toujours “il n’existe pas de” différence/relation… Cela revient à dire qu’une certaine quantité est égale à 0. L’hypothèse alternative est soit:</p>
+<p>L’hypothèse nulle est toujours <strong>“il n’existe pas de”</strong> différence/relation… Cela revient à dire qu’une certaine quantité est égale à 0. L’hypothèse alternative est soit:</p>
 <ul>
-<li>Cette quantité est différente de 0 (test bidirectionnel);<br>
+<li>Cette quantité est <strong>différente</strong> de 0 (test bidirectionnel);<br>
 </li>
-<li>Cette quantité est supérieure/inférieure à 0 (test unidirectionnel).</li>
+<li>Cette quantité est <strong>supérieure/inférieure</strong> à 0 (test unidirectionnel).</li>
 </ul>
 <p>Ainsi on a:</p>
 <ul>
-<li>Test bidirectionnel:
+<li>Test <strong>bidirectionnel</strong>:
 <ul>
 <li>
 <span class="math inline">\(H_0\)</span> : <span class="math inline">\(\mu = \mu_0\)</span> ou <span class="math inline">\(t = 0\)</span>
@@ -490,7 +534,7 @@ Concepts basiques de probabilité
 </li>
 </ul>
 </li>
-<li>Test unidirectionnel:
+<li>Test <strong>unidirectionnel</strong>:
 <ul>
 <li>
 <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu = \mu_0\)</span> ou <span class="math inline">\(t = 0\)</span>
