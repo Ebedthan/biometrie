@@ -32,7 +32,7 @@
     "href": "intro.html#types-derreurs",
     "title": "\n1  Importance et notions de base\n",
     "section": "\n1.4 Types d’erreurs",
-    "text": "1.4 Types d’erreurs\nQuand on prend une décision concernqnt une hypothèse sur la base d’un échantillon donné, on n’est jamais sûr de prendre la bonne décision!!.\nOn peut se tromper de 2 manières:\n\n\n\\(\\alpha\\) (probabilité d’erreur de type I: rejeter \\(H_0\\) à tort) est traditionnellement fixé à 5%. Rien n’empêche de choisir un \\(\\alpha\\) plus petit ou plus grand;\n\n\n\\(1 - \\beta\\) (probabilité d’erreur de type II: accepter \\(H_0\\) à tort) est la puissance du test. Elle dépend notamment de:\n\nLa taille de l’effet: plus l’effet est grand, plus la probabilité de le détecter est grande;\nLa variance: plus le paramètre est connu avec précision, plus la probabilité d’en détecter une différence est grande. La précision augmente avec le nombre d’observation."
+    "text": "1.4 Types d’erreurs\nQuand on prend une décision concernqnt une hypothèse sur la base d’un échantillon donné, on n’est jamais sûr de prendre la bonne décision!!.\n\n\nDécisions et erreurs statistiques lors des tests d’hypothèses nulles (“Hypothesis Testing” 2002).\n\nOn peut se tromper de 2 manières:\n\n\n\\(\\alpha\\) (probabilité d’erreur de type I: rejeter \\(H_0\\) à tort) est traditionnellement fixé à 5%. Rien n’empêche de choisir un \\(\\alpha\\) plus petit ou plus grand;\n\n\n\\(1 - \\beta\\) (probabilité d’erreur de type II: accepter \\(H_0\\) à tort) est la puissance du test. Elle dépend notamment de:\n\nLa taille de l’effet: plus l’effet est grand, plus la probabilité de le détecter est grande;\nLa variance: plus le paramètre est connu avec précision, plus la probabilité d’en détecter une différence est grande. La précision augmente avec le nombre d’observation."
   },
   {
     "objectID": "intro.html#compromis-entre-alpha-et-beta",
@@ -53,7 +53,7 @@
     "href": "intro.html#les-grandes-classes-de-méthodes-danalyse",
     "title": "\n1  Importance et notions de base\n",
     "section": "\n1.7 Les grandes classes de méthodes d’analyse",
-    "text": "1.7 Les grandes classes de méthodes d’analyse\n\n\n\n\nMcKillup, Steve. 2011. “Statistics Explained,” November. https://doi.org/10.1017/cbo9781139047500."
+    "text": "1.7 Les grandes classes de méthodes d’analyse\n\n\n\n\n\n“Hypothesis Testing.” 2002. In, 32–57. Cambridge University Press. https://doi.org/10.1017/cbo9780511806384.004.\n\n\nMcKillup, Steve. 2011. “Statistics Explained,” November. https://doi.org/10.1017/cbo9781139047500."
   },
   {
     "objectID": "chapter1.html#architecture-de-von-neuman",

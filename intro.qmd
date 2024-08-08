@@ -441,6 +441,8 @@ Ainsi on a:
 
 Quand on prend une décision concernqnt une hypothèse sur la base d'un échantillon donné, **on n'est jamais sûr de prendre la bonne décision!!**.
 
+![Décisions et erreurs statistiques lors des tests d'hypothèses nulles [@hypothes2002].](img/statistical_decisions.png)
+
 On peut se tromper de 2 manières:
 
 -   $\alpha$ (probabilité d'erreur de type I: rejeter $H_0$ à tort) est traditionnellement fixé à 5%. Rien n'empêche de choisir un $\alpha$ plus petit ou plus grand;\
@@ -466,3 +468,5 @@ On peut différencier 2 grandes classes de questions:
 -   L'hypothèse porte sur l'existence d'une relation entre variables.
 
 ## Les grandes classes de méthodes d'analyse
+
+![](img/principal_tests.png)
