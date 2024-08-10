@@ -75,7 +75,7 @@ C'est un fait. En biologie, on peut très rarement étudier toute la population.
 
 On étudie donc **un échantillon représentatif de la population**.
 
-### Conception expérimentale
+### Choix d'un échantillon représentatif
 
 Étant donné qu'un chercheur ne peut généralement pas mesurer chaque individu de la population (à moins qu'il n'étudie les quelques membres restants d'une espèce en voie de disparition), il doit travailler avec un **sous-ensemble** soigneusement sélectionné contenant plusieurs individus, souvent appelés **unités expérimentales**, qu'il espère être un **échantillon représentatif** à partir duquel les caractéristiques de la population peuvent être déduites.
 
@@ -94,6 +94,72 @@ Le problème de cette approche est qu'il existe souvent de grandes différences 
 -   Enfin, la variation naturelle entre les individus d'un échantillon peut masquer tout effet d'un traitement expérimental. Les variations au sein d'un échantillon (et d'une population) sont souvent si importantes qu'il peut être difficile, voire impossible, de détecter l'effet d'un traitement @fig-sample3.
 
 ![Deux échantillons de poissons ont été prélevés dans la même population et ont été délibérément appariés de manière à ce que six individus de taille égale soient initialement présents dans chaque groupe. Les poissons du groupe traité ont été nourris avec un supplément de vitamines pendant 300 jours, tandis que ceux du groupe témoin non traité ne l'ont pas été. Grâce au supplément, chaque poisson du groupe traité a grandi environ 10 % plus longtemps, mais cette différence est faible par rapport à la variation de la croissance entre les individus, ce qui peut masquer tout effet du traitement [@mckillup2011].](img/sample3.png){#fig-sample3}
+
+### Caractéristiques recherchées pour les mesures/données
+
+L'objectif est d'obtenir des mesures avec la plus grande précision et sans biais.
+
+-   La précision est déterminée la variabilité des mesures répétées de la même quantité.
+
+-   Les biais proviennent d'une inadéquation systématique entre la mesure et la valeur réelle.
+
+#### La différence entre mesurer et manipuler
+
+Il existe deux grandes classes d'expériences:
+
+-   **Mesure seule**: on mesure les variables d'un système dans son état existant;
+
+-   **Mesure avec manipulation**: on modifie/manipule l'état d'un système et on mesure les changements qui en résultent.
+
+#### Les différences entre corrélation et cause
+
+Seule une expérience avec manipulation peut démontrer un lien de cause à effet.
+
+Il faut se méfier des relations observées dans une expérience sans manipulation.
+
+Par exemple, l'humidité du sol peut déterminer à la fois le nombre de souris et le poids du blé. Par conséquent, bien qu'il existe une relation de cause à effet entre l'humidité du sol et chacune des deux variables, celles-ci ne sont pas elles-mêmes liées de manière causale.
+
+#### L'importance de la réplication
+
+Seule la réplication/répétition (prise de plusieurs mesures de la même variable sur des individus indépendants) permet de déterminer la variation due au hasard/
+
+C'est donc un élément vital de toute expérience.
+
+Prenons l'exemple de l'échantillonnage du lac Dark, dans le Wisconsin, pour étudier la densité de la population de crevettes d'eau douce en fonction de la profondeur [@mckillup2011].
+
+Si vous n'échantillonnez qu'à un seul endroit @fig-sampling (a), les résultats ne donneront pas une bonne indication de l'évolution de la densité de la population de crevettes en fonction de la profondeur du lac. L'échantillonnage doit être répété, mais il est peu utile d'échantillonner de façon répétée une petite zone (par exemple en prenant plusieurs échantillons sous '' dans la @fig-sampling (b)) car cela ne donnera toujours pas une indication précise des changements de la densité de la population en fonction de la profondeur dans l'ensemble du lac (bien qu'il puisse donner une indication très précise des conditions dans cette partie particulière du lac). Ce type d'échantillonnage est un aspect de ce que Hurlbert (1984) a appelé **pseudoréplication**. Seul le cas numéro de la @fig-sampling (c) est correcte.
+
+![Variation du nombre de crevettes d'eau douce par mètre cube d'eau à deux profondeurs différentes (10 m et 20 m) dans le lac Dark, Wisconsin [@mckillup2011].](img/sampling.png){#fig-sampling}
+
+#### La pseudoréplication, un piège à éviter
+
+L'un des pièges les plus redoutables consiste à faire croire que l'on dispose d'un plan expérimental de manipulation reproduit, alors qu'il ne l'est pas du tout.
+
+Présentons ici 4 cas de replication apparentes:
+
+-   Même si vous disposez de plusieurs réplicats distincts pour chaque traitement (par exemple cinq aquariums de traitement et cinq aquariums de contrôle), la disposition de ces réplicats peut entraîner un manque d'indépendance.
+
+    ![Cas de réplication apparente. Le regroupement des réplicats signifie qu'il n'y a pas d'indépendance entre les contrôles ou les traitements.](img/pseudoreplicates1.png)
+
+-   Réplicats placées en alternance. Si vous avez décidé de contourner le problème du regroupement en plaçant les traitements et les contrôles en alternance (c'est-à-dire en plaçant, de gauche à droite, le traitement 1, le contrôle 1 ; le traitement 2, le contrôle 2 ; le traitement 3, etc...), des problèmes peuvent subsister. ), il peut encore y avoir des problèmes. Par hasard, tous les traitement (ou tous les contrôles) peuvent être soumis à d'autres caractéristiques régulières dont vous n'êtes même pas conscient.
+
+    ![Une disposition régulière des traitements et des contrôles peut, par hasard, correspondre à une caractéristique de l'environnement (ici les très évidents plafonniers) susceptible d'affecter les résultats.](img/pseudoreplicates2.png)
+
+-   Souvent, en raison d'un manque d'équipement, il se peut que vous deviez placer toutes les réplicats d'un traitement à une température donnée dans une seule armoire à température contrôlée, et toutes les répliques d'un traitement à une autre température dans une seule autre armoire. Malheureusement, s'il y a quelque chose de particulier à une armoire, en plus de la température, alors le traitement expérimental ou le traitement de contrôle peut être affecté. Ce schéma est appelé "ségrégation isolante". ![Regroupement des traitements thermiques dans des incubateurs particuliers.](img/pseudoreplicate3.png)
+
+#### Exercice
+
+Identifiez tous les potentiels problèmes qui découle de l'expérimentation ci-dessous.
+
+![](img/pseudoreplicates4.png)
+
+### La conception d'une expérience est une affaire de compromis 
+
+La conception d'une expérience bien contrôlée, correctement reproduite et réaliste a été décrite par certains chercheurs comme un "art". Ce n'est pas le cas, mais il y a souvent plusieurs façons de tester la même hypothèse, et donc plusieurs expériences différentes qui pourraient être réalisées.
+
+On a souvent dit qu'il n'y avait pas d'expérience parfaite. L'un des problèmes inhérents est qu'au fur et à mesure qu'une conception s'améliore, le coût en temps et en équipement augmente également, mais la capacité à réaliser réellement l'expérience diminue (figure 4.6). Un modèle absolument parfait peut être impossible à réaliser. Par conséquent, chaque chercheur doit choisir un modèle qui soit "suffisamment bon" tout en restant pratique. Il n'y a pas de règles en la matière - la décision relative à la conception est entre les mains du chercheur et sera finalement jugée par ses collègues qui examineront tout rapport de travail.
+
+![Exemple de compromis entre le coût et la capacité de réaliser une expérience. Plus la qualité du plan d'expérience augmente, plus le coût de l'expérience augmente (ligne continue), tandis que la capacité à réaliser l'expérience diminue (ligne en pointillés). Votre plan d'expérience doit généralement être un compromis entre ce qui est faisable, ce qui est abordable et ce qui est suffisamment rigoureux [@mckillup2011].](img/design.png){fig-align="center"}
 
 ## Tests statistiques et niveaux de signification
 
