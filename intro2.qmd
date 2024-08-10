@@ -2,17 +2,15 @@
 bibliography: references.bib
 ---
 
-# Importance et notions de base
+# Rappel des notions de base
 
-## Rappels sur les notions de base
-
-### Types de statistiques
+## Types de statistiques
 
 -   **Descriptives**: le but est d'illustrer les données;\
 -   **Paramétriques**: on suppose que la/les variables(s) suivent une distribution particulière;\
 -   **Non paramétriques**: on ne fait aucune supposition concernant la distribution de la/les variables(s).
 
-### Variables
+## Variables
 
 -   Une variable est un attribut mesuré pour chaque individu/observation.\
 -   Types d'échelle de mesure:
@@ -23,13 +21,13 @@ bibliography: references.bib
     -   Continue: présente une infinité de valeurs possibles.\
     -   Discrète: nombre limité de valeurs possibles.
 
-### Qu'est-ce qu'une distribution?
+## Qu'est-ce qu'une distribution?
 
 Une fonction qui exprime la fréquence (densité de probabilité) des différentes valeurs pouvant être prise par une variable.
 
 Rappelons ici quelques distributions usuelles.
 
-#### Distribution uniforme (continue)
+### Distribution uniforme (continue)
 
 Bien que les origines historiques de la conception de la distribution uniforme ne soient pas concluantes, on suppose que le terme "uniforme" est né du concept d'équiprobabilité dans les jeux de dés (notez que les jeux de dés auraient un espace d'échantillonnage uniforme discret et non continu).
 
@@ -84,7 +82,7 @@ maxs <- c(2)
 plot_uniform_distribution(mins, maxs, xlim = c(-4, 4))
 ```
 
-#### Distribution binomiale
+### Distribution binomiale
 
 La distribution binomiale est fréquemment utilisée pour modéliser le nombre de succès dans un échantillon de taille $n$ tiré avec remplacement d'une population de taille $N$.
 
@@ -130,7 +128,7 @@ p <- 0.5 # probability of success in each trial
 plot_binomial_pmf(n, p)
 ```
 
-#### Distribution de Poisson
+### Distribution de Poisson
 
 La distribution de Poisson est une distribution de probabilité discrète qui exprime la probabilité qu'un nombre donné d'événements se produisent dans un intervalle de temps fixe si ces événements se produisent avec un taux moyen constant connu et indépendamment du temps écoulé depuis le dernier événement.
 
@@ -175,7 +173,7 @@ lambda <- 7  # average rate (mean)
 plot_poisson_pmf(lambda)
 ```
 
-#### Distribution normale
+### Distribution normale
 
 Les distributions normales sont importantes en statistique et sont souvent utilisées dans les sciences naturelles et sociales pour représenter des variables aléatoires à valeur réelle dont la distribution n'est pas connue. Leur importance est en partie due au théorème de la limite centrale. Ce théorème stipule que, sous certaines conditions, la moyenne de nombreux échantillons (observations) d'une variable aléatoire de moyenne et de variance finies est elle-même une variable aléatoire, dont la distribution converge vers une distribution normale à mesure que le nombre d'échantillons augmente. Par conséquent, les quantités physiques qui sont censées être la somme de nombreux processus indépendants, tels que les erreurs de mesure, ont souvent des distributions qui sont presque normales.
 
@@ -239,7 +237,7 @@ plot_normal_distribution(means, variances)
 -   Les distributions normales sont symétriques, mais toutes les distributions symétriques ne sont pas normales.
 :::
 
-#### Distribution $t$ de Student
+### Distribution $t$ de Student
 
 En probabilité et en statistique, la distribution $t$ de Student (ou simplement la distribution $t$) $t_\nu$ est une distribution de probabilité continue qui généralise la distribution normale standard. Comme cette dernière, elle est symétrique autour de zéro et en forme de cloche.
 
@@ -308,18 +306,7 @@ avec
 -   Les tests T sont utilisés en statistique pour estimer l'importance des résultats.
 :::
 
-## Pourquoi a-t-on besoin de méthodes statistiques ?
-
-La plupart des sciences sont comparatives. Les chercheurs ont souvent besoin de savoir si un traitement expérimental particulier a eu un effet, ou s'il existe des différences entre une variable particulière mesurée à plusieurs endroits différents. Par exemple, un nouveau médicament a-t-il un effet sur la tension artérielle, un régime riche en vitamine C réduit-il le risque de cancer du foie chez l'homme, ou existe-t-il une relation entre la couverture végétale et la densité de la population de lapins ? Mais lorsque vous faites ce genre de comparaisons, les différences entre les traitements ou entre les zones échantillonnées peuvent être réelles ou peuvent simplement être le type de variation qui se produit par hasard entre les échantillons d'une même population.
-
-Prenons 2 situations concrètes:
-
--   Dans la première, nous jouons à pile ou face avec 10 pièces. On obtient après un lancer unique de chacune des pièces 3 faces et 7 piles. Pouvons-nous dire si ce lot de pièces est truqué?\
--   Dans la seconde, on échantillone une population de singes, et on observe 32 femelles et 54 mâles. Y a-t-il réellement plus de mâles dans la population?
-
-**Les probabilités vous aident à prendre une décision concernant vos résultats.**
-
-### Tests statistiques et niveaux de signification
+## Tests statistiques et niveaux de signification
 
 Un test statistique est une aide à la décision concernant une hypothèse (alternative *vs* nulle).
 
@@ -364,7 +351,7 @@ Cependant, si vous avez déjà lancé un nombre de 1 à 3, la probabilité que c
 :::
 
 | Nombre de boules noires | Nombre de boules blanches | Probabilité | Pourcentage de cas pouvant donner ce resultat |
-|-----------------|-----------------|-----------------|--------------------|
+|------------------|------------------|------------------|--------------------|
 | 6                       | 0                         | 1/64        | 1,56                                          |
 | 5                       | 1                         | 6/64        | 9,38                                          |
 | 4                       | 2                         | 15/64       | 23,44                                         |
