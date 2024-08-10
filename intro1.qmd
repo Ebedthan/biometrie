@@ -1,0 +1,250 @@
+---
+bibliography: references.bib
+---
+
+# Pourquoi a-t-on besoin de méthodes statistiques ?
+
+La plupart des sciences sont comparatives. Les chercheurs ont souvent besoin de savoir si un traitement expérimental particulier a eu un effet, ou s'il existe des différences entre une variable particulière mesurée à plusieurs endroits différents. Par exemple, un nouveau médicament a-t-il un effet sur la tension artérielle, un régime riche en vitamine C réduit-il le risque de cancer du foie chez l'homme, ou existe-t-il une relation entre la couverture végétale et la densité de la population de lapins ? Mais lorsque vous faites ce genre de comparaisons, les différences entre les traitements ou entre les zones échantillonnées peuvent être réelles ou peuvent simplement être le type de variation qui se produit par hasard entre les échantillons d'une même population.
+
+Prenons 2 situations concrètes:
+
+-   Dans la première, nous jouons à pile ou face avec 10 pièces. On obtient après un lancer unique de chacune des pièces 3 faces et 7 piles. Pouvons-nous dire si ce lot de pièces est truqué?\
+-   Dans la seconde, on échantillone une population de singes, et on observe 32 femelles et 54 mâles. Y a-t-il réellement plus de mâles dans la population?
+
+**Les probabilités vous aident à prendre une décision concernant vos résultats.**
+
+## La méthode scientifique
+
+### Approche hypothético-déductive
+
+Les caractéristiques essentielles de la vision "hypothético-déductive" de la méthode scientifique [@popper2005] sont les suivantes : une personne observe ou prélève des échantillons du monde naturel et utilise toutes les informations disponibles pour faire une supposition intuitive et logique, appelée **hypothèse**, sur la manière dont le système fonctionne. La personne n'a aucun moyen de savoir si son hypothèse est correcte - elle peut s'appliquer ou non. Les **prédictions** faites à partir de l'hypothèse sont testées, soit par un échantillonnage supplémentaire, soit par des expériences. Si les résultats sont cohérents avec les prédictions, l'hypothèse est retenue. Dans le cas contraire, elle est rejetée et une nouvelle hypothèse est formulée @fig-hyptest.
+
+![Le processus de formulation et de vérification des hypothèses [@mckillup2011].](img/hypothesis_formulation.png){#fig-hyptest fig-align="center"}
+
+### Exemple d'application
+
+Le mille-pattes portugais *Ommatioulus moreleti* @fig-ommo a été introduit accidentellement dans le sud de l'Australie depuis le Portugal dans les années 1950.
+
+![*Ommatoiulus moreleti*](img/Ommatoiulusmoreletii.png){#fig-ommo fig-align="center"}
+
+Ce mille-pattes vit dans la litière de feuilles et atteint environ quatre centimètres de long. En l'absence d'ennemis naturels dans son pays d'origine (en particulier les hérissons européens, qui mangent beaucoup de mille-pattes), son nombre a rapidement augmenté pour atteindre les proportions d'un fléau en Australie-Méridionale. Bien qu'il ne cause que très peu de dégâts aux cultures agricoles, *O. moreleti* est un ravageur "nuisible" sérieux car il envahit les maisons.
+
+En travaillant sur les moyens de réduire les nuisances causées par le mille-pattes portugais, McKillup [@mckillup2011] a remarqué que les propriétaires de maisons qui signalaient de graves problèmes avaient des maisons bien éclairées avec de grandes fenêtres sans rideaux. En revanche, les voisins dont les maisons n'étaient pas aussi bien éclairées et qui fermaient leurs rideaux la nuit signalaient beaucoup moins de mille-pattes à l'intérieur. Le nombre d'*O. moreleti* par mètre carré était similaire dans la litière de feuilles autour des deux types de maisons.
+
+#### De l'observation à l'hypothèse
+
+A partir de l'exemple précédent, on peut donc en suivant l'approche hypothético-déductive les éléments suivants:
+
+-   **Etape 1: Observation**: Cette espèce peste envahit les maisons, particulièrement celles fort éclairées.
+
+-   **Etape 2: Hypothèse**: Les millepates sont attirés par la lumière. **Hypothèse alternative** ($H_A$): Les mille-pates sont attirés par la lumière. **Hypothèse nulle** ($H_0$): Les mille-pates **ne** sont **pas** attirés par la lumière.
+
+-   **Etape 3: Prédiction à partir de l'hypothèse**: Il devrait y avoir plus de millepattes sur des plaques éclairées que sur des plaques non éclairées.
+
+#### Prendre une décision à propos d'une hypothèse
+
+Une fois que l'on dispose du résultat du test expérimental d'une hypothèse, deux choses peuvent se produire :
+
+-   **soit** les résultats de l'expérience sont cohérents avec l'hypothèse, donc l'hypothèse est retenu;
+
+-   **ou** les résultats ne sont pas cohérents avec l'hypothèse, on peut donc rejeter l'hypothèse.
+
+Si l'hypothèse est rejetée, il est probable qu'elle soit erronée et qu'il faille en proposer une autre.
+
+Si l'hypothèse est retenue, qu'elle résiste à d'autres tests et qu'elle présente une très grande généralité, elle peut devenir une **théorie**. Mais une théorie n'est jamais qu'une hypothèse très générale qui a résisté à des tests répétés. Il est toujours possible qu'elle soit réfutée à l'avenir.
+
+#### Pourquoi une hypothèse ou une théorie ne peut-elle jamais être prouvée ?
+
+Aucune hypothèse ou théorie ne peut jamais être prouvée - un jour, il peut y avoir des preuves qui la rejettent et conduisent à une explication différente (qui peut inclure toutes les prédictions réussies de l'hypothèse précédente). Par conséquent, nous ne pouvons que falsifier ou réfuter des hypothèses et des théories - nous ne pouvons jamais les prouver.
+
+Les cas de réfutation suivie d'un changement de pensée sont fréquents. En voici deux exemples.
+
+Les chercheurs en médecine pensaient que l'excès d'acidité de l'estomac était responsable de la majorité des ulcères gastriques chez l'homme. Un changement radical s'est opéré lorsque de nombreux ulcères ont guéri à la suite d'une antibiothérapie visant à réduire le nombre de bactéries *Helicobacter pylori* dans la paroi de l'estomac.
+
+Il existe au moins trois théories sur la manière dont le rein humain produit une solution concentrée d'urine, et la dernière en date n'est pas nécessairement correcte.
+
+## Tester la prédiction à partir de son hypothèse
+
+### Comment fait-on?
+
+Les statistiques sont **un outil d'aide à la décision** pour déterminer si les différences observées (i) reflètent une réelle différence entre populations ou (ii) sont dues uniquement au hasard.
+
+### On peut rarement étudier toute la population
+
+C'est un fait. En biologie, on peut très rarement étudier toute la population. Une population est un ensemble de tous les individus. Un individu est une unité d'observation. Par exemple l'ensemble des mille-pates d'Australie, des poissons d'un lac, des cellules d'un organe, etc.
+
+On étudie donc **un échantillon représentatif de la population**.
+
+### Conception expérimentale
+
+Étant donné qu'un chercheur ne peut généralement pas mesurer chaque individu de la population (à moins qu'il n'étudie les quelques membres restants d'une espèce en voie de disparition), il doit travailler avec un **sous-ensemble** soigneusement sélectionné contenant plusieurs individus, souvent appelés **unités expérimentales**, qu'il espère être un **échantillon représentatif** à partir duquel les caractéristiques de la population peuvent être déduites.
+
+La meilleure façon d'obtenir un échantillon représentatif est généralement de choisir une proportion de la population **au hasard** - sans biais, chaque unité expérimentale possible ayant une probabilité égale d'être sélectionnée.
+
+Le problème de cette approche est qu'il existe souvent de grandes différences entre les unités expérimentales d'une même population:
+
+-   Tout d'abord, même un échantillon aléatoire peut ne pas être un bon représentant de la population dont il est issu @fig-sample1.
+
+![Même un échantillon aléatoire n'est pas nécessairement un bon représentant de la population. Deux échantillons ont été prélevés au hasard dans la même population. Par hasard, l'échantillon 1 contient un groupe de poissons relativement grands, tandis que ceux de l'échantillon 2 sont relativement petits [@mckillup2011].](img/sample1.png){#fig-sample1}
+
+-   Deuxièmement, même si deux populations sont très différentes, les échantillons prélevés dans chacune d'elles peuvent être similaires et donner l'impression trompeuse que les populations sont également similaires @fig-sample2.
+
+![Les échantillons sélectionnés au hasard dans des populations très différentes ne sont pas nécessairement différents. Le hasard fait que l'échantillon 1 et l'échantillon 2 sont similaires [@mckillup2011].](img/sample2.png){#fig-sample2}
+
+-   Enfin, la variation naturelle entre les individus d'un échantillon peut masquer tout effet d'un traitement expérimental. Les variations au sein d'un échantillon (et d'une population) sont souvent si importantes qu'il peut être difficile, voire impossible, de détecter l'effet d'un traitement @fig-sample3.
+
+![Deux échantillons de poissons ont été prélevés dans la même population et ont été délibérément appariés de manière à ce que six individus de taille égale soient initialement présents dans chaque groupe. Les poissons du groupe traité ont été nourris avec un supplément de vitamines pendant 300 jours, tandis que ceux du groupe témoin non traité ne l'ont pas été. Grâce au supplément, chaque poisson du groupe traité a grandi environ 10 % plus longtemps, mais cette différence est faible par rapport à la variation de la croissance entre les individus, ce qui peut masquer tout effet du traitement [@mckillup2011].](img/sample3.png){#fig-sample3}
+
+## Tests statistiques et niveaux de signification
+
+Un test statistique est une aide à la décision concernant une hypothèse (alternative *vs* nulle).
+
+L'idée maîtresse à la base de tout test d'hypothèse statistique:
+
+-   Je suppose que $H_0$ (hypothèse nulle) est vraie (pas de différence/relation);\
+-   Je calcule la p-valeur, c'est à dire la probabilité d'obtenir une différence/relation au moins aussi forte que celle que j'ai observée dans mon échantillon (qui est un fait établi);\
+-   Si cette p-valeur est faible, alors il est probable que $H_0$ soit fausse: la différence mesurée est simplement une mauvaise estimation d'une différence nulle.
+
+Le statisticien Sir Ronald Fisher a proposé que, si la probabilité d'obtenir cette différence ou une différence plus extrême entre le résultat attendu et le résultat réel est inférieure à 5 %, il convient de conclure que la différence est statistiquement significative (Fisher, 1954). Le choix de 5% (qui correspond à 1/20 ou 0,05) n'a pas de raison biologique. C'est la probabilité que de nombreux chercheurs utilisent comme « niveau de signification statistique » standard.
+
+::: callout-warning
+Attention: ce seuil n'est pas une valeur magique, les statistiques ce n'est pas blanc *vs* noir, vrai *vs* faux, significatif *vs* non significatif...
+:::
+
+### Exemple de calcul direct de la p-valeur
+
+Prenons un exemple de sac contenant 1000 boules blanches et noires. On en tire 6 au hasard [@mckillup2011]. On veut tester l'hypothèse qu'il y a 500 blanches et 500 noires: $H_0$: $\mathbb{P}(blanche) = 0,5$ *vs* $H_A$: $\mathbb{P}(blanche) ≠ 0,5$.
+
+::: callout-note
+## Concepts basiques de probabilité
+
+La probabilité d'un événement ne peut varier qu'entre 0 et 1 (qui correspondent à 0 et 100%). Si un événement est certain de se produire, il a une probabilité de 1 ; alors que s'il est certain que l'événement ne se produira pas, il a une probabilité de 0.
+
+La probabilité d'un événement particulier est le nombre de résultats donnant cet événement, divisé par le nombre total de résultats possibles. Par exemple, lorsque vous jouez à pile ou face, il n'y a que deux résultats possibles : pile ou face. Ces deux événements s'excluent mutuellement : il est impossible d'obtenir les deux.
+
+Par conséquent, la probabilité d'obtenir un résultat positif est de 1 divisé par 2 = ½ (et donc la probabilité d'obtenir un résultat négatif est également de ½).
+
+**La règle de l'addition**
+
+La probabilité d'obtenir une tête ou une queue est de ½ + ½ = 1. Il s'agit d'un exemple de la règle de l'addition : lorsque plusieurs résultats s'excluent mutuellement, la probabilité d'obtenir l'un d'entre eux est la somme de leurs probabilités respectives. (Par conséquent, la probabilité d'obtenir un 1, un 2, un 3 ou un 4 en lançant un dé à six faces est de 4/6).
+
+**La règle de multiplication**
+
+**Événements indépendants.** Pour calculer la probabilité conjointe de deux ou plusieurs événements indépendants (par exemple, un face suivi d'un autre face lors de deux lancers indépendants d'une pièce de monnaie), il suffit de multiplier les probabilités indépendantes entre elles. Par conséquent, la probabilité d'obtenir deux têtes lors de deux lancers d'une pièce est de ½ ½ = ¼. La probabilité d'obtenir un pile ou un face avec deux lancers est de ½, parce qu'il y a deux façons d'obtenir ce résultat : HT ou TH.
+
+**Événements connexes.** Si les événements ne sont pas indépendants (par exemple, le premier événement est un nombre compris entre 1 et 3 inclus lors du lancer d'un dé à six faces et le second événement est un nombre pair), la règle de multiplication s'applique également, mais vous devez multiplier la probabilité d'un événement par la **probabilité conditionnelle** du second.
+
+Lorsqu'on lance un dé, la probabilité indépendante d'un nombre compris entre 1 et 3 est de $3/6 = 1/2$, et la probabilité indépendante de tout nombre pair est également de $1/2$ (les nombres pairs sont 2, 4 ou 6 divisés par les six résultats possibles).
+
+Cependant, si vous avez déjà lancé un nombre de 1 à 3, la probabilité que cet ensemble restreint de résultats soit un nombre pair est de $1/3$ (parce que "2" est le seul nombre pair possible dans cet ensemble de trois résultats). Par conséquent, la probabilité des **deux** événements liés est de $1/2 \times 1/3 = 1/6$. Vous pouvez examiner la situation dans l'autre sens : la probabilité d'obtenir un nombre pair en lançant un dé est de $1/2$ (vous obtiendriez les nombres 2, 4 ou 6) et la probabilité que l'un de ces nombres soit compris entre 1 et 3 est de $1/3$ (le nombre 2 parmi ces trois résultats). Par conséquent, la probabilité des deux résultats est à nouveau $1/2 \times 1/3 = 1/6$.
+:::
+
+| Nombre de boules noires | Nombre de boules blanches | Probabilité | Pourcentage de cas pouvant donner ce resultat |
+|------------------|------------------|------------------|-------------------|
+| 6                       | 0                         | 1/64        | 1,56                                          |
+| 5                       | 1                         | 6/64        | 9,38                                          |
+| 4                       | 2                         | 15/64       | 23,44                                         |
+| 3                       | 3                         | 20/64       | 31,25                                         |
+| 2                       | 4                         | 15/64       | 23,44                                         |
+| 1                       | 5                         | 6/64        | 9,38                                          |
+| 0                       | 6                         | 1/64        | 1,56                                          |
+| Total                   |                           | 64/64       | 100                                           |
+
+![Les nombres attendus de chaque mélange possible de couleurs lors du tirage indépendant de six perles avec remplacement à 64 occasions différentes à partir d'une grande population contenant 50 % de noires et 50 % de blanches.](img/expected_number.png)
+
+La probabilité de n'obtenir aucune boule blanche sur 6 boules tirées est de 1,56%. On rejette l'hypothèse nulle $H_0$ puisque $p < 2,5\%$ (test bidirectionnel).
+
+### Passage intermédiaire par une statistique
+
+Dans la majorité des cas, on ne peut pas calculer directement la p-valeur. L'alternative est de calculer une statistique qui quantifie la différence entre les données observées et les données attendues sous $H_0$. On calcule ensuite la p-valeur en comparant la valeur de la statistique à sa distribution théorique sous $H_0$.
+
+#### Inférence à une moyenne
+
+On peut par exemple être amené à comparer la moyenne d'un échantillon à la moyenne d'une population dont la variance est connue. Pour un tel test on a:
+
+-   $H_0$: $\mu = \mu_0$; $H_A$: $\mu ≠ \mu_0$.\
+-   Statistique de test: $Z_{obs} = \frac{\bar{Y} - \mu_0}{ESM} = \frac{\bar{Y} - \mu_0}{\frac{\sigma}{\sqrt{n}}} \sim N(0, 1)$
+
+::: callout-note
+**Score Z (Z-score)**
+
+Le score Z est une mesure statistique qui quantifie la distance entre un point de données et la moyenne d'un ensemble de données. Il est exprimé en termes d'écarts types. Il indique le nombre d'écarts types d'un point de données par rapport à la moyenne de la distribution.
+
+Si un score Z est égal à 0, cela signifie que le score du point de données est identique au score moyen. Un score Z de 1,0 indique une valeur qui se situe à un écart-type de la moyenne. Les scores Z peuvent être positifs ou négatifs, une valeur positive indiquant que le score est supérieur à la moyenne et une valeur négative indiquant qu'il est inférieur à la moyenne.
+
+$$ Z = \frac{x - \mu}{\sigma}$$
+
+**Erreur standard à la moyenne (ESM)**
+
+Le terme "erreur" remplace celui de "déviation" quand on parle de la variation de moyennes plutôt que de la variation de mesures individuelles.
+:::
+
+#### Et si les paramètres sont inconnus ?
+
+Si on ne connaît pas la variance réelle de la population, il faut tenir compte des biais possibles dus à la taille de l'échantillon (n).
+
+On a alors:
+
+-   Statistique de test ($S^2$ est la variance de l'échantillon): $t_{obs} = \frac{\bar{X} - \mu_0}{ESM} = \frac{\bar{X} - \mu_0}{\frac{S}{\sqrt{n -1 }}} \sim St(n-1)$.\
+-   Degrés de liberté: nombre d'observations dans l'échantillon libres de varier quand on estime la variance.
+
+Plus n est petit, plus la distribution est large car S sous-estime σ. Quand n = ∞, Student = Normale.
+
+### Effet de la taille de l'échantillon (n)
+
+Plus l'échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle $\mu$: $$ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}$$
+
+![L'effet de la taille de l'échantillon sur la précision et l'exactitude des valeurs de $\bar{X}$ en tant qu'estimations de $\mu$ [@mckillup2011].](img/confidence_interval.png)
+
+## Test uni- *vs* bidirectionnel
+
+L'hypothèse nulle est toujours **"il n'existe pas de"** différence/relation... Cela revient à dire qu'une certaine quantité est égale à 0. L'hypothèse alternative est soit:
+
+-   Cette quantité est **différente** de 0 (test bidirectionnel);\
+-   Cette quantité est **supérieure/inférieure** à 0 (test unidirectionnel).
+
+Ainsi on a:
+
+-   Test **bidirectionnel**:
+    -   $H_0$ : $\mu = \mu_0$ ou $t = 0$
+    -   $H_A$ : $\mu ≠ \mu_0$ ou $t ≠ 0$
+-   Test **unidirectionnel**:
+    -   $H_0$: $\mu = \mu_0$ ou $t = 0$
+    -   $H_{A1}$: $\mu > \mu_0$ ou $t > 0$
+    -   $H_{A2}$: $\mu < \mu_0$ ou $t < 0$
+
+## Types d'erreurs
+
+Quand on prend une décision concernqnt une hypothèse sur la base d'un échantillon donné, **on n'est jamais sûr de prendre la bonne décision!!**.
+
+![Décisions et erreurs statistiques lors des tests d'hypothèses nulles [@hypothes2002].](img/statistical_decisions.png)
+
+On peut se tromper de 2 manières:
+
+-   $\alpha$ (probabilité d'erreur de type I: rejeter $H_0$ à tort) est traditionnellement fixé à 5%. Rien n'empêche de choisir un $\alpha$ plus petit ou plus grand;\
+-   $1 - \beta$ (probabilité d'erreur de type II: accepter $H_0$ à tort) est la puissance du test. Elle dépend notamment de:
+    -   La taille de l'effet: plus l'effet est grand, plus la probabilité de le détecter est grande;
+    -   La variance: plus le paramètre est connu avec précision, plus la probabilité d'en détecter une différence est grande. La précision augmente avec le nombre d'observation.
+
+## Compromis entre $\alpha$ et $\beta$
+
+Il existe un compromis entre les probabilités d'erreur de type I ($\alpha$) et de type II ($\alpha$). Pour un même jeu de données, si on choisit de diminuer $\alpha$, on augmentera automatiquement $\beta$, et inversement.
+
+![Le compromis entre l'erreur de type 1 et l'erreur de type 2. (a) fixé à 10 %. (b) L'abaissement à 5 % réduira le risque d'erreur de type 1, mais augmentera le risque d'erreur de type 2. (c) Une réduction à 1 % diminuera encore le risque d'erreur de type 1, mais augmentera fortement le risque d'erreur de type 2. [@mckillup2011].](img/tradeoff.png)
+
+## Les deux grands types de questions
+
+On peut différencier en général 3 types de jeux de données en fonction du nombre de variables mesurées sur chaque individu:
+
+-   Univarié: une seule variable;\
+-   Bivarié: 2 variables;\
+-   Multivarié: plus de 2 variables;
+
+On peut différencier 2 grandes classes de questions:
+
+-   L'hypothèse porte sur l'existence de différence(s);\
+-   L'hypothèse porte sur l'existence d'une relation entre variables.
+
+## Les grandes classes de méthodes d'analyse
+
+![](img/principal_tests.png)

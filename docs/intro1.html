@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Anicet Ebou">
+
+<title>Biométrie et expérimentation végétale - 1&nbsp; Pourquoi a-t-on besoin de méthodes statistiques ?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./intro2.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pourquoi a-t-on besoin de méthodes statistiques ?</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Biométrie et expérimentation végétale</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Ebedthan/biometrie/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bienvenue</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pourquoi a-t-on besoin de méthodes statistiques ?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Importance et notions de base</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparaison de moyennes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relation entre deux variables continues</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">L'inférence basée sur la sélection de modèles</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#la-méthode-scientifique" id="toc-la-méthode-scientifique" class="nav-link active" data-scroll-target="#la-méthode-scientifique"><span class="header-section-number">1.1</span> La méthode scientifique</a>
+  <ul class="collapse">
+  <li><a href="#approche-hypothético-déductive" id="toc-approche-hypothético-déductive" class="nav-link" data-scroll-target="#approche-hypothético-déductive"><span class="header-section-number">1.1.1</span> Approche hypothético-déductive</a></li>
+  <li><a href="#exemple-dapplication" id="toc-exemple-dapplication" class="nav-link" data-scroll-target="#exemple-dapplication"><span class="header-section-number">1.1.2</span> Exemple d’application</a></li>
+  </ul></li>
+  <li><a href="#tester-la-prédiction-à-partir-de-son-hypothèse" id="toc-tester-la-prédiction-à-partir-de-son-hypothèse" class="nav-link" data-scroll-target="#tester-la-prédiction-à-partir-de-son-hypothèse"><span class="header-section-number">1.2</span> Tester la prédiction à partir de son hypothèse</a>
+  <ul class="collapse">
+  <li><a href="#comment-fait-on" id="toc-comment-fait-on" class="nav-link" data-scroll-target="#comment-fait-on"><span class="header-section-number">1.2.1</span> Comment fait-on?</a></li>
+  <li><a href="#on-peut-rarement-étudier-toute-la-population" id="toc-on-peut-rarement-étudier-toute-la-population" class="nav-link" data-scroll-target="#on-peut-rarement-étudier-toute-la-population"><span class="header-section-number">1.2.2</span> On peut rarement étudier toute la population</a></li>
+  <li><a href="#conception-expérimentale" id="toc-conception-expérimentale" class="nav-link" data-scroll-target="#conception-expérimentale"><span class="header-section-number">1.2.3</span> Conception expérimentale</a></li>
+  </ul></li>
+  <li><a href="#tests-statistiques-et-niveaux-de-signification" id="toc-tests-statistiques-et-niveaux-de-signification" class="nav-link" data-scroll-target="#tests-statistiques-et-niveaux-de-signification"><span class="header-section-number">1.3</span> Tests statistiques et niveaux de signification</a>
+  <ul class="collapse">
+  <li><a href="#exemple-de-calcul-direct-de-la-p-valeur" id="toc-exemple-de-calcul-direct-de-la-p-valeur" class="nav-link" data-scroll-target="#exemple-de-calcul-direct-de-la-p-valeur"><span class="header-section-number">1.3.1</span> Exemple de calcul direct de la p-valeur</a></li>
+  <li><a href="#passage-intermédiaire-par-une-statistique" id="toc-passage-intermédiaire-par-une-statistique" class="nav-link" data-scroll-target="#passage-intermédiaire-par-une-statistique"><span class="header-section-number">1.3.2</span> Passage intermédiaire par une statistique</a></li>
+  <li><a href="#effet-de-la-taille-de-léchantillon-n" id="toc-effet-de-la-taille-de-léchantillon-n" class="nav-link" data-scroll-target="#effet-de-la-taille-de-léchantillon-n"><span class="header-section-number">1.3.3</span> Effet de la taille de l’échantillon (n)</a></li>
+  </ul></li>
+  <li><a href="#test-uni--vs-bidirectionnel" id="toc-test-uni--vs-bidirectionnel" class="nav-link" data-scroll-target="#test-uni--vs-bidirectionnel"><span class="header-section-number">1.4</span> Test uni- <em>vs</em> bidirectionnel</a></li>
+  <li><a href="#types-derreurs" id="toc-types-derreurs" class="nav-link" data-scroll-target="#types-derreurs"><span class="header-section-number">1.5</span> Types d’erreurs</a></li>
+  <li><a href="#compromis-entre-alpha-et-beta" id="toc-compromis-entre-alpha-et-beta" class="nav-link" data-scroll-target="#compromis-entre-alpha-et-beta"><span class="header-section-number">1.6</span> Compromis entre <span class="math inline">\(\alpha\)</span> et <span class="math inline">\(\beta\)</span></a></li>
+  <li><a href="#les-deux-grands-types-de-questions" id="toc-les-deux-grands-types-de-questions" class="nav-link" data-scroll-target="#les-deux-grands-types-de-questions"><span class="header-section-number">1.7</span> Les deux grands types de questions</a></li>
+  <li><a href="#les-grandes-classes-de-méthodes-danalyse" id="toc-les-grandes-classes-de-méthodes-danalyse" class="nav-link" data-scroll-target="#les-grandes-classes-de-méthodes-danalyse"><span class="header-section-number">1.8</span> Les grandes classes de méthodes d’analyse</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pourquoi a-t-on besoin de méthodes statistiques ?</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>La plupart des sciences sont comparatives. Les chercheurs ont souvent besoin de savoir si un traitement expérimental particulier a eu un effet, ou s’il existe des différences entre une variable particulière mesurée à plusieurs endroits différents. Par exemple, un nouveau médicament a-t-il un effet sur la tension artérielle, un régime riche en vitamine C réduit-il le risque de cancer du foie chez l’homme, ou existe-t-il une relation entre la couverture végétale et la densité de la population de lapins ? Mais lorsque vous faites ce genre de comparaisons, les différences entre les traitements ou entre les zones échantillonnées peuvent être réelles ou peuvent simplement être le type de variation qui se produit par hasard entre les échantillons d’une même population.</p>
+<p>Prenons 2 situations concrètes:</p>
+<ul>
+<li>Dans la première, nous jouons à pile ou face avec 10 pièces. On obtient après un lancer unique de chacune des pièces 3 faces et 7 piles. Pouvons-nous dire si ce lot de pièces est truqué?<br>
+</li>
+<li>Dans la seconde, on échantillone une population de singes, et on observe 32 femelles et 54 mâles. Y a-t-il réellement plus de mâles dans la population?</li>
+</ul>
+<p><strong>Les probabilités vous aident à prendre une décision concernant vos résultats.</strong></p>
+<section id="la-méthode-scientifique" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="la-méthode-scientifique"><span class="header-section-number">1.1</span> La méthode scientifique</h2>
+<section id="approche-hypothético-déductive" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="approche-hypothético-déductive"><span class="header-section-number">1.1.1</span> Approche hypothético-déductive</h3>
+<p>Les caractéristiques essentielles de la vision “hypothético-déductive” de la méthode scientifique <span class="citation" data-cites="popper2005">(<a href="references.html#ref-popper2005" role="doc-biblioref">Popper 2005</a>)</span> sont les suivantes : une personne observe ou prélève des échantillons du monde naturel et utilise toutes les informations disponibles pour faire une supposition intuitive et logique, appelée <strong>hypothèse</strong>, sur la manière dont le système fonctionne. La personne n’a aucun moyen de savoir si son hypothèse est correcte - elle peut s’appliquer ou non. Les <strong>prédictions</strong> faites à partir de l’hypothèse sont testées, soit par un échantillonnage supplémentaire, soit par des expériences. Si les résultats sont cohérents avec les prédictions, l’hypothèse est retenue. Dans le cas contraire, elle est rejetée et une nouvelle hypothèse est formulée <a href="#fig-hyptest">Figure&nbsp;<span>1.1</span></a>.</p>
+<div id="fig-hyptest" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/hypothesis_formulation.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1.1: Le processus de formulation et de vérification des hypothèses <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+</figure>
+</div>
+</section>
+<section id="exemple-dapplication" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="exemple-dapplication"><span class="header-section-number">1.1.2</span> Exemple d’application</h3>
+<p>Le mille-pattes portugais <em>Ommatioulus moreleti</em> <a href="#fig-ommo">Figure&nbsp;<span>1.2</span></a> a été introduit accidentellement dans le sud de l’Australie depuis le Portugal dans les années 1950.</p>
+<div id="fig-ommo" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/Ommatoiulusmoreletii.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1.2: <em>Ommatoiulus moreleti</em></figcaption>
+</figure>
+</div>
+<p>Ce mille-pattes vit dans la litière de feuilles et atteint environ quatre centimètres de long. En l’absence d’ennemis naturels dans son pays d’origine (en particulier les hérissons européens, qui mangent beaucoup de mille-pattes), son nombre a rapidement augmenté pour atteindre les proportions d’un fléau en Australie-Méridionale. Bien qu’il ne cause que très peu de dégâts aux cultures agricoles, <em>O. moreleti</em> est un ravageur “nuisible” sérieux car il envahit les maisons.</p>
+<p>En travaillant sur les moyens de réduire les nuisances causées par le mille-pattes portugais, McKillup <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span> a remarqué que les propriétaires de maisons qui signalaient de graves problèmes avaient des maisons bien éclairées avec de grandes fenêtres sans rideaux. En revanche, les voisins dont les maisons n’étaient pas aussi bien éclairées et qui fermaient leurs rideaux la nuit signalaient beaucoup moins de mille-pattes à l’intérieur. Le nombre d’<em>O. moreleti</em> par mètre carré était similaire dans la litière de feuilles autour des deux types de maisons.</p>
+<section id="de-lobservation-à-lhypothèse" class="level4" data-number="1.1.2.1">
+<h4 data-number="1.1.2.1" class="anchored" data-anchor-id="de-lobservation-à-lhypothèse"><span class="header-section-number">1.1.2.1</span> De l’observation à l’hypothèse</h4>
+<p>A partir de l’exemple précédent, on peut donc en suivant l’approche hypothético-déductive les éléments suivants:</p>
+<ul>
+<li><p><strong>Etape 1: Observation</strong>: Cette espèce peste envahit les maisons, particulièrement celles fort éclairées.</p></li>
+<li><p><strong>Etape 2: Hypothèse</strong>: Les millepates sont attirés par la lumière. <strong>Hypothèse alternative</strong> (<span class="math inline">\(H_A\)</span>): Les mille-pates sont attirés par la lumière. <strong>Hypothèse nulle</strong> (<span class="math inline">\(H_0\)</span>): Les mille-pates <strong>ne</strong> sont <strong>pas</strong> attirés par la lumière.</p></li>
+<li><p><strong>Etape 3: Prédiction à partir de l’hypothèse</strong>: Il devrait y avoir plus de millepattes sur des plaques éclairées que sur des plaques non éclairées.</p></li>
+</ul>
+</section>
+<section id="prendre-une-décision-à-propos-dune-hypothèse" class="level4" data-number="1.1.2.2">
+<h4 data-number="1.1.2.2" class="anchored" data-anchor-id="prendre-une-décision-à-propos-dune-hypothèse"><span class="header-section-number">1.1.2.2</span> Prendre une décision à propos d’une hypothèse</h4>
+<p>Une fois que l’on dispose du résultat du test expérimental d’une hypothèse, deux choses peuvent se produire :</p>
+<ul>
+<li><p><strong>soit</strong> les résultats de l’expérience sont cohérents avec l’hypothèse, donc l’hypothèse est retenu;</p></li>
+<li><p><strong>ou</strong> les résultats ne sont pas cohérents avec l’hypothèse, on peut donc rejeter l’hypothèse.</p></li>
+</ul>
+<p>Si l’hypothèse est rejetée, il est probable qu’elle soit erronée et qu’il faille en proposer une autre.</p>
+<p>Si l’hypothèse est retenue, qu’elle résiste à d’autres tests et qu’elle présente une très grande généralité, elle peut devenir une <strong>théorie</strong>. Mais une théorie n’est jamais qu’une hypothèse très générale qui a résisté à des tests répétés. Il est toujours possible qu’elle soit réfutée à l’avenir.</p>
+</section>
+<section id="pourquoi-une-hypothèse-ou-une-théorie-ne-peut-elle-jamais-être-prouvée" class="level4" data-number="1.1.2.3">
+<h4 data-number="1.1.2.3" class="anchored" data-anchor-id="pourquoi-une-hypothèse-ou-une-théorie-ne-peut-elle-jamais-être-prouvée"><span class="header-section-number">1.1.2.3</span> Pourquoi une hypothèse ou une théorie ne peut-elle jamais être prouvée ?</h4>
+<p>Aucune hypothèse ou théorie ne peut jamais être prouvée - un jour, il peut y avoir des preuves qui la rejettent et conduisent à une explication différente (qui peut inclure toutes les prédictions réussies de l’hypothèse précédente). Par conséquent, nous ne pouvons que falsifier ou réfuter des hypothèses et des théories - nous ne pouvons jamais les prouver.</p>
+<p>Les cas de réfutation suivie d’un changement de pensée sont fréquents. En voici deux exemples.</p>
+<p>Les chercheurs en médecine pensaient que l’excès d’acidité de l’estomac était responsable de la majorité des ulcères gastriques chez l’homme. Un changement radical s’est opéré lorsque de nombreux ulcères ont guéri à la suite d’une antibiothérapie visant à réduire le nombre de bactéries <em>Helicobacter pylori</em> dans la paroi de l’estomac.</p>
+<p>Il existe au moins trois théories sur la manière dont le rein humain produit une solution concentrée d’urine, et la dernière en date n’est pas nécessairement correcte.</p>
+</section>
+</section>
+</section>
+<section id="tester-la-prédiction-à-partir-de-son-hypothèse" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="tester-la-prédiction-à-partir-de-son-hypothèse"><span class="header-section-number">1.2</span> Tester la prédiction à partir de son hypothèse</h2>
+<section id="comment-fait-on" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="comment-fait-on"><span class="header-section-number">1.2.1</span> Comment fait-on?</h3>
+<p>Les statistiques sont <strong>un outil d’aide à la décision</strong> pour déterminer si les différences observées (i) reflètent une réelle différence entre populations ou (ii) sont dues uniquement au hasard.</p>
+</section>
+<section id="on-peut-rarement-étudier-toute-la-population" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="on-peut-rarement-étudier-toute-la-population"><span class="header-section-number">1.2.2</span> On peut rarement étudier toute la population</h3>
+<p>C’est un fait. En biologie, on peut très rarement étudier toute la population. Une population est un ensemble de tous les individus. Un individu est une unité d’observation. Par exemple l’ensemble des mille-pates d’Australie, des poissons d’un lac, des cellules d’un organe, etc.</p>
+<p>On étudie donc <strong>un échantillon représentatif de la population</strong>.</p>
+</section>
+<section id="conception-expérimentale" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="conception-expérimentale"><span class="header-section-number">1.2.3</span> Conception expérimentale</h3>
+<p>Étant donné qu’un chercheur ne peut généralement pas mesurer chaque individu de la population (à moins qu’il n’étudie les quelques membres restants d’une espèce en voie de disparition), il doit travailler avec un <strong>sous-ensemble</strong> soigneusement sélectionné contenant plusieurs individus, souvent appelés <strong>unités expérimentales</strong>, qu’il espère être un <strong>échantillon représentatif</strong> à partir duquel les caractéristiques de la population peuvent être déduites.</p>
+<p>La meilleure façon d’obtenir un échantillon représentatif est généralement de choisir une proportion de la population <strong>au hasard</strong> - sans biais, chaque unité expérimentale possible ayant une probabilité égale d’être sélectionnée.</p>
+<p>Le problème de cette approche est qu’il existe souvent de grandes différences entre les unités expérimentales d’une même population:</p>
+<ul>
+<li>Tout d’abord, même un échantillon aléatoire peut ne pas être un bon représentant de la population dont il est issu <a href="#fig-sample1">Figure&nbsp;<span>1.3</span></a>.</li>
+</ul>
+<div id="fig-sample1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/sample1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1.3: Même un échantillon aléatoire n’est pas nécessairement un bon représentant de la population. Deux échantillons ont été prélevés au hasard dans la même population. Par hasard, l’échantillon 1 contient un groupe de poissons relativement grands, tandis que ceux de l’échantillon 2 sont relativement petits <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+</figure>
+</div>
+<ul>
+<li>Deuxièmement, même si deux populations sont très différentes, les échantillons prélevés dans chacune d’elles peuvent être similaires et donner l’impression trompeuse que les populations sont également similaires <a href="#fig-sample2">Figure&nbsp;<span>1.4</span></a>.</li>
+</ul>
+<div id="fig-sample2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/sample2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1.4: Les échantillons sélectionnés au hasard dans des populations très différentes ne sont pas nécessairement différents. Le hasard fait que l’échantillon 1 et l’échantillon 2 sont similaires <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+</figure>
+</div>
+<ul>
+<li>Enfin, la variation naturelle entre les individus d’un échantillon peut masquer tout effet d’un traitement expérimental. Les variations au sein d’un échantillon (et d’une population) sont souvent si importantes qu’il peut être difficile, voire impossible, de détecter l’effet d’un traitement <a href="#fig-sample3">Figure&nbsp;<span>1.5</span></a>.</li>
+</ul>
+<div id="fig-sample3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/sample3.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1.5: Deux échantillons de poissons ont été prélevés dans la même population et ont été délibérément appariés de manière à ce que six individus de taille égale soient initialement présents dans chaque groupe. Les poissons du groupe traité ont été nourris avec un supplément de vitamines pendant 300 jours, tandis que ceux du groupe témoin non traité ne l’ont pas été. Grâce au supplément, chaque poisson du groupe traité a grandi environ 10 % plus longtemps, mais cette différence est faible par rapport à la variation de la croissance entre les individus, ce qui peut masquer tout effet du traitement <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="tests-statistiques-et-niveaux-de-signification" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="tests-statistiques-et-niveaux-de-signification"><span class="header-section-number">1.3</span> Tests statistiques et niveaux de signification</h2>
+<p>Un test statistique est une aide à la décision concernant une hypothèse (alternative <em>vs</em> nulle).</p>
+<p>L’idée maîtresse à la base de tout test d’hypothèse statistique:</p>
+<ul>
+<li>Je suppose que <span class="math inline">\(H_0\)</span> (hypothèse nulle) est vraie (pas de différence/relation);<br>
+</li>
+<li>Je calcule la p-valeur, c’est à dire la probabilité d’obtenir une différence/relation au moins aussi forte que celle que j’ai observée dans mon échantillon (qui est un fait établi);<br>
+</li>
+<li>Si cette p-valeur est faible, alors il est probable que <span class="math inline">\(H_0\)</span> soit fausse: la différence mesurée est simplement une mauvaise estimation d’une différence nulle.</li>
+</ul>
+<p>Le statisticien Sir Ronald Fisher a proposé que, si la probabilité d’obtenir cette différence ou une différence plus extrême entre le résultat attendu et le résultat réel est inférieure à 5 %, il convient de conclure que la différence est statistiquement significative (Fisher, 1954). Le choix de 5% (qui correspond à 1/20 ou 0,05) n’a pas de raison biologique. C’est la probabilité que de nombreux chercheurs utilisent comme « niveau de signification statistique » standard.</p>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Attention: ce seuil n’est pas une valeur magique, les statistiques ce n’est pas blanc <em>vs</em> noir, vrai <em>vs</em> faux, significatif <em>vs</em> non significatif…</p>
+</div>
+</div>
+</div>
+<section id="exemple-de-calcul-direct-de-la-p-valeur" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="exemple-de-calcul-direct-de-la-p-valeur"><span class="header-section-number">1.3.1</span> Exemple de calcul direct de la p-valeur</h3>
+<p>Prenons un exemple de sac contenant 1000 boules blanches et noires. On en tire 6 au hasard <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>. On veut tester l’hypothèse qu’il y a 500 blanches et 500 noires: <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mathbb{P}(blanche) = 0,5\)</span> <em>vs</em> <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mathbb{P}(blanche) ≠ 0,5\)</span>.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concepts basiques de probabilité
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La probabilité d’un événement ne peut varier qu’entre 0 et 1 (qui correspondent à 0 et 100%). Si un événement est certain de se produire, il a une probabilité de 1 ; alors que s’il est certain que l’événement ne se produira pas, il a une probabilité de 0.</p>
+<p>La probabilité d’un événement particulier est le nombre de résultats donnant cet événement, divisé par le nombre total de résultats possibles. Par exemple, lorsque vous jouez à pile ou face, il n’y a que deux résultats possibles : pile ou face. Ces deux événements s’excluent mutuellement : il est impossible d’obtenir les deux.</p>
+<p>Par conséquent, la probabilité d’obtenir un résultat positif est de 1 divisé par 2 = ½ (et donc la probabilité d’obtenir un résultat négatif est également de ½).</p>
+<p><strong>La règle de l’addition</strong></p>
+<p>La probabilité d’obtenir une tête ou une queue est de ½ + ½ = 1. Il s’agit d’un exemple de la règle de l’addition : lorsque plusieurs résultats s’excluent mutuellement, la probabilité d’obtenir l’un d’entre eux est la somme de leurs probabilités respectives. (Par conséquent, la probabilité d’obtenir un 1, un 2, un 3 ou un 4 en lançant un dé à six faces est de 4/6).</p>
+<p><strong>La règle de multiplication</strong></p>
+<p><strong>Événements indépendants.</strong> Pour calculer la probabilité conjointe de deux ou plusieurs événements indépendants (par exemple, un face suivi d’un autre face lors de deux lancers indépendants d’une pièce de monnaie), il suffit de multiplier les probabilités indépendantes entre elles. Par conséquent, la probabilité d’obtenir deux têtes lors de deux lancers d’une pièce est de ½ ½ = ¼. La probabilité d’obtenir un pile ou un face avec deux lancers est de ½, parce qu’il y a deux façons d’obtenir ce résultat : HT ou TH.</p>
+<p><strong>Événements connexes.</strong> Si les événements ne sont pas indépendants (par exemple, le premier événement est un nombre compris entre 1 et 3 inclus lors du lancer d’un dé à six faces et le second événement est un nombre pair), la règle de multiplication s’applique également, mais vous devez multiplier la probabilité d’un événement par la <strong>probabilité conditionnelle</strong> du second.</p>
+<p>Lorsqu’on lance un dé, la probabilité indépendante d’un nombre compris entre 1 et 3 est de <span class="math inline">\(3/6 = 1/2\)</span>, et la probabilité indépendante de tout nombre pair est également de <span class="math inline">\(1/2\)</span> (les nombres pairs sont 2, 4 ou 6 divisés par les six résultats possibles).</p>
+<p>Cependant, si vous avez déjà lancé un nombre de 1 à 3, la probabilité que cet ensemble restreint de résultats soit un nombre pair est de <span class="math inline">\(1/3\)</span> (parce que “2” est le seul nombre pair possible dans cet ensemble de trois résultats). Par conséquent, la probabilité des <strong>deux</strong> événements liés est de <span class="math inline">\(1/2 \times 1/3 = 1/6\)</span>. Vous pouvez examiner la situation dans l’autre sens : la probabilité d’obtenir un nombre pair en lançant un dé est de <span class="math inline">\(1/2\)</span> (vous obtiendriez les nombres 2, 4 ou 6) et la probabilité que l’un de ces nombres soit compris entre 1 et 3 est de <span class="math inline">\(1/3\)</span> (le nombre 2 parmi ces trois résultats). Par conséquent, la probabilité des deux résultats est à nouveau <span class="math inline">\(1/2 \times 1/3 = 1/6\)</span>.</p>
+</div>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nombre de boules noires</th>
+<th>Nombre de boules blanches</th>
+<th>Probabilité</th>
+<th>Pourcentage de cas pouvant donner ce resultat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6</td>
+<td>0</td>
+<td>1/64</td>
+<td>1,56</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>1</td>
+<td>6/64</td>
+<td>9,38</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>2</td>
+<td>15/64</td>
+<td>23,44</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>3</td>
+<td>20/64</td>
+<td>31,25</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>4</td>
+<td>15/64</td>
+<td>23,44</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>5</td>
+<td>6/64</td>
+<td>9,38</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>6</td>
+<td>1/64</td>
+<td>1,56</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td></td>
+<td>64/64</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/expected_number.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Les nombres attendus de chaque mélange possible de couleurs lors du tirage indépendant de six perles avec remplacement à 64 occasions différentes à partir d’une grande population contenant 50 % de noires et 50 % de blanches.</figcaption>
+</figure>
+</div>
+<p>La probabilité de n’obtenir aucune boule blanche sur 6 boules tirées est de 1,56%. On rejette l’hypothèse nulle <span class="math inline">\(H_0\)</span> puisque <span class="math inline">\(p &lt; 2,5\%\)</span> (test bidirectionnel).</p>
+</section>
+<section id="passage-intermédiaire-par-une-statistique" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="passage-intermédiaire-par-une-statistique"><span class="header-section-number">1.3.2</span> Passage intermédiaire par une statistique</h3>
+<p>Dans la majorité des cas, on ne peut pas calculer directement la p-valeur. L’alternative est de calculer une statistique qui quantifie la différence entre les données observées et les données attendues sous <span class="math inline">\(H_0\)</span>. On calcule ensuite la p-valeur en comparant la valeur de la statistique à sa distribution théorique sous <span class="math inline">\(H_0\)</span>.</p>
+<section id="inférence-à-une-moyenne" class="level4" data-number="1.3.2.1">
+<h4 data-number="1.3.2.1" class="anchored" data-anchor-id="inférence-à-une-moyenne"><span class="header-section-number">1.3.2.1</span> Inférence à une moyenne</h4>
+<p>On peut par exemple être amené à comparer la moyenne d’un échantillon à la moyenne d’une population dont la variance est connue. Pour un tel test on a:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu = \mu_0\)</span>; <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mu ≠ \mu_0\)</span>.<br>
+</li>
+<li>Statistique de test: <span class="math inline">\(Z_{obs} = \frac{\bar{Y} - \mu_0}{ESM} = \frac{\bar{Y} - \mu_0}{\frac{\sigma}{\sqrt{n}}} \sim N(0, 1)\)</span></li>
+</ul>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Score Z (Z-score)</strong></p>
+<p>Le score Z est une mesure statistique qui quantifie la distance entre un point de données et la moyenne d’un ensemble de données. Il est exprimé en termes d’écarts types. Il indique le nombre d’écarts types d’un point de données par rapport à la moyenne de la distribution.</p>
+<p>Si un score Z est égal à 0, cela signifie que le score du point de données est identique au score moyen. Un score Z de 1,0 indique une valeur qui se situe à un écart-type de la moyenne. Les scores Z peuvent être positifs ou négatifs, une valeur positive indiquant que le score est supérieur à la moyenne et une valeur négative indiquant qu’il est inférieur à la moyenne.</p>
+<p><span class="math display">\[ Z = \frac{x - \mu}{\sigma}\]</span></p>
+<p><strong>Erreur standard à la moyenne (ESM)</strong></p>
+<p>Le terme “erreur” remplace celui de “déviation” quand on parle de la variation de moyennes plutôt que de la variation de mesures individuelles.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="et-si-les-paramètres-sont-inconnus" class="level4" data-number="1.3.2.2">
+<h4 data-number="1.3.2.2" class="anchored" data-anchor-id="et-si-les-paramètres-sont-inconnus"><span class="header-section-number">1.3.2.2</span> Et si les paramètres sont inconnus ?</h4>
+<p>Si on ne connaît pas la variance réelle de la population, il faut tenir compte des biais possibles dus à la taille de l’échantillon (n).</p>
+<p>On a alors:</p>
+<ul>
+<li>Statistique de test (<span class="math inline">\(S^2\)</span> est la variance de l’échantillon): <span class="math inline">\(t_{obs} = \frac{\bar{X} - \mu_0}{ESM} = \frac{\bar{X} - \mu_0}{\frac{S}{\sqrt{n -1 }}} \sim St(n-1)\)</span>.<br>
+</li>
+<li>Degrés de liberté: nombre d’observations dans l’échantillon libres de varier quand on estime la variance.</li>
+</ul>
+<p>Plus n est petit, plus la distribution est large car S sous-estime σ. Quand n = ∞, Student = Normale.</p>
+</section>
+</section>
+<section id="effet-de-la-taille-de-léchantillon-n" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="effet-de-la-taille-de-léchantillon-n"><span class="header-section-number">1.3.3</span> Effet de la taille de l’échantillon (n)</h3>
+<p>Plus l’échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle <span class="math inline">\(\mu\)</span>: <span class="math display">\[ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/confidence_interval.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">L’effet de la taille de l’échantillon sur la précision et l’exactitude des valeurs de <span class="math inline">\(\bar{X}\)</span> en tant qu’estimations de <span class="math inline">\(\mu\)</span> <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="test-uni--vs-bidirectionnel" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="test-uni--vs-bidirectionnel"><span class="header-section-number">1.4</span> Test uni- <em>vs</em> bidirectionnel</h2>
+<p>L’hypothèse nulle est toujours <strong>“il n’existe pas de”</strong> différence/relation… Cela revient à dire qu’une certaine quantité est égale à 0. L’hypothèse alternative est soit:</p>
+<ul>
+<li>Cette quantité est <strong>différente</strong> de 0 (test bidirectionnel);<br>
+</li>
+<li>Cette quantité est <strong>supérieure/inférieure</strong> à 0 (test unidirectionnel).</li>
+</ul>
+<p>Ainsi on a:</p>
+<ul>
+<li>Test <strong>bidirectionnel</strong>:
+<ul>
+<li><span class="math inline">\(H_0\)</span> : <span class="math inline">\(\mu = \mu_0\)</span> ou <span class="math inline">\(t = 0\)</span></li>
+<li><span class="math inline">\(H_A\)</span> : <span class="math inline">\(\mu ≠ \mu_0\)</span> ou <span class="math inline">\(t ≠ 0\)</span></li>
+</ul></li>
+<li>Test <strong>unidirectionnel</strong>:
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu = \mu_0\)</span> ou <span class="math inline">\(t = 0\)</span></li>
+<li><span class="math inline">\(H_{A1}\)</span>: <span class="math inline">\(\mu &gt; \mu_0\)</span> ou <span class="math inline">\(t &gt; 0\)</span></li>
+<li><span class="math inline">\(H_{A2}\)</span>: <span class="math inline">\(\mu &lt; \mu_0\)</span> ou <span class="math inline">\(t &lt; 0\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="types-derreurs" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="types-derreurs"><span class="header-section-number">1.5</span> Types d’erreurs</h2>
+<p>Quand on prend une décision concernqnt une hypothèse sur la base d’un échantillon donné, <strong>on n’est jamais sûr de prendre la bonne décision!!</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/statistical_decisions.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Décisions et erreurs statistiques lors des tests d’hypothèses nulles <span class="citation" data-cites="hypothes2002">(<a href="references.html#ref-hypothes2002" role="doc-biblioref"><span>“Hypothesis Testing”</span> 2002</a>)</span>.</figcaption>
+</figure>
+</div>
+<p>On peut se tromper de 2 manières:</p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> (probabilité d’erreur de type I: rejeter <span class="math inline">\(H_0\)</span> à tort) est traditionnellement fixé à 5%. Rien n’empêche de choisir un <span class="math inline">\(\alpha\)</span> plus petit ou plus grand;<br>
+</li>
+<li><span class="math inline">\(1 - \beta\)</span> (probabilité d’erreur de type II: accepter <span class="math inline">\(H_0\)</span> à tort) est la puissance du test. Elle dépend notamment de:
+<ul>
+<li>La taille de l’effet: plus l’effet est grand, plus la probabilité de le détecter est grande;</li>
+<li>La variance: plus le paramètre est connu avec précision, plus la probabilité d’en détecter une différence est grande. La précision augmente avec le nombre d’observation.</li>
+</ul></li>
+</ul>
+</section>
+<section id="compromis-entre-alpha-et-beta" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="compromis-entre-alpha-et-beta"><span class="header-section-number">1.6</span> Compromis entre <span class="math inline">\(\alpha\)</span> et <span class="math inline">\(\beta\)</span></h2>
+<p>Il existe un compromis entre les probabilités d’erreur de type I (<span class="math inline">\(\alpha\)</span>) et de type II (<span class="math inline">\(\alpha\)</span>). Pour un même jeu de données, si on choisit de diminuer <span class="math inline">\(\alpha\)</span>, on augmentera automatiquement <span class="math inline">\(\beta\)</span>, et inversement.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tradeoff.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Le compromis entre l’erreur de type 1 et l’erreur de type 2. (a) fixé à 10 %. (b) L’abaissement à 5 % réduira le risque d’erreur de type 1, mais augmentera le risque d’erreur de type 2. (c) Une réduction à 1 % diminuera encore le risque d’erreur de type 1, mais augmentera fortement le risque d’erreur de type 2. <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+</figure>
+</div>
+</section>
+<section id="les-deux-grands-types-de-questions" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="les-deux-grands-types-de-questions"><span class="header-section-number">1.7</span> Les deux grands types de questions</h2>
+<p>On peut différencier en général 3 types de jeux de données en fonction du nombre de variables mesurées sur chaque individu:</p>
+<ul>
+<li>Univarié: une seule variable;<br>
+</li>
+<li>Bivarié: 2 variables;<br>
+</li>
+<li>Multivarié: plus de 2 variables;</li>
+</ul>
+<p>On peut différencier 2 grandes classes de questions:</p>
+<ul>
+<li>L’hypothèse porte sur l’existence de différence(s);<br>
+</li>
+<li>L’hypothèse porte sur l’existence d’une relation entre variables.</li>
+</ul>
+</section>
+<section id="les-grandes-classes-de-méthodes-danalyse" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="les-grandes-classes-de-méthodes-danalyse"><span class="header-section-number">1.8</span> Les grandes classes de méthodes d’analyse</h2>
+<p><img src="img/principal_tests.png" class="img-fluid"></p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-hypothes2002" class="csl-entry" role="listitem">
+<span>“Hypothesis Testing.”</span> 2002. In, 32–57. Cambridge University Press. <a href="https://doi.org/10.1017/cbo9780511806384.004">https://doi.org/10.1017/cbo9780511806384.004</a>.
+</div>
+<div id="ref-mckillup2011" class="csl-entry" role="listitem">
+McKillup, Steve. 2011. <span>“Statistics Explained,”</span> November. <a href="https://doi.org/10.1017/cbo9781139047500">https://doi.org/10.1017/cbo9781139047500</a>.
+</div>
+<div id="ref-popper2005" class="csl-entry" role="listitem">
+Popper, Karl. 2005. <em>The Logic of Scientific Discovery</em>. Routledge. <a href="https://doi.org/10.4324/9780203994627">https://doi.org/10.4324/9780203994627</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Bienvenue</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./intro2.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Importance et notions de base</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Biométrie et expérimentation par Anicet Ebou.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
