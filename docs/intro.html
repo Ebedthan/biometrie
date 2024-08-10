@@ -131,6 +131,12 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Partie matérielle de l’ordinateur</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
     </ul>
 </div>
 </nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
@@ -377,7 +383,7 @@ Points clés à retenir
 </div>
 </section><section id="exemple-de-calcul-direct-de-la-p-valeur" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="exemple-de-calcul-direct-de-la-p-valeur">
 <span class="header-section-number">1.2.2</span> Exemple de calcul direct de la p-valeur</h3>
-<p>Prenons un exemple de sac contenant 1000 boules blanches et noires. On en tire 6 au hasard <span class="citation" data-cites="mckillup2011">(<a href="#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>. On veut tester l’hypothèse qu’il y a 500 blanches et 500 noires: <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mathbb{P}(blanche) = 0,5\)</span> <em>vs</em> <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mathbb{P}(blanche) ≠ 0,5\)</span>.</p>
+<p>Prenons un exemple de sac contenant 1000 boules blanches et noires. On en tire 6 au hasard <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>. On veut tester l’hypothèse qu’il y a 500 blanches et 500 noires: <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mathbb{P}(blanche) = 0,5\)</span> <em>vs</em> <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mathbb{P}(blanche) ≠ 0,5\)</span>.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -405,7 +411,7 @@ Concepts basiques de probabilité
 <col style="width: 23%">
 <col style="width: 23%">
 <col style="width: 23%">
-<col style="width: 29%">
+<col style="width: 28%">
 </colgroup>
 <thead><tr class="header">
 <th>Nombre de boules noires</th>
@@ -512,7 +518,7 @@ Concepts basiques de probabilité
 <p>Plus l’échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle <span class="math inline">\(\mu\)</span>: <span class="math display">\[ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}\]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/confidence_interval.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L’effet de la taille de l’échantillon sur la précision et l’exactitude des valeurs de <span class="math inline">\(\bar{X}\)</span> en tant qu’estimations de <span class="math inline">\(\mu\)</span> <span class="citation" data-cites="mckillup2011">(<a href="#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption></figure>
+<figcaption class="figure-caption">L’effet de la taille de l’échantillon sur la précision et l’exactitude des valeurs de <span class="math inline">\(\bar{X}\)</span> en tant qu’estimations de <span class="math inline">\(\mu\)</span> <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption></figure>
 </div>
 </section></section><section id="test-uni--vs-bidirectionnel" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="test-uni--vs-bidirectionnel">
 <span class="header-section-number">1.3</span> Test uni- <em>vs</em> bidirectionnel</h2>
@@ -552,7 +558,7 @@ Concepts basiques de probabilité
 <p>Quand on prend une décision concernqnt une hypothèse sur la base d’un échantillon donné, <strong>on n’est jamais sûr de prendre la bonne décision!!</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/statistical_decisions.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Décisions et erreurs statistiques lors des tests d’hypothèses nulles <span class="citation" data-cites="hypothes2002">(<a href="#ref-hypothes2002" role="doc-biblioref"><span>“Hypothesis Testing”</span> 2002</a>)</span>.</figcaption></figure>
+<figcaption class="figure-caption">Décisions et erreurs statistiques lors des tests d’hypothèses nulles <span class="citation" data-cites="hypothes2002">(<a href="references.html#ref-hypothes2002" role="doc-biblioref"><span>“Hypothesis Testing”</span> 2002</a>)</span>.</figcaption></figure>
 </div>
 <p>On peut se tromper de 2 manières:</p>
 <ul>
@@ -570,6 +576,10 @@ Concepts basiques de probabilité
 <span class="header-section-number">1.5</span> Compromis entre <span class="math inline">\(\alpha\)</span> et <span class="math inline">\(\beta\)</span>
 </h2>
 <p>Il existe un compromis entre les probabilités d’erreur de type I (<span class="math inline">\(\alpha\)</span>) et de type II (<span class="math inline">\(\alpha\)</span>). Pour un même jeu de données, si on choisit de diminuer <span class="math inline">\(\alpha\)</span>, on augmentera automatiquement <span class="math inline">\(\beta\)</span>, et inversement.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="img/tradeoff.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Le compromis entre l’erreur de type 1 et l’erreur de type 2. (a) fixé à 10 %. (b) L’abaissement à 5 % réduira le risque d’erreur de type 1, mais augmentera le risque d’erreur de type 2. (c) Une réduction à 1 % diminuera encore le risque d’erreur de type 1, mais augmentera fortement le risque d’erreur de type 2. <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption></figure>
+</div>
 </section><section id="les-deux-grands-types-de-questions" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="les-deux-grands-types-de-questions">
 <span class="header-section-number">1.6</span> Les deux grands types de questions</h2>
 <p>On peut différencier en général 3 types de jeux de données en fonction du nombre de variables mesurées sur chaque individu:</p>
@@ -590,7 +600,7 @@ Concepts basiques de probabilité
 <p><img src="img/principal_tests.png" class="img-fluid"></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-hypothes2002" class="csl-entry" role="listitem">
 <span>“Hypothesis Testing.”</span> 2002. In, 32–57. Cambridge University Press. <a href="https://doi.org/10.1017/cbo9780511806384.004">https://doi.org/10.1017/cbo9780511806384.004</a>.
 </div>

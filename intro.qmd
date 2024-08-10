@@ -364,7 +364,7 @@ Cependant, si vous avez déjà lancé un nombre de 1 à 3, la probabilité que c
 :::
 
 | Nombre de boules noires | Nombre de boules blanches | Probabilité | Pourcentage de cas pouvant donner ce resultat |
-|-----------------|-----------------|-----------------|---------------------|
+|-----------------|-----------------|-----------------|--------------------|
 | 6                       | 0                         | 1/64        | 1,56                                          |
 | 5                       | 1                         | 6/64        | 9,38                                          |
 | 4                       | 2                         | 15/64       | 23,44                                         |
@@ -418,7 +418,7 @@ Plus n est petit, plus la distribution est large car S sous-estime σ. Quand n =
 
 Plus l'échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle $\mu$: $$ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}$$
 
-![L'effet de la taille de l'échantillon sur la précision et l'exactitude des valeurs de $\bar{X}$ en tant qu'estimations de $\mu$ [@mckillup2011]. ](img/confidence_interval.png)
+![L'effet de la taille de l'échantillon sur la précision et l'exactitude des valeurs de $\bar{X}$ en tant qu'estimations de $\mu$ [@mckillup2011].](img/confidence_interval.png)
 
 ## Test uni- *vs* bidirectionnel
 
@@ -453,6 +453,8 @@ On peut se tromper de 2 manières:
 ## Compromis entre $\alpha$ et $\beta$
 
 Il existe un compromis entre les probabilités d'erreur de type I ($\alpha$) et de type II ($\alpha$). Pour un même jeu de données, si on choisit de diminuer $\alpha$, on augmentera automatiquement $\beta$, et inversement.
+
+![Le compromis entre l'erreur de type 1 et l'erreur de type 2. (a) fixé à 10 %. (b) L'abaissement à 5 % réduira le risque d'erreur de type 1, mais augmentera le risque d'erreur de type 2. (c) Une réduction à 1 % diminuera encore le risque d'erreur de type 1, mais augmentera fortement le risque d'erreur de type 2. [@mckillup2011].](img/tradeoff.png)
 
 ## Les deux grands types de questions
 
