@@ -63,6 +63,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -156,7 +158,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#préambule" id="toc-préambule" class="nav-link active" data-scroll-target="#préambule"><span class="header-section-number">3.1</span> Préambule</a>
+  <ul class="collapse">
+  <li><a href="#nomenclature" id="toc-nomenclature" class="nav-link" data-scroll-target="#nomenclature"><span class="header-section-number">3.1.1</span> Nomenclature</a></li>
+  <li><a href="#techniques-de-comparaison-de-moyennes" id="toc-techniques-de-comparaison-de-moyennes" class="nav-link" data-scroll-target="#techniques-de-comparaison-de-moyennes"><span class="header-section-number">3.1.2</span> Techniques de comparaison de moyennes</a></li>
+  </ul></li>
+  <li><a href="#comparaison-de-2-moyennes" id="toc-comparaison-de-2-moyennes" class="nav-link" data-scroll-target="#comparaison-de-2-moyennes"><span class="header-section-number">3.2</span> Comparaison de 2 moyennes</a>
+  <ul class="collapse">
+  <li><a href="#test-de-t-pairé" id="toc-test-de-t-pairé" class="nav-link" data-scroll-target="#test-de-t-pairé"><span class="header-section-number">3.2.1</span> Test de <span class="math inline">\(t\)</span> pairé</a></li>
+  <li><a href="#test-de-t-indépendant" id="toc-test-de-t-indépendant" class="nav-link" data-scroll-target="#test-de-t-indépendant"><span class="header-section-number">3.2.2</span> Test de <span class="math inline">\(t\)</span> indépendant</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -178,8 +195,118 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="préambule" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="préambule"><span class="header-section-number">3.1</span> Préambule</h2>
+<section id="nomenclature" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="nomenclature"><span class="header-section-number">3.1.1</span> Nomenclature</h3>
+<p>Dans ce chapitre, nous supposons que:</p>
+<ul>
+<li><p>La <strong>réponse</strong> <span class="math inline">\(Y\)</span> est une variable quantitative continue qui suit une distribution normale;</p></li>
+<li><p>L’hypothèse de test porte sur l’existence de différence(s) de la moyenne de <span class="math inline">\(Y\)</span> entre plusieurs groupes;</p></li>
+<li><p>Les groupes sont des <strong>niveaux</strong> du <strong>facteur/critère</strong> <span class="math inline">\(X\)</span>;</p></li>
+<li><p><span class="math inline">\(X\)</span> est une variable discrète, souvent qualitative nominale;</p></li>
+<li><p><span class="math inline">\(X\)</span> peut être <strong>fixe</strong> ou <strong>aléatoire</strong>:</p>
+<ul>
+<li><p>fixe: on ne s’intéresse qu’aux niveaux étudiés, choisis spécifiquement (p.&nbsp;ex. mâle <em>vs</em> femelle);</p></li>
+<li><p>aléatoire: on s’intéresse à tous les niveaux possibles, parmi lesquels on en a étudié certains choisis aléatoirement (p.&nbsp;ex. Espagne, Finlande et Pologne pour représenter l’UE).</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="techniques-de-comparaison-de-moyennes" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="techniques-de-comparaison-de-moyennes"><span class="header-section-number">3.1.2</span> Techniques de comparaison de moyennes</h3>
+<p>Dans le cas ou le jeu de données contient 2 niveaux pour <span class="math inline">\(X\)</span> (c.à.d. 2 groupes) alors on effectue un test de <span class="math inline">\(t\)</span>. S’il y a plus de 2 niveaux pour <span class="math inline">\(X\)</span> alors une analyse de variance à un critère de classification (ANOVA 1) est choisi. S’il y a plus d’un critère de classification pour <span class="math inline">\(X\)</span> alors on aura un ANOVA2, ANOVA3, …</p>
+</section>
+</section>
+<section id="comparaison-de-2-moyennes" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="comparaison-de-2-moyennes"><span class="header-section-number">3.2</span> Comparaison de 2 moyennes</h2>
+<p>On distingue 2 cas pour les expériences où une variable continue <span class="math inline">\(Y\)</span> est mesurée sur les individus appartenant à 2 groupes (A et B):</p>
+<ul>
+<li><p>Soit une mesure du groupe A est associé avec 1 et 1 seule mesure du groupe B (et inversement): les données sont dites <strong>“pairées”</strong>;</p></li>
+<li><p>Soit les mesures du groupe A ne sont pas associées aux mesures du groupe B: les données sont dites <strong>“indépendantes”</strong>.</p></li>
+</ul>
+<section id="test-de-t-pairé" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="test-de-t-pairé"><span class="header-section-number">3.2.1</span> Test de <span class="math inline">\(t\)</span> pairé</h3>
+<section id="observations-pairées" class="level4" data-number="3.2.1.1">
+<h4 data-number="3.2.1.1" class="anchored" data-anchor-id="observations-pairées"><span class="header-section-number">3.2.1.1</span> Observations pairées</h4>
+<p>Par exemple, on mesure le temps mis par des sprinteurs pour couvrir le 100m lors de 2 jours de course consécutifs, pour vérifier l’existence d’un effet d’adaptation à un environnement non familier. On a alors les hypothèses suivantes:</p>
+<ul>
+<li><p><span class="math inline">\(H_0\)</span>: il n’y a pas de différence entre les 2 jours;</p></li>
+<li><p><span class="math inline">\(H_A\)</span>: il y a une différence entre les 2 jours.</p></li>
+</ul>
+</section>
+<section id="analyse-de-lexemple" class="level4" data-number="3.2.1.2">
+<h4 data-number="3.2.1.2" class="anchored" data-anchor-id="analyse-de-lexemple"><span class="header-section-number">3.2.1.2</span> Analyse de l’exemple</h4>
+<p>Pour un test de <span class="math inline">\(t\)</span> pairé on a <span class="math inline">\(t_{obs} = \frac{\bar{Y_D} - \mu_D}{\frac{S_D}{\sqrt{n - 1}}} \sim St(n-1)\)</span>.</p>
+<p>En partant de l’exemple précédent dont les données onst présentées ici:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Numéro</th>
+<th>Temps de course (Jour 1)</th>
+<th>Temps de course (Jour 2)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>13,5</td>
+<td>13,6</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>14,6</td>
+<td>14,6</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>12,7</td>
+<td>12,6</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>15,5</td>
+<td>15,7</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>11,1</td>
+<td>11,1</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>16,4</td>
+<td>16,6</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>13,2</td>
+<td>13,2</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>19,3</td>
+<td>19,5</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>16,7</td>
+<td>16,8</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>18,4</td>
+<td>18,7</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="test-de-t-indépendant" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="test-de-t-indépendant"><span class="header-section-number">3.2.2</span> Test de <span class="math inline">\(t\)</span> indépendant</h3>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -433,7 +560,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">Biométrie et expérimentation par Anicet Ebou.</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    </div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

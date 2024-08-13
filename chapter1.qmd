@@ -1,1 +1,64 @@
 # Comparaison de moyennes
+
+## Préambule
+
+### Nomenclature
+
+Dans ce chapitre, nous supposons que:
+
+-   La **réponse** $Y$ est une variable quantitative continue qui suit une distribution normale;
+
+-   L'hypothèse de test porte sur l'existence de différence(s) de la moyenne de $Y$ entre plusieurs groupes;
+
+-   Les groupes sont des **niveaux** du **facteur/critère** $X$;
+
+-   $X$ est une variable discrète, souvent qualitative nominale;
+
+-   $X$ peut être **fixe** ou **aléatoire**:
+
+    -   fixe: on ne s'intéresse qu'aux niveaux étudiés, choisis spécifiquement (p. ex. mâle *vs* femelle);
+
+    -   aléatoire: on s'intéresse à tous les niveaux possibles, parmi lesquels on en a étudié certains choisis aléatoirement (p. ex. Espagne, Finlande et Pologne pour représenter l'UE).
+
+### Techniques de comparaison de moyennes
+
+Dans le cas ou le jeu de données contient 2 niveaux pour $X$ (c.à.d. 2 groupes) alors on effectue un test de $t$. S'il y a plus de 2 niveaux pour $X$ alors une analyse de variance à un critère de classification (ANOVA 1) est choisi. S'il y a plus d'un critère de classification pour $X$ alors on aura un ANOVA2, ANOVA3, ...
+
+## Comparaison de 2 moyennes
+
+On distingue 2 cas pour les expériences où une variable continue $Y$ est mesurée sur les individus appartenant à 2 groupes (A et B):
+
+-   Soit une mesure du groupe A est associé avec 1 et 1 seule mesure du groupe B (et inversement): les données sont dites **"pairées"**;
+
+-   Soit les mesures du groupe A ne sont pas associées aux mesures du groupe B: les données sont dites **"indépendantes"**.
+
+### Test de $t$ pairé
+
+#### Observations pairées
+
+Par exemple, on mesure le temps mis par des sprinteurs pour couvrir le 100m lors de 2 jours de course consécutifs, pour vérifier l'existence d'un effet d'adaptation à un environnement non familier. On a alors les hypothèses suivantes:
+
+-   $H_0$: il n'y a pas de différence entre les 2 jours;
+
+-   $H_A$: il y a une différence entre les 2 jours.
+
+#### Analyse de l'exemple
+
+Pour un test de $t$ pairé on a $t_{obs} = \frac{\bar{Y_D} - \mu_D}{\frac{S_D}{\sqrt{n - 1}}} \sim St(n-1)$.
+
+En partant de l'exemple précédent dont les données onst présentées ici:
+
+| Numéro | Temps de course (Jour 1) | Temps de course (Jour 2) |
+|--------|--------------------------|--------------------------|
+| 1      | 13,5                     | 13,6                     |
+| 2      | 14,6                     | 14,6                     |
+| 3      | 12,7                     | 12,6                     |
+| 4      | 15,5                     | 15,7                     |
+| 5      | 11,1                     | 11,1                     |
+| 6      | 16,4                     | 16,6                     |
+| 7      | 13,2                     | 13,2                     |
+| 8      | 19,3                     | 19,5                     |
+| 9      | 16,7                     | 16,8                     |
+| 10     | 18,4                     | 18,7                     |
+
+### Test de $t$ indépendant
