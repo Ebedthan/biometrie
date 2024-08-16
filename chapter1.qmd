@@ -32,6 +32,56 @@ On distingue 2 cas pour les expériences où une variable continue $Y$ est mesur
 
 -   Soit les mesures du groupe A ne sont pas associées aux mesures du groupe B: les données sont dites **"indépendantes"**.
 
+::: callout-note
+## Lire les valeurs critiques (fractiles) de la loi de t avec R
+
+Pour trouver la valeur critique T dans R, vous pouvez utiliser la fonction qt(), qui utilise la syntaxe suivante :
+
+```{r, eval=FALSE}
+qt(p, df, lower.tail=TRUE)
+```
+
+où :
+
+-   **p**: le niveau de signification à utiliser;
+
+-   **df**: Les degrés de liberté;
+
+-   **lower.tail**: Si TRUE, la probabilité à gauche de **p** dans la distribution *t* est renvoyée. Si FALSE, la probabilité à droite est renvoyée. La valeur par défaut est TRUE.
+
+**Test unilatéral à gauche**
+
+Supposons que nous voulions trouver la valeur critique de $t$ pour un test unilatéral gauche avec un niveau de signification de 0,05 et un degrés de liberté = 18.
+
+```{r}
+qt(p = 0.05, df = 18, lower.tail = TRUE)
+```
+
+La valeur critique $t$ est de -1,734. Ainsi, si la statistique du test est inférieure à cette valeur, les résultats du test sont statistiquement significatifs.
+
+**Test unilatéral à droite**
+
+Supposons que nous voulions trouver la valeur critique de $t$ pour un test unilatéral à droite avec un niveau de signification de 0,05 et un degrés de liberté = 18.
+
+```{r}
+qt(p = 0.05, df = 18, lower.tail = FALSE)
+```
+
+La valeur critique $t$ est de 1,734. Ainsi, si la statistique du test est supérieur à cette valeur, les résultats du test sont statistiquement significatifs.
+
+**Test bilatéral**
+
+Supposons que nous voulions trouver la valeur critique de $t$ pour un test bilatéral avec un niveau de signification de 0,05 et un degrés de liberté = 18.
+
+```{r}
+qt(p = 0.05/2, df = 18, lower.tail = FALSE)
+```
+
+Chaque fois que vous effectuez un test bilatéral, il y a deux valeurs critiques. Dans le cas présent, les valeurs critiques de T sont 2,1 et -2,1.
+
+Par conséquent, si la statistique du test est inférieure à -2,1 ou supérieure à 2,1, les résultats du test sont statistiquement significatifs.
+:::
+
 ### Test de $t$ pairé
 
 Par exemple, on mesure le temps mis par des sprinteurs pour couvrir le 100m lors de 2 jours de course consécutifs, pour vérifier l'existence d'un effet d'adaptation à un environnement non familier. On a alors les hypothèses suivantes:
@@ -73,13 +123,13 @@ A partir des données ci-dessus présentées on a:
 
 Pour un dégré de liberté de 9 on a $t_9 = \frac{0,10 - 0}{0,03944} = 2,5355$.
 
-En utilisant la table ou R (voir ci-dessous) la valeur critique de $t_9$ pour $\alpha = 0,05$ est de $2,262$ ($t_{obs} = 2,5355 > t_{lu} = 2,263$). Par conséquent, la valeur de $t$ se situe en dehors de l'intervalle dans lequel on s'attendrait à ce que $95 \%$ des statistiques $t$ générées par des échantillons de $n = 9$ à partir d'une population où $\mu = 0$. Il a donc été conclu que la moyenne de la population des différences de temps de course était significativement différente ($P < 0,05$) d'une moyenne attendue de zéro.
+En utilisant la table ou R (voir ci-dessous) la valeur critique de $t_9$ pour $\alpha = 0,05$ est de $2,262$ ($t_{obs} = 2,5355 > t_{lu} = 2,263$).
 
 ```{r}
 qt(p=0.05/2, df=9, lower.tail=FALSE)
 ```
 
-On obtient alors une p-value de 0,031.
+Par conséquent, la valeur de $t$ se situe en dehors de l'intervalle dans lequel on s'attendrait à ce que $95 \%$ des statistiques $t$ générées par des échantillons de $n = 9$ à partir d'une population où $\mu = 0$. Il a donc été conclu que la moyenne de la population des différences de temps de course était significativement différente ($P < 0,05$) d'une moyenne attendue de zéro.
 
 ### Test de $t$ indépendant
 
@@ -121,5 +171,17 @@ $t_{obs} = \frac{(34,67 - 40,87) - (0)}{\sqrt{\frac{24,67}{15} + \frac{28,69}{15
 Avec le dégré de liberté $df = n_A + n_B - 2 = 15 + 15 - 2 = 28$, on a :
 
 ```{r}
-2*pt(q=-3.287, df=28, lower.tail=FALSE)
+qt(p=0.05/2, df=28, lower.tail=FALSE)
 ```
+
+La valeur critique de $t_{28}$ pour une valeur de 0,05 est de 2,048, de sorte que les deux moyennes de l'échantillon ont une probabilité inférieure à 5 % d'être issues de la même population.
+
+### Test de $t$ pairé *vs* test de $t$ indépendant
+
+Et si on avait analysé l\'exemple des sprinteurs comme si les observations des 2 jours étaient indépendantes? A ce moment on obtiendrait $t_{obs} = -0.084$, $df = 18$, $t_{lu} = -2,1$.
+
+La différence entre les 2 jours n\'apparaît plus du tout comme significative!!
+
+Pourquoi?
+
+Dans un test de t indépendant, on intègre la différence entre sprinteurs dans la variation due au hasard. De ce fait, la **différence entre moyennes** des 2 jours paraît faible comparée aux différences entre sprinteurs.

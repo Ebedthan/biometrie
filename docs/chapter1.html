@@ -190,6 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
 <li><a href="#test-de-t-pair%C3%A9" id="toc-test-de-t-pairé" class="nav-link" data-scroll-target="#test-de-t-pair%C3%A9"><span class="header-section-number">3.2.1</span> Test de <span class="math inline">\(t\)</span> pairé</a></li>
   <li><a href="#test-de-t-ind%C3%A9pendant" id="toc-test-de-t-indépendant" class="nav-link" data-scroll-target="#test-de-t-ind%C3%A9pendant"><span class="header-section-number">3.2.2</span> Test de <span class="math inline">\(t\)</span> indépendant</a></li>
+  <li><a href="#test-de-t-pair%C3%A9-vs-test-de-t-ind%C3%A9pendant" id="toc-test-de-t-pairé-vs-test-de-t-indépendant" class="nav-link" data-scroll-target="#test-de-t-pair%C3%A9-vs-test-de-t-ind%C3%A9pendant"><span class="header-section-number">3.2.3</span> Test de <span class="math inline">\(t\)</span> pairé <em>vs</em> test de <span class="math inline">\(t\)</span> indépendant</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -238,6 +239,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Soit une mesure du groupe A est associé avec 1 et 1 seule mesure du groupe B (et inversement): les données sont dites <strong>“pairées”</strong>;</p></li>
 <li><p>Soit les mesures du groupe A ne sont pas associées aux mesures du groupe B: les données sont dites <strong>“indépendantes”</strong>.</p></li>
 </ul>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lire les valeurs critiques (fractiles) de la loi de t avec R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pour trouver la valeur critique T dans R, vous pouvez utiliser la fonction qt(), qui utilise la syntaxe suivante :</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">df</span>, lower.tail<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>où :</p>
+<ul>
+<li><p><strong>p</strong>: le niveau de signification à utiliser;</p></li>
+<li><p><strong>df</strong>: Les degrés de liberté;</p></li>
+<li><p><strong>lower.tail</strong>: Si TRUE, la probabilité à gauche de <strong>p</strong> dans la distribution <em>t</em> est renvoyée. Si FALSE, la probabilité à droite est renvoyée. La valeur par défaut est TRUE.</p></li>
+</ul>
+<p><strong>Test unilatéral à gauche</strong></p>
+<p>Supposons que nous voulions trouver la valeur critique de <span class="math inline">\(t\)</span> pour un test unilatéral gauche avec un niveau de signification de 0,05 et un degrés de liberté = 18.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.05</span>, df <span class="op">=</span> <span class="fl">18</span>, lower.tail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.734064</code></pre>
+</div>
+</div>
+<p>La valeur critique <span class="math inline">\(t\)</span> est de -1,734. Ainsi, si la statistique du test est inférieure à cette valeur, les résultats du test sont statistiquement significatifs.</p>
+<p><strong>Test unilatéral à droite</strong></p>
+<p>Supposons que nous voulions trouver la valeur critique de <span class="math inline">\(t\)</span> pour un test unilatéral à droite avec un niveau de signification de 0,05 et un degrés de liberté = 18.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.05</span>, df <span class="op">=</span> <span class="fl">18</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.734064</code></pre>
+</div>
+</div>
+<p>La valeur critique <span class="math inline">\(t\)</span> est de 1,734. Ainsi, si la statistique du test est supérieur à cette valeur, les résultats du test sont statistiquement significatifs.</p>
+<p><strong>Test bilatéral</strong></p>
+<p>Supposons que nous voulions trouver la valeur critique de <span class="math inline">\(t\)</span> pour un test bilatéral avec un niveau de signification de 0,05 et un degrés de liberté = 18.</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.05</span><span class="op">/</span><span class="fl">2</span>, df <span class="op">=</span> <span class="fl">18</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.100922</code></pre>
+</div>
+</div>
+<p>Chaque fois que vous effectuez un test bilatéral, il y a deux valeurs critiques. Dans le cas présent, les valeurs critiques de T sont 2,1 et -2,1.</p>
+<p>Par conséquent, si la statistique du test est inférieure à -2,1 ou supérieure à 2,1, les résultats du test sont statistiquement significatifs.</p>
+</div>
+</div>
 <section id="test-de-t-pairé" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="test-de-t-pairé">
 <span class="header-section-number">3.2.1</span> Test de <span class="math inline">\(t\)</span> pairé</h3>
 <p>Par exemple, on mesure le temps mis par des sprinteurs pour couvrir le 100m lors de 2 jours de course consécutifs, pour vérifier l’existence d’un effet d’adaptation à un environnement non familier. On a alors les hypothèses suivantes:</p>
@@ -334,17 +385,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span class="math inline">\(\bar{X} = 0,100\)</span>, <span class="math inline">\(s = 0,1247\)</span>, <span class="math inline">\(n = 10\)</span>;</p></li>
 <li><p><span class="math inline">\(SEM = \frac{S_D}{\sqrt{n - 1}}\)</span> = 0,0394.</p></li>
 </ul>
-<p>Pour un dégré de liberté de 9 on a <span class="math inline">\(t_9 = \frac{0,10 - 0}{0,03944} = 2,5355\)</span>. En lisant sur la table de <span class="math inline">\(t\)</span> ou en utilisant R on peut donc lire la p-value.</p>
+<p>Pour un dégré de liberté de 9 on a <span class="math inline">\(t_9 = \frac{0,10 - 0}{0,03944} = 2,5355\)</span>.</p>
+<p>En utilisant la table ou R (voir ci-dessous) la valeur critique de <span class="math inline">\(t_9\)</span> pour <span class="math inline">\(\alpha = 0,05\)</span> est de <span class="math inline">\(2,262\)</span> (<span class="math inline">\(t_{obs} = 2,5355 &gt; t_{lu} = 2,263\)</span>).</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span>q<span class="op">=</span><span class="fl">2.5355</span>, df<span class="op">=</span><span class="fl">9</span>, lower.tail<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p<span class="op">=</span><span class="fl">0.05</span><span class="op">/</span><span class="fl">2</span>, df<span class="op">=</span><span class="fl">9</span>, lower.tail<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.03194578</code></pre>
+<pre><code>[1] 2.262157</code></pre>
 </div>
 </div>
-<p>On obtient alors une p-value de 0,031.</p>
+<p>Par conséquent, la valeur de <span class="math inline">\(t\)</span> se situe en dehors de l’intervalle dans lequel on s’attendrait à ce que <span class="math inline">\(95 \%\)</span> des statistiques <span class="math inline">\(t\)</span> générées par des échantillons de <span class="math inline">\(n = 9\)</span> à partir d’une population où <span class="math inline">\(\mu = 0\)</span>. Il a donc été conclu que la moyenne de la population des différences de temps de course était significativement différente (<span class="math inline">\(P &lt; 0,05\)</span>) d’une moyenne attendue de zéro.</p>
 </section><section id="test-de-t-indépendant" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="test-de-t-indépendant">
 <span class="header-section-number">3.2.2</span> Test de <span class="math inline">\(t\)</span> indépendant</h3>
-<p>Une étude mesure la taille de coquillages provenant de 2 lacs différents. L’objectif est de savoir si la taille des coquillages de ces deux populations est égale ou différente.</p>
+<p>Un écologiste a échantillonné la longueur de la coquille de 15 palourdes d’eau douce dans chacun de deux lacs afin de déterminer si ces échantillons étaient susceptibles de provenir de populations ayant la même longueur moyenne de coquille.</p>
 <table class="table">
 <thead><tr class="header">
 <th>Lac A</th>
@@ -428,11 +480,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math inline">\(t_{obs} = \frac{(34,67 - 40,87) - (0)}{\sqrt{\frac{24,67}{15} + \frac{28,69}{15}}} = -3,287\)</span>.</p>
 <p>Avec le dégré de liberté <span class="math inline">\(df = n_A + n_B - 2 = 15 + 15 - 2 = 28\)</span>, on a :</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span>q<span class="op">=</span><span class="op">-</span><span class="fl">3.287</span>, df<span class="op">=</span><span class="fl">28</span>, lower.tail<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p<span class="op">=</span><span class="fl">0.05</span><span class="op">/</span><span class="fl">2</span>, df<span class="op">=</span><span class="fl">28</span>, lower.tail<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.99727</code></pre>
+<pre><code>[1] 2.048407</code></pre>
 </div>
 </div>
+<p>La valeur critique de <span class="math inline">\(t_{28}\)</span> pour une valeur de 0,05 est de 2,048, de sorte que les deux moyennes de l’échantillon ont une probabilité inférieure à 5 % d’être issues de la même population.</p>
+</section><section id="test-de-t-pairé-vs-test-de-t-indépendant" class="level3" data-number="3.2.3"><h3 data-number="3.2.3" class="anchored" data-anchor-id="test-de-t-pairé-vs-test-de-t-indépendant">
+<span class="header-section-number">3.2.3</span> Test de <span class="math inline">\(t\)</span> pairé <em>vs</em> test de <span class="math inline">\(t\)</span> indépendant</h3>
+<p>Et si on avait analysé l'exemple des sprinteurs comme si les observations des 2 jours étaient indépendantes? A ce moment on obtiendrait <span class="math inline">\(t_{obs} = -0.084\)</span>, <span class="math inline">\(df = 18\)</span>, <span class="math inline">\(t_{lu} = -2,1\)</span>.</p>
+<p>La différence entre les 2 jours n'apparaît plus du tout comme significative!!</p>
+<p>Pourquoi?</p>
+<p>Dans un test de t indépendant, on intègre la différence entre sprinteurs dans la variation due au hasard. De ce fait, la <strong>différence entre moyennes</strong> des 2 jours paraît faible comparée aux différences entre sprinteurs.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
