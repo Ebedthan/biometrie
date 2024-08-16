@@ -185,3 +185,25 @@ La différence entre les 2 jours n\'apparaît plus du tout comme significative!!
 Pourquoi?
 
 Dans un test de t indépendant, on intègre la différence entre sprinteurs dans la variation due au hasard. De ce fait, la **différence entre moyennes** des 2 jours paraît faible comparée aux différences entre sprinteurs.
+
+## Comparaison de plus de 2 moyennes
+
+Dans beaucoup d\'expériences biologiques, on veut comparer les moyennes de plus de 2 groupes.
+
+### **Et pourquoi pas une série de tests de** $t$ **?**
+
+Tout simplement parce que la probabilité d'une erreur de type 1 augmente lorsque vous effectuez plusieurs comparaisons par paire.
+
+Chaque fois que vous effectuez un test statistique où l'hypothèse nulle s'applique, le risque d'une erreur de type 1 est la valeur de $\alpha$. Si est $\alpha = 0,05$, la probabilité de **ne pas** commettre d'erreur de type 1 est (1 - $\alpha$) ou 0,95.
+
+Si vous disposez de trois moyennes de traitement et que vous effectuez donc trois comparaisons par paire (1 contre 2, 2 contre 3 et 1 contre 3), la probabilité de **ne pas** commettre d'erreur de type 1 est de $(0,95)^3 = 0,86$. La probabilité **d'au moins une erreur** de type 1 est de 0,14 ou 14 %.
+
+Pour quatre moyennes de traitement, il y a six comparaisons possibles, de sorte que la probabilité d'absence d'erreur de type 1 est de $(0,95)^6 = 0,74$. La probabilité d'au moins une erreur de type 1 est de 0,26 ou 26%.
+
+Pour cinq moyens de traitement, il y a dix comparaisons possibles, la probabilité qu'il n'y ait pas d'erreur de type 1 est donc de $(0,95)^10  = 0,60$. La probabilité d'au moins une erreur de type 1 est de 0,40 ou 40 %.
+
+Ces risques sont inacceptables. Vous avez besoin d'un test qui compare plus de deux moyennes de traitement avec une erreur de type 1 égale à $\alpha$.
+
+### Analyse de variance
+
+L'analyse de la variance a été développée par le statisticien Sir Ronald A. Fisher à partir de 1918. Il s'agit d'une technique très élégante qui peut être appliquée à de nombreux plans d'expérience très complexes.
