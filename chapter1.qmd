@@ -71,17 +71,19 @@ A partir des données ci-dessus présentées on a:
 
 -   $SEM = \frac{S_D}{\sqrt{n - 1}}$ = 0,0394.
 
-Pour un dégré de liberté de 9 on a $t_9 = \frac{0,10 - 0}{0,03944} = 2,5355$. En lisant sur la table de $t$ ou en utilisant R on peut donc lire la p-value.
+Pour un dégré de liberté de 9 on a $t_9 = \frac{0,10 - 0}{0,03944} = 2,5355$.
+
+En utilisant la table ou R (voir ci-dessous) la valeur critique de $t_9$ pour $\alpha = 0,05$ est de $2,262$ ($t_{obs} = 2,5355 > t_{lu} = 2,263$). Par conséquent, la valeur de $t$ se situe en dehors de l'intervalle dans lequel on s'attendrait à ce que $95 \%$ des statistiques $t$ générées par des échantillons de $n = 9$ à partir d'une population où $\mu = 0$. Il a donc été conclu que la moyenne de la population des différences de temps de course était significativement différente ($P < 0,05$) d'une moyenne attendue de zéro.
 
 ```{r}
-2*pt(q=2.5355, df=9, lower.tail=FALSE)
+qt(p=0.05/2, df=9, lower.tail=FALSE)
 ```
 
 On obtient alors une p-value de 0,031.
 
 ### Test de $t$ indépendant
 
-Une étude mesure la taille de coquillages provenant de 2 lacs différents. L'objectif est de savoir si la taille des coquillages de ces deux populations est égale ou différente.
+Un écologiste a échantillonné la longueur de la coquille de 15 palourdes d'eau douce dans chacun de deux lacs afin de déterminer si ces échantillons étaient susceptibles de provenir de populations ayant la même longueur moyenne de coquille.
 
 | Lac A | Lac B |
 |-------|-------|
