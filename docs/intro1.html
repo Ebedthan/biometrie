@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Anicet Ebou">
 
-<title>Biométrie et expérimentation végétale - 1&nbsp; Pourquoi a-t-on besoin de méthodes statistiques ?</title>
+<title>1&nbsp; Pourquoi a-t-on besoin de méthodes statistiques ? – Biométrie et expérimentation végétale</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,6 +25,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -67,7 +68,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -76,14 +83,42 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -93,13 +128,13 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pourquoi a-t-on besoin de méthodes statistiques ?</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pourquoi a-t-on besoin de méthodes statistiques ?</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -108,7 +143,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Biométrie et expérimentation végétale</a> 
@@ -162,7 +197,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">L'inférence basée sur la sélection de modèles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">L\'inférence basée sur la sélection de modèles</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -174,7 +209,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -195,7 +230,7 @@ div.csl-indent {
   <li><a href="#la-conception-dune-expérience-est-une-affaire-de-compromis" id="toc-la-conception-dune-expérience-est-une-affaire-de-compromis" class="nav-link" data-scroll-target="#la-conception-dune-expérience-est-une-affaire-de-compromis"><span class="header-section-number">1.2.5</span> La conception d’une expérience est une affaire de compromis</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -215,7 +250,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <p>La plupart des sciences sont comparatives. Les chercheurs ont souvent besoin de savoir si un traitement expérimental particulier a eu un effet, ou s’il existe des différences entre une variable particulière mesurée à plusieurs endroits différents. Par exemple, un nouveau médicament a-t-il un effet sur la tension artérielle, un régime riche en vitamine C réduit-il le risque de cancer du foie chez l’homme, ou existe-t-il une relation entre la couverture végétale et la densité de la population de lapins ? Mais lorsque vous faites ce genre de comparaisons, les différences entre les traitements ou entre les zones échantillonnées peuvent être réelles ou peuvent simplement être le type de variation qui se produit par hasard entre les échantillons d’une même population.</p>
 <p>Prenons 2 situations concrètes:</p>
@@ -229,21 +266,29 @@ div.csl-indent {
 <h2 data-number="1.1" class="anchored" data-anchor-id="la-méthode-scientifique"><span class="header-section-number">1.1</span> La méthode scientifique</h2>
 <section id="approche-hypothético-déductive" class="level3" data-number="1.1.1">
 <h3 data-number="1.1.1" class="anchored" data-anchor-id="approche-hypothético-déductive"><span class="header-section-number">1.1.1</span> Approche hypothético-déductive</h3>
-<p>Les caractéristiques essentielles de la vision “hypothético-déductive” de la méthode scientifique <span class="citation" data-cites="popper2005">(<a href="references.html#ref-popper2005" role="doc-biblioref">Popper 2005</a>)</span> sont les suivantes : une personne observe ou prélève des échantillons du monde naturel et utilise toutes les informations disponibles pour faire une supposition intuitive et logique, appelée <strong>hypothèse</strong>, sur la manière dont le système fonctionne. La personne n’a aucun moyen de savoir si son hypothèse est correcte - elle peut s’appliquer ou non. Les <strong>prédictions</strong> faites à partir de l’hypothèse sont testées, soit par un échantillonnage supplémentaire, soit par des expériences. Si les résultats sont cohérents avec les prédictions, l’hypothèse est retenue. Dans le cas contraire, elle est rejetée et une nouvelle hypothèse est formulée <a href="#fig-hyptest">Figure&nbsp;<span>1.1</span></a>.</p>
-<div id="fig-hyptest" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="img/hypothesis_formulation.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.1: Le processus de formulation et de vérification des hypothèses <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+<p>Les caractéristiques essentielles de la vision “hypothético-déductive” de la méthode scientifique <span class="citation" data-cites="popper2005">(<a href="references.html#ref-popper2005" role="doc-biblioref">Popper 2005</a>)</span> sont les suivantes : une personne observe ou prélève des échantillons du monde naturel et utilise toutes les informations disponibles pour faire une supposition intuitive et logique, appelée <strong>hypothèse</strong>, sur la manière dont le système fonctionne. La personne n’a aucun moyen de savoir si son hypothèse est correcte - elle peut s’appliquer ou non. Les <strong>prédictions</strong> faites à partir de l’hypothèse sont testées, soit par un échantillonnage supplémentaire, soit par des expériences. Si les résultats sont cohérents avec les prédictions, l’hypothèse est retenue. Dans le cas contraire, elle est rejetée et une nouvelle hypothèse est formulée <a href="#fig-hyptest" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>.</p>
+<div id="fig-hyptest" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hyptest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/hypothesis_formulation.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hyptest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Le processus de formulation et de vérification des hypothèses <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.
+</figcaption>
 </figure>
 </div>
 </section>
 <section id="exemple-dapplication" class="level3" data-number="1.1.2">
 <h3 data-number="1.1.2" class="anchored" data-anchor-id="exemple-dapplication"><span class="header-section-number">1.1.2</span> Exemple d’application</h3>
-<p>Le mille-pattes portugais <em>Ommatioulus moreleti</em> <a href="#fig-ommo">Figure&nbsp;<span>1.2</span></a> a été introduit accidentellement dans le sud de l’Australie depuis le Portugal dans les années 1950.</p>
-<div id="fig-ommo" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="img/Ommatoiulusmoreletii.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.2: <em>Ommatoiulus moreleti</em></figcaption>
+<p>Le mille-pattes portugais <em>Ommatioulus moreleti</em> <a href="#fig-ommo" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> a été introduit accidentellement dans le sud de l’Australie depuis le Portugal dans les années 1950.</p>
+<div id="fig-ommo" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ommo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/Ommatoiulusmoreletii.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ommo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: <em>Ommatoiulus moreleti</em>
+</figcaption>
 </figure>
 </div>
 <p>Ce mille-pattes vit dans la litière de feuilles et atteint environ quatre centimètres de long. En l’absence d’ennemis naturels dans son pays d’origine (en particulier les hérissons européens, qui mangent beaucoup de mille-pattes), son nombre a rapidement augmenté pour atteindre les proportions d’un fléau en Australie-Méridionale. Bien qu’il ne cause que très peu de dégâts aux cultures agricoles, <em>O. moreleti</em> est un ravageur “nuisible” sérieux car il envahit les maisons.</p>
@@ -293,30 +338,42 @@ div.csl-indent {
 <p>La meilleure façon d’obtenir un échantillon représentatif est généralement de choisir une proportion de la population <strong>au hasard</strong> - sans biais, chaque unité expérimentale possible ayant une probabilité égale d’être sélectionnée.</p>
 <p>Le problème de cette approche est qu’il existe souvent de grandes différences entre les unités expérimentales d’une même population:</p>
 <ul>
-<li>Tout d’abord, même un échantillon aléatoire peut ne pas être un bon représentant de la population dont il est issu <a href="#fig-sample1">Figure&nbsp;<span>1.3</span></a>.</li>
+<li>Tout d’abord, même un échantillon aléatoire peut ne pas être un bon représentant de la population dont il est issu <a href="#fig-sample1" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>.</li>
 </ul>
-<div id="fig-sample1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="img/sample1.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.3: Même un échantillon aléatoire n’est pas nécessairement un bon représentant de la population. Deux échantillons ont été prélevés au hasard dans la même population. Par hasard, l’échantillon 1 contient un groupe de poissons relativement grands, tandis que ceux de l’échantillon 2 sont relativement petits <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+<div id="fig-sample1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sample1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/sample1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Même un échantillon aléatoire n’est pas nécessairement un bon représentant de la population. Deux échantillons ont été prélevés au hasard dans la même population. Par hasard, l’échantillon 1 contient un groupe de poissons relativement grands, tandis que ceux de l’échantillon 2 sont relativement petits <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.
+</figcaption>
 </figure>
 </div>
 <ul>
-<li>Deuxièmement, même si deux populations sont très différentes, les échantillons prélevés dans chacune d’elles peuvent être similaires et donner l’impression trompeuse que les populations sont également similaires <a href="#fig-sample2">Figure&nbsp;<span>1.4</span></a>.</li>
+<li>Deuxièmement, même si deux populations sont très différentes, les échantillons prélevés dans chacune d’elles peuvent être similaires et donner l’impression trompeuse que les populations sont également similaires <a href="#fig-sample2" class="quarto-xref">Figure&nbsp;<span>1.4</span></a>.</li>
 </ul>
-<div id="fig-sample2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="img/sample2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.4: Les échantillons sélectionnés au hasard dans des populations très différentes ne sont pas nécessairement différents. Le hasard fait que l’échantillon 1 et l’échantillon 2 sont similaires <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+<div id="fig-sample2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sample2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/sample2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4: Les échantillons sélectionnés au hasard dans des populations très différentes ne sont pas nécessairement différents. Le hasard fait que l’échantillon 1 et l’échantillon 2 sont similaires <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.
+</figcaption>
 </figure>
 </div>
 <ul>
-<li>Enfin, la variation naturelle entre les individus d’un échantillon peut masquer tout effet d’un traitement expérimental. Les variations au sein d’un échantillon (et d’une population) sont souvent si importantes qu’il peut être difficile, voire impossible, de détecter l’effet d’un traitement <a href="#fig-sample3">Figure&nbsp;<span>1.5</span></a>.</li>
+<li>Enfin, la variation naturelle entre les individus d’un échantillon peut masquer tout effet d’un traitement expérimental. Les variations au sein d’un échantillon (et d’une population) sont souvent si importantes qu’il peut être difficile, voire impossible, de détecter l’effet d’un traitement <a href="#fig-sample3" class="quarto-xref">Figure&nbsp;<span>1.5</span></a>.</li>
 </ul>
-<div id="fig-sample3" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="img/sample3.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.5: Deux échantillons de poissons ont été prélevés dans la même population et ont été délibérément appariés de manière à ce que six individus de taille égale soient initialement présents dans chaque groupe. Les poissons du groupe traité ont été nourris avec un supplément de vitamines pendant 300 jours, tandis que ceux du groupe témoin non traité ne l’ont pas été. Grâce au supplément, chaque poisson du groupe traité a grandi environ 10 % plus longtemps, mais cette différence est faible par rapport à la variation de la croissance entre les individus, ce qui peut masquer tout effet du traitement <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+<div id="fig-sample3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sample3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/sample3.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.5: Deux échantillons de poissons ont été prélevés dans la même population et ont été délibérément appariés de manière à ce que six individus de taille égale soient initialement présents dans chaque groupe. Les poissons du groupe traité ont été nourris avec un supplément de vitamines pendant 300 jours, tandis que ceux du groupe témoin non traité ne l’ont pas été. Grâce au supplément, chaque poisson du groupe traité a grandi environ 10 % plus longtemps, mais cette différence est faible par rapport à la variation de la croissance entre les individus, ce qui peut masquer tout effet du traitement <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.
+</figcaption>
 </figure>
 </div>
 </section>
@@ -346,11 +403,15 @@ div.csl-indent {
 <p>Seule la réplication/répétition (prise de plusieurs mesures de la même variable sur des individus indépendants) permet de déterminer la variation due au hasard/</p>
 <p>C’est donc un élément vital de toute expérience.</p>
 <p>Prenons l’exemple de l’échantillonnage du lac Dark, dans le Wisconsin, pour étudier la densité de la population de crevettes d’eau douce en fonction de la profondeur <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</p>
-<p>Si vous n’échantillonnez qu’à un seul endroit <a href="#fig-sampling">Figure&nbsp;<span>1.6</span></a> (a), les résultats ne donneront pas une bonne indication de l’évolution de la densité de la population de crevettes en fonction de la profondeur du lac. L’échantillonnage doit être répété, mais il est peu utile d’échantillonner de façon répétée une petite zone (par exemple en prenant plusieurs échantillons sous ’’ dans la <a href="#fig-sampling">Figure&nbsp;<span>1.6</span></a> (b)) car cela ne donnera toujours pas une indication précise des changements de la densité de la population en fonction de la profondeur dans l’ensemble du lac (bien qu’il puisse donner une indication très précise des conditions dans cette partie particulière du lac). Ce type d’échantillonnage est un aspect de ce que Hurlbert (1984) a appelé <strong>pseudoréplication</strong>. Seul le cas numéro de la <a href="#fig-sampling">Figure&nbsp;<span>1.6</span></a> (c) est correcte.</p>
-<div id="fig-sampling" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="img/sampling.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1.6: Variation du nombre de crevettes d’eau douce par mètre cube d’eau à deux profondeurs différentes (10 m et 20 m) dans le lac Dark, Wisconsin <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+<p>Si vous n’échantillonnez qu’à un seul endroit <a href="#fig-sampling" class="quarto-xref">Figure&nbsp;<span>1.6</span></a> (a), les résultats ne donneront pas une bonne indication de l’évolution de la densité de la population de crevettes en fonction de la profondeur du lac. L’échantillonnage doit être répété, mais il est peu utile d’échantillonner de façon répétée une petite zone (par exemple en prenant plusieurs échantillons sous ’’ dans la <a href="#fig-sampling" class="quarto-xref">Figure&nbsp;<span>1.6</span></a> (b)) car cela ne donnera toujours pas une indication précise des changements de la densité de la population en fonction de la profondeur dans l’ensemble du lac (bien qu’il puisse donner une indication très précise des conditions dans cette partie particulière du lac). Ce type d’échantillonnage est un aspect de ce que Hurlbert (1984) a appelé <strong>pseudoréplication</strong>. Seul le cas numéro de la <a href="#fig-sampling" class="quarto-xref">Figure&nbsp;<span>1.6</span></a> (c) est correcte.</p>
+<div id="fig-sampling" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/sampling.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.6: Variation du nombre de crevettes d’eau douce par mètre cube d’eau à deux profondeurs différentes (10 m et 20 m) dans le lac Dark, Wisconsin <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.
+</figcaption>
 </figure>
 </div>
 </section>
@@ -363,14 +424,14 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/pseudoreplicates1.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Cas de réplication apparente. Le regroupement des réplicats signifie qu’il n’y a pas d’indépendance entre les contrôles ou les traitements.</figcaption>
+<figcaption>Cas de réplication apparente. Le regroupement des réplicats signifie qu’il n’y a pas d’indépendance entre les contrôles ou les traitements.</figcaption>
 </figure>
 </div></li>
 <li><p>Réplicats placées en alternance. Si vous avez décidé de contourner le problème du regroupement en plaçant les traitements et les contrôles en alternance (c’est-à-dire en plaçant, de gauche à droite, le traitement 1, le contrôle 1 ; le traitement 2, le contrôle 2 ; le traitement 3, etc…), des problèmes peuvent subsister. ), il peut encore y avoir des problèmes. Par hasard, tous les traitement (ou tous les contrôles) peuvent être soumis à d’autres caractéristiques régulières dont vous n’êtes même pas conscient.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/pseudoreplicates2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Une disposition régulière des traitements et des contrôles peut, par hasard, correspondre à une caractéristique de l’environnement (ici les très évidents plafonniers) susceptible d’affecter les résultats.</figcaption>
+<figcaption>Une disposition régulière des traitements et des contrôles peut, par hasard, correspondre à une caractéristique de l’environnement (ici les très évidents plafonniers) susceptible d’affecter les résultats.</figcaption>
 </figure>
 </div></li>
 <li><p>Souvent, en raison d’un manque d’équipement, il se peut que vous deviez placer toutes les réplicats d’un traitement à une température donnée dans une seule armoire à température contrôlée, et toutes les répliques d’un traitement à une autre température dans une seule autre armoire. Malheureusement, s’il y a quelque chose de particulier à une armoire, en plus de la température, alors le traitement expérimental ou le traitement de contrôle peut être affecté. Ce schéma est appelé “ségrégation isolante”. <img src="img/pseudoreplicate3.png" class="img-fluid" alt="Regroupement des traitements thermiques dans des incubateurs particuliers."></p></li>
@@ -389,12 +450,12 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/design.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Exemple de compromis entre le coût et la capacité de réaliser une expérience. Plus la qualité du plan d’expérience augmente, plus le coût de l’expérience augmente (ligne continue), tandis que la capacité à réaliser l’expérience diminue (ligne en pointillés). Votre plan d’expérience doit généralement être un compromis entre ce qui est faisable, ce qui est abordable et ce qui est suffisamment rigoureux <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
+<figcaption>Exemple de compromis entre le coût et la capacité de réaliser une expérience. Plus la qualité du plan d’expérience augmente, plus le coût de l’expérience augmente (ligne continue), tandis que la capacité à réaliser l’expérience diminue (ligne en pointillés). Votre plan d’expérience doit généralement être un compromis entre ce qui est faisable, ce qui est abordable et ce qui est suffisamment rigoureux <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption>
 </figure>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-mckillup2011" class="csl-entry" role="listitem">
 McKillup, Steve. 2011. <span>“Statistics Explained,”</span> November. <a href="https://doi.org/10.1017/cbo9781139047500">https://doi.org/10.1017/cbo9781139047500</a>.
 </div>
@@ -441,18 +502,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -484,11 +534,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ebedthan\.github\.io\/biometrie\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -498,8 +587,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -511,7 +609,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -555,6 +776,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -580,6 +802,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -641,12 +889,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
+      <a href="./index.html" class="pagination-link" aria-label="Bienvenue">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Bienvenue</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro2.html" class="pagination-link">
+      <a href="./intro2.html" class="pagination-link" aria-label="Rappel des notions de base">
         <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rappel des notions de base</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -654,15 +902,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Biométrie et expérimentation par Anicet Ebou.</div>   
+    <div class="nav-footer-left">
+<p>Biométrie et expérimentation par Anicet Ebou.</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 

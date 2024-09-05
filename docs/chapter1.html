@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.5.56">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Anicet Ebou">
-<title>Biométrie et expérimentation végétale - 3&nbsp; Comparaison de moyennes</title>
+<title>3&nbsp; Comparaison de moyennes – Biométrie et expérimentation végétale</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -52,7 +52,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -77,7 +97,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -86,29 +112,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter1.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparaison de moyennes</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter1.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparaison de moyennes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Biométrie et expérimentation végétale</a> 
         <div class="sidebar-tools-main">
@@ -161,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">L'inférence basée sur la sélection de modèles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">L\'inférence basée sur la sélection de modèles</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -172,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -188,12 +240,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#comparaison-de-2-moyennes" id="toc-comparaison-de-2-moyennes" class="nav-link" data-scroll-target="#comparaison-de-2-moyennes"><span class="header-section-number">3.2</span> Comparaison de 2 moyennes</a>
   <ul class="collapse">
-<li><a href="#test-de-t-pair%C3%A9" id="toc-test-de-t-pairé" class="nav-link" data-scroll-target="#test-de-t-pair%C3%A9"><span class="header-section-number">3.2.1</span> Test de <span class="math inline">\(t\)</span> pairé</a></li>
-  <li><a href="#test-de-t-ind%C3%A9pendant" id="toc-test-de-t-indépendant" class="nav-link" data-scroll-target="#test-de-t-ind%C3%A9pendant"><span class="header-section-number">3.2.2</span> Test de <span class="math inline">\(t\)</span> indépendant</a></li>
+<li><a href="#donn%C3%A9es-pair%C3%A9es-test-de-t-pair%C3%A9" id="toc-données-pairées-test-de-t-pairé" class="nav-link" data-scroll-target="#donn%C3%A9es-pair%C3%A9es-test-de-t-pair%C3%A9"><span class="header-section-number">3.2.1</span> Données pairées: test de <span class="math inline">\(t\)</span> pairé</a></li>
+  <li><a href="#donn%C3%A9es-ind%C3%A9pendantes-test-de-t-ind%C3%A9pendant" id="toc-données-indépendantes-test-de-t-indépendant" class="nav-link" data-scroll-target="#donn%C3%A9es-ind%C3%A9pendantes-test-de-t-ind%C3%A9pendant"><span class="header-section-number">3.2.2</span> Données indépendantes: test de <span class="math inline">\(t\)</span> indépendant</a></li>
   <li><a href="#test-de-t-pair%C3%A9-vs-test-de-t-ind%C3%A9pendant" id="toc-test-de-t-pairé-vs-test-de-t-indépendant" class="nav-link" data-scroll-target="#test-de-t-pair%C3%A9-vs-test-de-t-ind%C3%A9pendant"><span class="header-section-number">3.2.3</span> Test de <span class="math inline">\(t\)</span> pairé <em>vs</em> test de <span class="math inline">\(t\)</span> indépendant</a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+  <li>
+<a href="#comparaison-de-plus-de-2-moyennes" id="toc-comparaison-de-plus-de-2-moyennes" class="nav-link" data-scroll-target="#comparaison-de-plus-de-2-moyennes"><span class="header-section-number">3.3</span> Comparaison de plus de 2 moyennes</a>
+  <ul class="collapse">
+<li><a href="#et-pourquoi-pas-une-s%C3%A9rie-de-tests-de-t" id="toc-et-pourquoi-pas-une-série-de-tests-de-t" class="nav-link" data-scroll-target="#et-pourquoi-pas-une-s%C3%A9rie-de-tests-de-t"><span class="header-section-number">3.3.1</span> Et pourquoi pas une série de tests de <span class="math inline">\(t\)</span> ?</a></li>
+  <li><a href="#analyse-de-variance" id="toc-analyse-de-variance" class="nav-link" data-scroll-target="#analyse-de-variance"><span class="header-section-number">3.3.2</span> Analyse de variance</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -211,6 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
   </div>
   
+
 
 </header><section id="préambule" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="préambule">
 <span class="header-section-number">3.1</span> Préambule</h2>
@@ -289,8 +349,8 @@ Lire les valeurs critiques (fractiles) de la loi de t avec R
 <p>Par conséquent, si la statistique du test est inférieure à -2,1 ou supérieure à 2,1, les résultats du test sont statistiquement significatifs.</p>
 </div>
 </div>
-<section id="test-de-t-pairé" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="test-de-t-pairé">
-<span class="header-section-number">3.2.1</span> Test de <span class="math inline">\(t\)</span> pairé</h3>
+<section id="données-pairées-test-de-t-pairé" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="données-pairées-test-de-t-pairé">
+<span class="header-section-number">3.2.1</span> Données pairées: test de <span class="math inline">\(t\)</span> pairé</h3>
 <p>Par exemple, on mesure le temps mis par des sprinteurs pour couvrir le 100m lors de 2 jours de course consécutifs, pour vérifier l’existence d’un effet d’adaptation à un environnement non familier. On a alors les hypothèses suivantes:</p>
 <ul>
 <li><p><span class="math inline">\(H_0\)</span>: il n’y a pas de différence entre les 2 jours;</p></li>
@@ -298,7 +358,7 @@ Lire les valeurs critiques (fractiles) de la loi de t avec R
 </ul>
 <p>Pour un test de <span class="math inline">\(t\)</span> pairé on a <span class="math inline">\(t_{obs} = \frac{\bar{Y_D} - \mu_D}{SEM} = \frac{\bar{Y_D} - \mu_D}{\frac{S_D}{\sqrt{n - 1}}} \sim St(n-1)\)</span>.</p>
 <p>En partant de l’exemple précédent dont les données onst présentées ici:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 10%">
 <col style="width: 35%">
@@ -394,10 +454,10 @@ Lire les valeurs critiques (fractiles) de la loi de t avec R
 </div>
 </div>
 <p>Par conséquent, la valeur de <span class="math inline">\(t\)</span> se situe en dehors de l’intervalle dans lequel on s’attendrait à ce que <span class="math inline">\(95 \%\)</span> des statistiques <span class="math inline">\(t\)</span> générées par des échantillons de <span class="math inline">\(n = 9\)</span> à partir d’une population où <span class="math inline">\(\mu = 0\)</span>. Il a donc été conclu que la moyenne de la population des différences de temps de course était significativement différente (<span class="math inline">\(P &lt; 0,05\)</span>) d’une moyenne attendue de zéro.</p>
-</section><section id="test-de-t-indépendant" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="test-de-t-indépendant">
-<span class="header-section-number">3.2.2</span> Test de <span class="math inline">\(t\)</span> indépendant</h3>
+</section><section id="données-indépendantes-test-de-t-indépendant" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="données-indépendantes-test-de-t-indépendant">
+<span class="header-section-number">3.2.2</span> Données indépendantes: test de <span class="math inline">\(t\)</span> indépendant</h3>
 <p>Un écologiste a échantillonné la longueur de la coquille de 15 palourdes d’eau douce dans chacun de deux lacs afin de déterminer si ces échantillons étaient susceptibles de provenir de populations ayant la même longueur moyenne de coquille.</p>
-<table class="table">
+<table class="caption-top table">
 <thead><tr class="header">
 <th>Lac A</th>
 <th>Lac B</th>
@@ -492,9 +552,230 @@ Lire les valeurs critiques (fractiles) de la loi de t avec R
 <p>La différence entre les 2 jours n'apparaît plus du tout comme significative!!</p>
 <p>Pourquoi?</p>
 <p>Dans un test de t indépendant, on intègre la différence entre sprinteurs dans la variation due au hasard. De ce fait, la <strong>différence entre moyennes</strong> des 2 jours paraît faible comparée aux différences entre sprinteurs.</p>
+</section></section><section id="comparaison-de-plus-de-2-moyennes" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="comparaison-de-plus-de-2-moyennes">
+<span class="header-section-number">3.3</span> Comparaison de plus de 2 moyennes</h2>
+<p>Dans beaucoup d'expériences biologiques, on veut comparer les moyennes de plus de 2 groupes.</p>
+<section id="et-pourquoi-pas-une-série-de-tests-de-t" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="et-pourquoi-pas-une-série-de-tests-de-t">
+<span class="header-section-number">3.3.1</span> Et pourquoi pas une série de tests de <span class="math inline">\(t\)</span> ?</h3>
+<p>Tout simplement parce que la probabilité d’une erreur de type 1 augmente lorsque vous effectuez plusieurs comparaisons par paire.</p>
+<p>Chaque fois que vous effectuez un test statistique où l’hypothèse nulle s’applique, le risque d’une erreur de type 1 est la valeur de <span class="math inline">\(\alpha\)</span>. Si est <span class="math inline">\(\alpha = 0,05\)</span>, la probabilité de <strong>ne pas</strong> commettre d’erreur de type 1 est 1 - <span class="math inline">\(\alpha\)</span> ou 0,95.</p>
+<p>Si vous disposez de trois moyennes de traitement et que vous effectuez donc trois comparaisons par paire (1 contre 2, 2 contre 3 et 1 contre 3), la probabilité de <strong>ne pas</strong> commettre d’erreur de type 1 est de <span class="math inline">\((0,95)^3 = 0,86\)</span>. La probabilité <strong>d’au moins une erreur</strong> de type 1 est de 0,14 ou 14 %.</p>
+<p>Pour quatre moyennes de traitement, il y a six comparaisons possibles, de sorte que la probabilité d’absence d’erreur de type 1 est de <span class="math inline">\((0,95)^6 = 0,74\)</span>. La probabilité d’au moins une erreur de type 1 est de 0,26 ou 26%.</p>
+<p>Pour cinq moyens de traitement, il y a dix comparaisons possibles, la probabilité qu’il n’y ait pas d’erreur de type 1 est donc de <span class="math inline">\((0,95)^10  = 0,60\)</span>. La probabilité d’au moins une erreur de type 1 est de 0,40 ou 40 %.</p>
+<p>Ces risques sont inacceptables. Vous avez besoin d’un test qui compare plus de deux moyennes de traitement avec une erreur de type 1 égale à <span class="math inline">\(\alpha\)</span>.</p>
+</section><section id="analyse-de-variance" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="analyse-de-variance">
+<span class="header-section-number">3.3.2</span> Analyse de variance</h3>
+<p>L’analyse de la variance a été développée par le statisticien Sir Ronald A. Fisher à partir de 1918. Il s’agit d’une technique très élégante qui peut être appliquée à de nombreux plans d’expérience très complexes.</p>
+<section id="présentation-de-lexemple" class="level4" data-number="3.3.2.1"><h4 data-number="3.3.2.1" class="anchored" data-anchor-id="présentation-de-lexemple">
+<span class="header-section-number">3.3.2.1</span> Présentation de l’exemple</h4>
+<p>Imaginez que vous souhaitiez évaluer les effets de deux médicaments expérimentaux sur la croissance des tumeurs cérébrales chez l’homme. Un grand nombre de ces tumeurs ne peuvent pas être enlevées car le cerveau serait gravement endommagé. Une tumeur en croissance comprimera et remplacera le tissu neural, causant souvent des dommages mortels, c’est pourquoi il y a un grand intérêt médical pour les médicaments qui affectent la croissance des tumeurs.</p>
+<p>On vous a assigné 12 sujets expérimentaux consentants, chacun ayant une tumeur cérébrale de la même taille et du même type. Quatre d’entre eux sont répartis au hasard dans un groupe de contrôle non traité, quatre sont traités avec le médicament «Tumostat» et quatre autres avec le médicament «Inhibin 4». Après deux mois de traitement, leurs tumeurs sont mesurées à nouveau.</p>
+<p>Votre hypothèse nulle est la suivante : «Il n’y a pas de différence dans le diamètre moyen des tumeurs entre les populations sur lesquelles ces trois échantillons ont été prélevés». L’hypothèse alternative est la suivante : «Il existe une différence dans le diamètre moyen des tumeurs parmi les populations sur lesquelles ces échantillons ont été prélevés».</p>
+<p>Les résultats de cette expérience sont illustrés à la <a href="#fig-pictorial1" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>, le diamètre de la tumeur (en millimètres) augmentant sur l’axe Y et les trois catégories de traitement sur l’axe X.</p>
+<div id="fig-pictorial1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pictorial1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pictorial1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pictorial1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Représentation graphique du diamètre des tumeurs cérébrales humaines chez des volontaires cliniques non traités (contrôle) ou traités avec les médicaments expérimentaux Tumostat ou Inhibin 4. Le diamètre des tumeurs augmente vers le haut de la page. La ligne horizontale épaisse représente la moyenne générale, tandis que les lignes plus courtes et plus claires représentent les moyennes de traitement. Le diamètre de chaque tumeur répliquée est représenté par un carré plein <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.
+</figcaption></figure>
+</div>
+<p>Les moyennes de l’échantillon de chaque groupe de quatre patients ont été calculées à partir des résultats de l’expérience. Les moyennes des échantillons de chaque groupe de quatre sont indiquées, ainsi que la grande moyenne, qui est le diamètre moyen des 12 tumeurs.</p>
+<p>Réfléchissez maintenant au diamètre de chaque tumeur. Il existe deux sources possibles de variation qui contribueront à l’éloigner de la moyenne générale <a href="#fig-pictorial2" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>.</p>
+<div id="fig-pictorial2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pictorial2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pictorial2.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pictorial2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Les flèches indiquent l’écart de chaque réplicat par rapport à la moyenne de son traitement respectif. Il s’agit uniquement de la variation due à l’erreur <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.
+</figcaption></figure>
+</div>
+<p>Tout d’abord, il y a l’effet du traitement qu’il a subi (Contrôle ou Tumostat ou Inhibine 4). Deuxièmement, il est probable qu’il y ait des variations entre les individus qui ne peuvent pas être contrôlées, telles que de légères différences dans la taille initiale de la tumeur, des différences dans l’état de santé général, le génotype, l’état nutritionnel et les réponses immunitaires de chaque personne, ainsi que d’autres aspects involontaires de l’expérience. Cette variation incontrôlable est appelée « erreur ». Par conséquent, le déplacement de chaque point de l’axe Y par rapport à la moyenne générale sera déterminé par la formule suivante :</p>
+<p><span class="math display">\[ \mbox{Diametre de la tumeur} = traitement + erreur\]</span></p>
+<p>Dans l’exemple de la <a href="#fig-pictorial1" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>, le Tumostat et l’Inhibine 4 semblent avoir un effet inhibiteur sur la croissance par rapport au contrôle (dans lequel les tumeurs ont grossi), <strong>mais l’effet est-il significatif ou s’agit-il simplement du type de différence qui peut se produire par hasard parmi des échantillons prélevés dans des populations ayant la même moyenne ?</strong></p>
+<p>Une ANOVA à facteur unique calcule cette probabilité de manière très simple. Pour comprendre comment l’ANOVA procède, il faut examiner les raisons pour lesquelles les valeurs de chaque tumeur et les moyennes de traitement sont là où elles sont: * Tout d’abord, le diamètre de chaque tumeur s’écarte de la moyenne de son traitement uniquement en raison de l’erreur. C’est ce qu’on appelle <strong>l’erreur</strong> ou la <strong>variation à l’intérieur du groupe</strong>;<br>
+* Deuxièmement, la moyenne de chaque traitement sera décalée de la grande moyenne par tout effet de ce traitement plus l’erreur. Ici, puisqu’il s’agit de moyennes de traitement, la distance entre la moyenne d’un traitement particulier et la grande moyenne est l’effet moyen de toutes les répétitions de ce traitement. Pour obtenir l’effet total, il faut considérer que ce déplacement se produit pour chacune des répétitions. C’est ce qu’on appelle <strong>la variation entre les groupes</strong>;<br>
+* Troisièmement, le diamètre de chaque tumeur sera décalé de la moyenne générale par <strong>les deux sources</strong> de variation - la variation au sein du groupe (<a href="#fig-pictorial2" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>) et la variation entre les groupes (<a href="#fig-pictorial3" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>) décrites ci-dessus. C’est ce qu’on appelle <strong>la variation totale</strong> de l’expérience.</p>
+<div id="fig-pictorial3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pictorial3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pictorial3.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pictorial3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: Les flèches indiquent le déplacement de la moyenne de chaque traitement par rapport à la moyenne générale et représentent l’effet moyen du traitement plus l’erreur pour les répétitions de ce traitement.
+</figcaption></figure>
+</div>
+<p>La figure <a href="#fig-pictorial4" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> montre la distance déplacée pour les quatre tumeurs de chaque traitement.</p>
+<div id="fig-pictorial4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pictorial4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pictorial4.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pictorial4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: Les flèches indiquent l’écart de chaque réplicat par rapport à la moyenne générale. La longueur de chaque flèche représente la variation totale affectant chaque réplicat.
+</figcaption></figure>
+</div>
+<p>Chacune des figures <a href="#fig-pictorial1" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> - <a href="#fig-pictorial4" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> montre la dispersion des points autour des moyennes. Il est donc possible de calculer une variance distincte pour chaque figure:</p>
+<ul>
+<li>La variance intra-groupe, qui n’est due qu’à l’erreur (<a href="#fig-pictorial2" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>), peut être calculée à partir de la dispersion des points autour de la moyenne de chaque traitement.<br>
+</li>
+<li>La variance entre les groupes, qui est due au traitement et à l’erreur (<a href="#fig-pictorial3" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>), peut être calculée à partir de la dispersion des moyennes de traitement autour de la grande moyenne. La distance entre la moyenne de chaque traitement et la moyenne générale représente l’effet moyen pour le nombre de répétitions dans ce traitement.<br>
+</li>
+<li>La variance totale (<a href="#fig-pictorial4" class="quarto-xref">Figure&nbsp;<span>3.4</span></a>) est l’effet combiné de la variance intra-groupe et de la variance inter-groupe. Elle peut être calculée à partir de la dispersion de tous les points autour de la grande moyenne.</li>
+</ul>
+<p>Ces estimations permettent d’évaluer très facilement si les moyennes des trois traitements proviennent de populations ayant la même moyenne <span class="math inline">\(\mu\)</span>. Premièrement, si aucun traitement n’a d’effet, la variance entre les groupes (due au traitement plus à l’erreur) sera un petit nombre, car toutes les moyennes du traitement ne seront éloignées de la grande moyenne que par l’effet de l’erreur (<a href="#fig-pictorial5" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> (a)). Deuxièmement, si l’effet du traitement est relativement important, certaines ou toutes les moyennes du traitement seront très différentes les unes des autres et plus éloignées de la grande moyenne. Par conséquent, la variance entre les groupes (due au traitement et à l’erreur) sera importante par rapport à la variance à l’intérieur du groupe (due à l’erreur uniquement) (<a href="#fig-pictorial5" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> (b)). Au fur et à mesure que les différences entre les traitements s’accroissent, la variance entre les groupes s’accroît également.</p>
+<div id="fig-pictorial5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pictorial5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pictorial5.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pictorial5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.5: (a) Aucun effet du traitement. Les moyennes des trois traitements ne s’écartent de la moyenne générale qu’en raison de l’erreur, de sorte que la variance entre les groupes sera relativement faible. (b) Un effet du traitement. Il existe des différences relativement importantes entre les moyennes du traitement, de sorte qu’elles sont plus éloignées de la moyenne générale, ce qui rend la variance entre les groupes relativement importante.
+</figcaption></figure>
+</div>
+<p>Par conséquent, pour obtenir une statistique montrant <strong>l’effet relatif des traitements par rapport à l’erreur, il suffit de calculer la variance entre les groupes (due aux traitements plus l’erreur) et de la diviser par la variance à l’intérieur du groupe (due à l’erreur)</strong>:</p>
+<p><span class="math display">\[\frac{\mbox{Variance inter-groupe (traitement + erreur)}}{\mbox{Variance intra-groupe (erreur)}}\]</span></p>
+<p>S’il n’y a pas d’effet de traitement, le numérateur et le dénominateur de l’équation ne feront qu’estimer l’erreur, de sorte que la valeur de cette statistique sera d’environ 1,0 (<a href="#fig-pictorial5" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> (a)). Cependant, à mesure que l’effet du traitement augmente (<a href="#fig-pictorial5" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> (b)), le numérateur de l’équation devient de plus en plus grand, de sorte que la valeur de la statistique augmente également. Au fur et à mesure qu’elle augmente, la probabilité que les traitements aient été effectués sur des populations ayant la même moyenne diminue et finit par être inférieure à 0,05.</p>
+<p>La statistique obtenue en divisant une variance par une autre s’appelle la <strong>statistique <em>F</em></strong> ou le <strong>ratio <em>F</em></strong>. Une fois le F calculé, sa signification peut être évaluée en recherchant la distribution attendue de F sous l’hypothèse nulle d’absence de différence entre les moyennes de traitements. Lorsque les groupes de traitements sont issus de populations ayant la même moyenne (c’est-à-dire qu’aucun des traitements n’a d’effet), la valeur de la statistique sera, seulement supérieure à une valeur particulière dans 5 % des cas et sera considérée comme statistiquement significative.</p>
+</section><section id="calcul-du-f" class="level4" data-number="3.3.2.2"><h4 data-number="3.3.2.2" class="anchored" data-anchor-id="calcul-du-f">
+<span class="header-section-number">3.3.2.2</span> Calcul du <em>F</em>
+</h4>
+<p>Pour réaliser une ANOVA à un seul facteur, il suffit de calculer la variance entre les groupes (inter groupe) (traitement) et de la diviser par la variance à l’intérieur du groupe (intra groupe) (erreur) pour obtenir le ratio <em>F</em>.</p>
+<p>Les données de l’exemple ci-dessus sont:</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Contrôle</th>
+<th>Tumostat</th>
+<th>Inhibin 4</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>7</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>7</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>8</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>On peut les représenter graphiquement à l’aide de cette illustration <a href="#fig-pictorial6" class="quarto-xref">Figure&nbsp;<span>3.6</span></a>:</p>
+<div id="fig-pictorial6" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pictorial6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pictorial6.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pictorial6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.6: Représentation graphique du diamètre des tumeurs cérébrales humaines chez des volontaires cliniques non traités (contrôle) ou traités avec les médicaments expérimentaux Tumostat ou Inhibin 4.
+</figcaption></figure>
+</div>
+<section id="calcul-de-la-variation-intra-groupe-erreur" class="level5" data-number="3.3.2.2.1"><h5 data-number="3.3.2.2.1" class="anchored" data-anchor-id="calcul-de-la-variation-intra-groupe-erreur">
+<span class="header-section-number">3.3.2.2.1</span> Calcul de la variation intra-groupe (erreur)</h5>
+<p>Commençons par calculer la variance à l’intérieur du groupe (intra-groupe) (erreur) <a href="#fig-pictorial7" class="quarto-xref">Figure&nbsp;<span>3.7</span></a>:</p>
+<div id="fig-pictorial7" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pictorial7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pictorial7.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pictorial7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.7: Calcul de la variance intra-groupe.
+</figcaption></figure>
+</div>
+<p>La <strong>somme des carrés intra-groupe</strong> (erreur) est <span class="math display">\[ SCR = \sum^n_{i=1}(x_i - \bar{x})^2\]</span>. On a donc:</p>
+<p><span class="math inline">\(SCR = ((7 - 9)^2 + (8 - 9)^2 + (10 - 9)^2 + (11 - 9)^2) + ((4 - 6)^2 + (5 - 6)^2 + (7 - 6)^2 + (8 - 6)^2) + ((1 - 3)^2 + (2 - 3)^2 + (4 - 3)^2 + (5 - 3)^2)\)</span></p>
+<p><span class="math display">\[ SCR = (4 + 1 + 1 + 4) + (4 + 1 + 1 + 4) + (4 + 1 + 1 + 4) = 30 \]</span></p>
+<p>D’où on obtient la <strong>variance intra-groupe</strong> (erreur) est <span class="math display">\[ \frac{SCR}{n} = 30 \div 9 = 3,33 \]</span>.</p>
+</section><section id="calcul-de-la-variance-inter-groupe-traitement" class="level5" data-number="3.3.2.2.2"><h5 data-number="3.3.2.2.2" class="anchored" data-anchor-id="calcul-de-la-variance-inter-groupe-traitement">
+<span class="header-section-number">3.3.2.2.2</span> Calcul de la variance inter-groupe (traitement)</h5>
+<p>Ensuite on peut calculer la variance entre groupe (inter-groupe) (traitement). Cela se fait en deux étapes. Tout d’abord, le déplacement de la moyenne de chaque traitement par rapport à la moyenne générale est élevé au carré. Cette valeur doit être multipliée par la taille de l’échantillon pour chaque traitement afin d’obtenir l’effet total pour les répétitions de ce traitement, car le déplacement est la moyenne pour le traitement. Ces trois valeurs sont ensuite additionnées pour obtenir la somme des carrés. Ensuite, la somme des carrés sont divisés par le nombre de degrés de liberté pour obtenir la valeur carrée moyenne, qui est la variance entre les groupes (traitement) <a href="#fig-pictorial8" class="quarto-xref">Figure&nbsp;<span>3.8</span></a>.</p>
+<div id="fig-pictorial8" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pictorial8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pictorial8.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pictorial8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.8: Calcul de la variance inter-groupe.
+</figcaption></figure>
+</div>
+<p>On a donc la <strong>somme des carrés inter-groupe (traitement)</strong> <span class="math inline">\(= (9 - 6)^2 \times 4 + (6 - 6)^2 \times 4 + (3 - 6)^2 \times 4 = 72\)</span>.</p>
+<p>La <strong>variance intra-groupe</strong> (traitement) est donc <span class="math inline">\(72 \div 2 = 36\)</span>.</p>
+</section><section id="calcul-de-la-variance-totale" class="level5" data-number="3.3.2.2.3"><h5 data-number="3.3.2.2.3" class="anchored" data-anchor-id="calcul-de-la-variance-totale">
+<span class="header-section-number">3.3.2.2.3</span> Calcul de la variance totale</h5>
+<p>Tout d’abord, il faut calculer la somme des carrés pour la variation totale en prenant le déplacement de chaque point par rapport à la moyenne générale, en l’élevant au carré et en l’additionnant pour toutes les répétitions. On obtient ainsi la somme totale des carrés. En divisant la somme totale des carrés par le nombre total de degrés de liberté (il y a <span class="math inline">\(n -1\)</span> degrés de liberté, et dans ce cas <span class="math inline">\(n = 12\)</span>), on obtient le carré moyen <a href="#fig-pictorial9" class="quarto-xref">Figure&nbsp;<span>3.9</span></a>.</p>
+<div id="fig-pictorial9" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pictorial9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/pictorial9.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pictorial9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.9: Calcul de la somme totale des carrés et de la variation totale.
+</figcaption></figure>
+</div>
+<p>On a donc la somme des carrés totaux :<br><span class="math display">\[(25 + 16 + 4 + 1) + (4 + 1 + 1 + 4) + (25 + 16 + 4 + 1) = 102\]</span></p>
+<p>Et la variance totale est: <span class="math inline">\(102 \div 11 = 9,273\)</span>.</p>
+</section><section id="calcul-du-f-1" class="level5" data-number="3.3.2.2.4"><h5 data-number="3.3.2.2.4" class="anchored" data-anchor-id="calcul-du-f-1">
+<span class="header-section-number">3.3.2.2.4</span> Calcul du <em>F</em>
+</h5>
+<p>Enfin, pour obtenir le rapport F, qui compare l’effet du traitement à l’effet de l’erreur, il suffit de diviser la variance entre les groupes (traitement) par la variance à l’intérieur des groupes (erreur). Étant donné que la variance du traitement est de 36 (<a href="#fig-pictorial8" class="quarto-xref">Figure&nbsp;<span>3.8</span></a>) et que la variance de l’erreur est de 3,33 (<a href="#fig-pictorial7" class="quarto-xref">Figure&nbsp;<span>3.7</span></a>), le rapport F de la variance du traitement / variance de l’erreur est de <span class="math inline">\(36 \div 3,33 = 10,8\)</span>.</p>
+<p>La table suivante donne les résultats de cette analyse dans un format similaire à celui fourni par la plupart des logiciels statistiques.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 24%">
+<col style="width: 6%">
+<col style="width: 18%">
+<col style="width: 4%">
+<col style="width: 17%">
+</colgroup>
+<thead><tr class="header">
+<th>Source de variation</th>
+<th>Somme des carrés</th>
+<th>ddl</th>
+<th>Somme des carrés moyens</th>
+<th>F</th>
+<th>Probabilité</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Inter-groupe (traitement)</td>
+<td>72</td>
+<td>2</td>
+<td>36,0</td>
+<td>10,8</td>
+<td>0,004</td>
+</tr>
+<tr class="even">
+<td>Intra-groupe (erreur)</td>
+<td>30</td>
+<td>9</td>
+<td>3,3</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Totale</td>
+<td>102</td>
+<td>11</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Vous vous demanderez peut-être pourquoi la somme totale des carrés et la variance totale de l’expérience ont été calculées, puisqu’elles ne sont pas nécessaires pour le rapport <em>F</em> donné ci-dessus. Le calcul a été inclus pour illustrer l’additivité des sommes des carrés et des degrés de liberté. Le tableau 9.2 montre que la somme totale des carrés (102) est la somme des sommes des carrés du traitement (72) et de l’erreur (30). Notez également que le total des degrés de liberté (11) est la somme du traitement (2) et de l’erreur (9) degrés de liberté. Cette additivité des sommes des carrés et des degrés de liberté sera utilisée lors de l’examen de modèles ANOVA plus complexes.</p>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-mckillup2011" class="csl-entry" role="listitem">
+McKillup, Steve. 2011. <span>“Statistics Explained,”</span> November. <a href="https://doi.org/10.1017/cbo9781139047500">https://doi.org/10.1017/cbo9781139047500</a>.
+</div>
+</div>
+</section></section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -529,18 +810,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -572,11 +842,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ebedthan\.github\.io\/biometrie\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -586,8 +895,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -599,7 +917,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -643,6 +1084,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -668,6 +1110,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -727,22 +1195,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./intro2.html" class="pagination-link">
+      <a href="./intro2.html" class="pagination-link" aria-label="Rappel des notions de base">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rappel des notions de base</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapter2.html" class="pagination-link">
+      <a href="./chapter2.html" class="pagination-link" aria-label="Relation entre deux variables continues">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relation entre deux variables continues</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">Biométrie et expérimentation par Anicet Ebou.</div>   
+    <div class="nav-footer-left">
+<p>Biométrie et expérimentation par Anicet Ebou.</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

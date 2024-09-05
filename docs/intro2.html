@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.5.56">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Anicet Ebou">
-<title>Biométrie et expérimentation végétale - 2&nbsp; Rappel des notions de base</title>
+<title>2&nbsp; Rappel des notions de base – Biométrie et expérimentation végétale</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -62,7 +63,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -71,29 +78,55 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rappel des notions de base</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rappel des notions de base</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Biométrie et expérimentation végétale</a> 
         <div class="sidebar-tools-main">
@@ -146,7 +179,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">L'inférence basée sur la sélection de modèles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">L\'inférence basée sur la sélection de modèles</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -157,7 +190,7 @@ div.csl-indent {
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -188,7 +221,7 @@ div.csl-indent {
   <li><a href="#compromis-entre-alpha-et-beta" id="toc-compromis-entre-alpha-et-beta" class="nav-link" data-scroll-target="#compromis-entre-alpha-et-beta"><span class="header-section-number">2.7</span> Compromis entre <span class="math inline">\(\alpha\)</span> et <span class="math inline">\(\beta\)</span></a></li>
   <li><a href="#les-deux-grands-types-de-questions" id="toc-les-deux-grands-types-de-questions" class="nav-link" data-scroll-target="#les-deux-grands-types-de-questions"><span class="header-section-number">2.8</span> Les deux grands types de questions</a></li>
   <li><a href="#les-grandes-classes-de-m%C3%A9thodes-danalyse" id="toc-les-grandes-classes-de-méthodes-danalyse" class="nav-link" data-scroll-target="#les-grandes-classes-de-m%C3%A9thodes-danalyse"><span class="header-section-number">2.9</span> Les grandes classes de méthodes d’analyse</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -206,6 +239,7 @@ div.csl-indent {
     
   </div>
   
+
 
 </header><section id="types-de-statistiques" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="types-de-statistiques">
 <span class="header-section-number">2.1</span> Types de statistiques</h2>
@@ -257,7 +291,10 @@ f(x) = \left\{\begin{array}{ll}\frac{1}{b - a} &amp; \mbox{for } a \leq x \leq b
 \]</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro2_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="intro2_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="distribution-binomiale" class="level3" data-number="2.3.2"><h3 data-number="2.3.2" class="anchored" data-anchor-id="distribution-binomiale">
@@ -274,7 +311,10 @@ f(k, n, p) = \binom{n}{k}p^k (1-p)^{n-k}
 \]</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro2_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="intro2_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="distribution-de-poisson" class="level3" data-number="2.3.3"><h3 data-number="2.3.3" class="anchored" data-anchor-id="distribution-de-poisson">
@@ -291,7 +331,10 @@ f(k; \lambda) = \frac{\lambda^k e^{-\lambda}}{k!}
 \]</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="intro2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="distribution-normale" class="level3" data-number="2.3.4"><h3 data-number="2.3.4" class="anchored" data-anchor-id="distribution-normale">
@@ -306,7 +349,10 @@ f(k; \lambda) = \frac{\lambda^k e^{-\lambda}}{k!}
 <p><span class="math display">\[ f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}\]</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="intro2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="callout callout-style-simple callout-important callout-titled">
@@ -341,7 +387,10 @@ f(t) = \frac{\Gamma(\frac{\nu + 1}{2})}{\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})} (1
 <p>ou <span class="math inline">\(\nu\)</span> est le nombre de dégrés de libertés et <span class="math inline">\(\Gamma\)</span> est la fonction Gamma.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="intro2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>La distribution t de Student avec <span class="math inline">\(\nu\)</span> degrés de liberté peut être définie comme la distribution de la variable aléatoire <span class="math inline">\(T\)</span> avec <span class="math display">\[T = \frac{Z}{\sqrt{V/\nu}} = Z\sqrt{\frac{\nu}{V}}\]</span></p>
@@ -415,7 +464,7 @@ Concepts basiques de probabilité
 <p>Cependant, si vous avez déjà lancé un nombre de 1 à 3, la probabilité que cet ensemble restreint de résultats soit un nombre pair est de <span class="math inline">\(1/3\)</span> (parce que “2” est le seul nombre pair possible dans cet ensemble de trois résultats). Par conséquent, la probabilité des <strong>deux</strong> événements liés est de <span class="math inline">\(1/2 \times 1/3 = 1/6\)</span>. Vous pouvez examiner la situation dans l’autre sens : la probabilité d’obtenir un nombre pair en lançant un dé est de <span class="math inline">\(1/2\)</span> (vous obtiendriez les nombres 2, 4 ou 6) et la probabilité que l’un de ces nombres soit compris entre 1 et 3 est de <span class="math inline">\(1/3\)</span> (le nombre 2 parmi ces trois résultats). Par conséquent, la probabilité des deux résultats est à nouveau <span class="math inline">\(1/2 \times 1/3 = 1/6\)</span>.</p>
 </div>
 </div>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 22%">
 <col style="width: 24%">
@@ -481,7 +530,7 @@ Concepts basiques de probabilité
 </table>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/expected_number.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Les nombres attendus de chaque mélange possible de couleurs lors du tirage indépendant de six perles avec remplacement à 64 occasions différentes à partir d’une grande population contenant 50 % de noires et 50 % de blanches.</figcaption></figure>
+<figcaption>Les nombres attendus de chaque mélange possible de couleurs lors du tirage indépendant de six perles avec remplacement à 64 occasions différentes à partir d’une grande population contenant 50 % de noires et 50 % de blanches.</figcaption></figure>
 </div>
 <p>La probabilité de n’obtenir aucune boule blanche sur 6 boules tirées est de 1,56%. On rejette l’hypothèse nulle <span class="math inline">\(H_0\)</span> puisque <span class="math inline">\(p &lt; 2,5\%\)</span> (test bidirectionnel).</p>
 </section><section id="passage-intermédiaire-par-une-statistique" class="level3" data-number="2.4.2"><h3 data-number="2.4.2" class="anchored" data-anchor-id="passage-intermédiaire-par-une-statistique">
@@ -527,7 +576,7 @@ Concepts basiques de probabilité
 <p>Plus l’échantillon est grand, plus la précision avec laquelle est connue la moyenne est importante. Intervalle de confiance à la moyenne réelle <span class="math inline">\(\mu\)</span>: <span class="math display">\[ \bar{Y} \pm t_{1-\alpha/2; n-1} . \frac{S}{\sqrt{n-1}}\]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/confidence_interval.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L’effet de la taille de l’échantillon sur la précision et l’exactitude des valeurs de <span class="math inline">\(\bar{X}\)</span> en tant qu’estimations de <span class="math inline">\(\mu\)</span> <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption></figure>
+<figcaption>L’effet de la taille de l’échantillon sur la précision et l’exactitude des valeurs de <span class="math inline">\(\bar{X}\)</span> en tant qu’estimations de <span class="math inline">\(\mu\)</span> <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption></figure>
 </div>
 </section></section><section id="test-uni--vs-bidirectionnel" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="test-uni--vs-bidirectionnel">
 <span class="header-section-number">2.5</span> Test uni- <em>vs</em> bidirectionnel</h2>
@@ -567,7 +616,7 @@ Concepts basiques de probabilité
 <p>Quand on prend une décision concernqnt une hypothèse sur la base d’un échantillon donné, <strong>on n’est jamais sûr de prendre la bonne décision!!</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/statistical_decisions.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Décisions et erreurs statistiques lors des tests d’hypothèses nulles <span class="citation" data-cites="hypothes2002">(<a href="references.html#ref-hypothes2002" role="doc-biblioref"><span>“Hypothesis Testing”</span> 2002</a>)</span>.</figcaption></figure>
+<figcaption>Décisions et erreurs statistiques lors des tests d’hypothèses nulles <span class="citation" data-cites="hypothes2002">(<a href="references.html#ref-hypothes2002" role="doc-biblioref"><span>“Hypothesis Testing”</span> 2002</a>)</span>.</figcaption></figure>
 </div>
 <p>On peut se tromper de 2 manières:</p>
 <ul>
@@ -587,7 +636,7 @@ Concepts basiques de probabilité
 <p>Il existe un compromis entre les probabilités d’erreur de type I (<span class="math inline">\(\alpha\)</span>) et de type II (<span class="math inline">\(\alpha\)</span>). Pour un même jeu de données, si on choisit de diminuer <span class="math inline">\(\alpha\)</span>, on augmentera automatiquement <span class="math inline">\(\beta\)</span>, et inversement.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/tradeoff.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Le compromis entre l’erreur de type 1 et l’erreur de type 2. (a) fixé à 10 %. (b) L’abaissement à 5 % réduira le risque d’erreur de type 1, mais augmentera le risque d’erreur de type 2. (c) Une réduction à 1 % diminuera encore le risque d’erreur de type 1, mais augmentera fortement le risque d’erreur de type 2. <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption></figure>
+<figcaption>Le compromis entre l’erreur de type 1 et l’erreur de type 2. (a) fixé à 10 %. (b) L’abaissement à 5 % réduira le risque d’erreur de type 1, mais augmentera le risque d’erreur de type 2. (c) Une réduction à 1 % diminuera encore le risque d’erreur de type 1, mais augmentera fortement le risque d’erreur de type 2. <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption></figure>
 </div>
 </section><section id="les-deux-grands-types-de-questions" class="level2" data-number="2.8"><h2 data-number="2.8" class="anchored" data-anchor-id="les-deux-grands-types-de-questions">
 <span class="header-section-number">2.8</span> Les deux grands types de questions</h2>
@@ -609,7 +658,7 @@ Concepts basiques de probabilité
 <p><img src="img/principal_tests.png" class="img-fluid"></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-hypothes2002" class="csl-entry" role="listitem">
 <span>“Hypothesis Testing.”</span> 2002. In, 32–57. Cambridge University Press. <a href="https://doi.org/10.1017/cbo9780511806384.004">https://doi.org/10.1017/cbo9780511806384.004</a>.
 </div>
@@ -652,18 +701,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -695,11 +733,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ebedthan\.github\.io\/biometrie\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -709,8 +786,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -722,7 +808,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -766,6 +975,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -791,6 +1001,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -850,22 +1086,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./intro1.html" class="pagination-link">
+      <a href="./intro1.html" class="pagination-link" aria-label="Pourquoi a-t-on besoin de méthodes statistiques ?">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pourquoi a-t-on besoin de méthodes statistiques ?</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapter1.html" class="pagination-link">
+      <a href="./chapter1.html" class="pagination-link" aria-label="Comparaison de moyennes">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparaison de moyennes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">Biométrie et expérimentation par Anicet Ebou.</div>   
+    <div class="nav-footer-left">
+<p>Biométrie et expérimentation par Anicet Ebou.</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

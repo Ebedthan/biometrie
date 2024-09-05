@@ -82,7 +82,7 @@ Chaque fois que vous effectuez un test bilatéral, il y a deux valeurs critiques
 Par conséquent, si la statistique du test est inférieure à -2,1 ou supérieure à 2,1, les résultats du test sont statistiquement significatifs.
 :::
 
-### Test de $t$ pairé
+### Données pairées: test de $t$ pairé
 
 Par exemple, on mesure le temps mis par des sprinteurs pour couvrir le 100m lors de 2 jours de course consécutifs, pour vérifier l'existence d'un effet d'adaptation à un environnement non familier. On a alors les hypothèses suivantes:
 
@@ -131,7 +131,7 @@ qt(p=0.05/2, df=9, lower.tail=FALSE)
 
 Par conséquent, la valeur de $t$ se situe en dehors de l'intervalle dans lequel on s'attendrait à ce que $95 \%$ des statistiques $t$ générées par des échantillons de $n = 9$ à partir d'une population où $\mu = 0$. Il a donc été conclu que la moyenne de la population des différences de temps de course était significativement différente ($P < 0,05$) d'une moyenne attendue de zéro.
 
-### Test de $t$ indépendant
+### Données indépendantes: test de $t$ indépendant
 
 Un écologiste a échantillonné la longueur de la coquille de 15 palourdes d'eau douce dans chacun de deux lacs afin de déterminer si ces échantillons étaient susceptibles de provenir de populations ayant la même longueur moyenne de coquille.
 
@@ -190,11 +190,11 @@ Dans un test de t indépendant, on intègre la différence entre sprinteurs dans
 
 Dans beaucoup d\'expériences biologiques, on veut comparer les moyennes de plus de 2 groupes.
 
-### **Et pourquoi pas une série de tests de** $t$ **?**
+### Et pourquoi pas une série de tests de $t$ ?
 
 Tout simplement parce que la probabilité d'une erreur de type 1 augmente lorsque vous effectuez plusieurs comparaisons par paire.
 
-Chaque fois que vous effectuez un test statistique où l'hypothèse nulle s'applique, le risque d'une erreur de type 1 est la valeur de $\alpha$. Si est $\alpha = 0,05$, la probabilité de **ne pas** commettre d'erreur de type 1 est (1 - $\alpha$) ou 0,95.
+Chaque fois que vous effectuez un test statistique où l'hypothèse nulle s'applique, le risque d'une erreur de type 1 est la valeur de $\alpha$. Si est $\alpha = 0,05$, la probabilité de **ne pas** commettre d'erreur de type 1 est 1 - $\alpha$ ou 0,95.
 
 Si vous disposez de trois moyennes de traitement et que vous effectuez donc trois comparaisons par paire (1 contre 2, 2 contre 3 et 1 contre 3), la probabilité de **ne pas** commettre d'erreur de type 1 est de $(0,95)^3 = 0,86$. La probabilité **d'au moins une erreur** de type 1 est de 0,14 ou 14 %.
 
@@ -207,3 +207,135 @@ Ces risques sont inacceptables. Vous avez besoin d'un test qui compare plus de d
 ### Analyse de variance
 
 L'analyse de la variance a été développée par le statisticien Sir Ronald A. Fisher à partir de 1918. Il s'agit d'une technique très élégante qui peut être appliquée à de nombreux plans d'expérience très complexes.
+
+#### Présentation de l'exemple
+
+Imaginez que vous souhaitiez évaluer les effets de deux médicaments expérimentaux sur la croissance des tumeurs cérébrales chez l'homme. Un grand nombre de ces tumeurs ne peuvent pas être enlevées car le cerveau serait gravement endommagé. Une tumeur en croissance comprimera et remplacera le tissu neural, causant souvent des dommages mortels, c'est pourquoi il y a un grand intérêt médical pour les médicaments qui affectent la croissance des tumeurs. 
+
+On vous a assigné 12 sujets expérimentaux consentants, chacun ayant une tumeur cérébrale de la même taille et du même type. Quatre d'entre eux sont répartis au hasard dans un groupe de contrôle non traité, quatre sont traités avec le médicament «Tumostat» et quatre autres avec le médicament «Inhibin 4». Après deux mois de traitement, leurs tumeurs sont mesurées à nouveau. 
+
+Votre hypothèse nulle est la suivante : «Il n'y a pas de différence dans le diamètre moyen des tumeurs entre les populations sur lesquelles ces trois échantillons ont été prélevés». L'hypothèse alternative est la suivante : «Il existe une différence dans le diamètre moyen des tumeurs parmi les populations sur lesquelles ces échantillons ont été prélevés».
+
+Les résultats de cette expérience sont illustrés à la @fig-pictorial1, le diamètre de la tumeur (en millimètres) augmentant sur l'axe Y et les trois catégories de traitement sur l'axe X. 
+
+![Représentation graphique du diamètre des tumeurs cérébrales humaines chez des volontaires cliniques non traités (contrôle) ou traités avec les médicaments expérimentaux Tumostat ou Inhibin 4. Le diamètre des tumeurs augmente vers le haut de la page. La ligne horizontale épaisse représente la moyenne générale, tandis que les lignes plus courtes et plus claires représentent les moyennes de traitement. Le diamètre de chaque tumeur répliquée est représenté par un carré plein [@mckillup2011].](img/pictorial1.png){#fig-pictorial1 fig-align="center"}
+
+Les moyennes de l'échantillon de chaque groupe de quatre patients ont été calculées à partir des résultats de l'expérience. Les moyennes des échantillons de chaque groupe de quatre sont indiquées, ainsi que la grande moyenne, qui est le diamètre moyen des 12 tumeurs.
+
+Réfléchissez maintenant au diamètre de chaque tumeur. Il existe deux sources possibles de variation qui contribueront à l'éloigner de la moyenne générale @fig-pictorial2.
+
+![Les flèches indiquent l'écart de chaque réplicat par rapport à la moyenne de son traitement respectif. Il s'agit uniquement de la variation due à l'erreur [@mckillup2011].](img/pictorial2.png){#fig-pictorial2 fig-align="center"}
+
+Tout d'abord, il y a l'effet du traitement qu'il a subi (Contrôle ou Tumostat ou Inhibine 4).
+Deuxièmement, il est probable qu'il y ait des variations entre les individus qui ne peuvent pas être contrôlées, telles que de légères différences dans la taille initiale de la tumeur, des différences dans l'état de santé général, le génotype, l'état nutritionnel et les réponses immunitaires de chaque personne, ainsi que d'autres aspects involontaires de l'expérience. Cette variation incontrôlable est appelée « erreur ». 
+Par conséquent, le déplacement de chaque point de l'axe Y par rapport à la moyenne générale sera déterminé par la formule suivante :
+
+$$ \mbox{Diametre de la tumeur} = traitement + erreur$$
+
+Dans l'exemple de la @fig-pictorial1, le Tumostat et l'Inhibine 4 semblent avoir un effet inhibiteur sur la croissance par rapport au contrôle (dans lequel les tumeurs ont grossi), **mais l'effet est-il significatif ou s'agit-il simplement du type de différence qui peut se produire par hasard parmi des échantillons prélevés dans des populations ayant la même moyenne ?**
+
+Une ANOVA à facteur unique calcule cette probabilité de manière très simple. Pour comprendre comment l'ANOVA procède, il faut examiner les raisons pour lesquelles les valeurs de chaque tumeur et les moyennes de traitement sont là où elles sont:
+* Tout d'abord, le diamètre de chaque tumeur s'écarte de la moyenne de son traitement uniquement en raison de l'erreur. C'est ce qu'on appelle **l'erreur** ou la **variation à l'intérieur du groupe**;  
+* Deuxièmement, la moyenne de chaque traitement sera décalée de la grande moyenne par tout effet de ce traitement plus l'erreur. Ici, puisqu'il s'agit de moyennes de traitement, la distance entre la moyenne d'un traitement particulier et la grande moyenne est l'effet moyen de toutes les répétitions de ce traitement. Pour obtenir l'effet total, il faut considérer que ce déplacement se produit pour chacune des répétitions. C'est ce qu'on appelle **la variation entre les groupes**;  
+* Troisièmement, le diamètre de chaque tumeur sera décalé de la moyenne générale par **les deux sources** de variation - la variation au sein du groupe (@fig-pictorial2) et la variation entre les groupes (@fig-pictorial3) décrites ci-dessus. C'est ce qu'on appelle **la variation totale** de l'expérience. 
+
+![Les flèches indiquent le déplacement de la moyenne de chaque traitement par rapport à la moyenne générale et représentent l'effet moyen du traitement plus l'erreur pour les répétitions de ce traitement.](img/pictorial3.png){#fig-pictorial3 fig-align="center"}
+
+La figure @fig-pictorial4 montre la distance déplacée pour les quatre tumeurs de chaque traitement.
+
+![Les flèches indiquent l'écart de chaque réplicat par rapport à la moyenne générale. La longueur de chaque flèche représente la variation totale affectant chaque réplicat.](img/pictorial4.png){#fig-pictorial4 fig-align="center"}
+
+
+Chacune des figures @fig-pictorial1 - @fig-pictorial4 montre la dispersion des points autour des moyennes. Il est donc possible de calculer une variance distincte pour chaque figure:
+
+* La variance intra-groupe, qui n'est due qu'à l'erreur (@fig-pictorial2), peut être calculée à partir de la dispersion des points autour de la moyenne de chaque traitement.  
+*  La variance entre les groupes, qui est due au traitement et à l'erreur (@fig-pictorial3), peut être calculée à partir de la dispersion des moyennes de traitement autour de la grande moyenne. La distance entre la moyenne de chaque traitement et la moyenne générale représente l'effet moyen pour le nombre de répétitions dans ce traitement.  
+*  La variance totale (@fig-pictorial4) est l'effet combiné de la variance intra-groupe et de la variance inter-groupe. Elle peut être calculée à partir de la dispersion de tous les points autour de la grande moyenne.
+
+
+Ces estimations permettent d'évaluer très facilement si les moyennes des trois traitements proviennent de populations ayant la même moyenne $\mu$. 
+Premièrement, si aucun traitement n'a d'effet, la variance entre les groupes (due au traitement plus à l'erreur) sera un petit nombre, car toutes les moyennes du traitement ne seront éloignées de la grande moyenne que par l'effet de l'erreur (@fig-pictorial5 (a)). 
+Deuxièmement, si l'effet du traitement est relativement important, certaines ou toutes les moyennes du traitement seront très différentes les unes des autres et plus éloignées de la grande moyenne. Par conséquent, la variance entre les groupes (due au traitement et à l'erreur) sera importante par rapport à la variance à l'intérieur du groupe (due à l'erreur uniquement) (@fig-pictorial5 (b)).  Au fur et à mesure que les différences entre les traitements s'accroissent, la variance entre les groupes s'accroît également.
+
+![(a) Aucun effet du traitement. Les moyennes des trois traitements ne s'écartent de la moyenne générale qu'en raison de l'erreur, de sorte que la variance entre les groupes sera relativement faible. (b) Un effet du traitement. Il existe des différences relativement importantes entre les moyennes du traitement, de sorte qu'elles sont plus éloignées de la moyenne générale, ce qui rend la variance entre les groupes relativement importante.](img/pictorial5.png){#fig-pictorial5 fig-align="center"}
+
+
+Par conséquent, pour obtenir une statistique montrant **l'effet relatif des traitements par rapport à l'erreur, il suffit de calculer la variance entre les groupes (due aux traitements plus l'erreur) et de la diviser par la variance à l'intérieur du groupe (due à l'erreur)**:
+
+$$\frac{\mbox{Variance inter-groupe (traitement + erreur)}}{\mbox{Variance intra-groupe (erreur)}}$$
+
+S'il n'y a pas d'effet de traitement, le numérateur et le dénominateur de l'équation ne feront qu'estimer l'erreur, de sorte que la valeur de cette statistique sera d'environ 1,0 (@fig-pictorial5 (a)). Cependant, à mesure que l'effet du traitement augmente (@fig-pictorial5 (b)), le numérateur de l'équation devient de plus en plus grand, de sorte que la valeur de la statistique augmente également. Au fur et à mesure qu'elle augmente, la probabilité que les traitements aient été effectués sur des populations ayant la même moyenne diminue et finit par être inférieure à 0,05.
+
+La statistique obtenue en divisant une variance par une autre s'appelle la **statistique _F_** ou le **ratio _F_**. Une fois le F calculé, sa signification peut être évaluée en recherchant la distribution attendue de F sous l'hypothèse nulle d'absence de différence entre les moyennes de traitements. Lorsque les groupes de traitements sont issus de populations ayant la même moyenne (c'est-à-dire qu'aucun des traitements n'a d'effet), la valeur de la statistique sera, seulement supérieure à une valeur particulière dans 5 % des cas et sera considérée comme statistiquement significative.
+
+#### Calcul du _F_
+
+Pour réaliser une ANOVA à un seul facteur, il suffit de calculer la variance entre les groupes (inter groupe) (traitement) et de la diviser par la variance à l'intérieur du groupe (intra groupe) (erreur) pour obtenir le ratio _F_.
+
+Les données de l'exemple ci-dessus sont:
+
+| Contrôle | Tumostat | Inhibin 4 |
+|----------|----------|-----------|
+| 7        | 4        | 1         |
+| 8        | 5        | 2         |
+| 10       | 7        | 4         |
+| 11       | 8        | 5         |
+
+On peut les représenter graphiquement à l'aide de cette illustration @fig-pictorial6:
+
+![Représentation graphique du diamètre des tumeurs cérébrales humaines chez des volontaires cliniques non traités (contrôle) ou traités avec les médicaments expérimentaux Tumostat ou Inhibin 4.](img/pictorial6.png){#fig-pictorial6 fig-align="center"}
+
+
+##### Calcul de la variation intra-groupe (erreur)
+
+Commençons par calculer la variance à l'intérieur du groupe (intra-groupe) (erreur) @fig-pictorial7:
+
+![Calcul de la variance intra-groupe.](img/pictorial7.png){#fig-pictorial7 fig-align="center"}
+
+La **somme des carrés intra-groupe** (erreur) est $$ SCR = \sum^n_{i=1}(x_i - \bar{x})^2$$. On a donc:
+
+$SCR = ((7 - 9)^2 + (8 - 9)^2 + (10 - 9)^2 + (11 - 9)^2) + ((4 - 6)^2 + (5 - 6)^2 + (7 - 6)^2 + (8 - 6)^2) + ((1 - 3)^2 + (2 - 3)^2 + (4 - 3)^2 + (5 - 3)^2)$
+
+$$ SCR = (4 + 1 + 1 + 4) + (4 + 1 + 1 + 4) + (4 + 1 + 1 + 4) = 30 $$
+
+D'où on obtient la **variance intra-groupe** (erreur) est $$ \frac{SCR}{n} = 30 \div 9 = 3,33 $$.
+
+
+
+##### Calcul de la variance inter-groupe (traitement)
+
+Ensuite on peut calculer la variance entre groupe (inter-groupe) (traitement). Cela se fait en deux étapes. Tout d'abord, le déplacement de la moyenne de chaque traitement par rapport à la moyenne générale est élevé au carré. Cette valeur doit être multipliée par la taille de l'échantillon pour chaque traitement afin d'obtenir l'effet total pour les répétitions de ce traitement, car le déplacement est la moyenne pour le traitement. Ces trois valeurs sont ensuite additionnées pour obtenir la somme des carrés. Ensuite, la somme des carrés sont divisés par le nombre de degrés de liberté pour obtenir la valeur carrée moyenne, qui est la variance entre les groupes (traitement) @fig-pictorial8.
+
+![Calcul de la variance inter-groupe.](img/pictorial8.png){#fig-pictorial8 fig-align="center"}
+
+On a donc la **somme des carrés inter-groupe (traitement)** $= (9 - 6)^2 \times 4 + (6 - 6)^2 \times 4 + (3 - 6)^2 \times 4 = 72$.
+
+La **variance intra-groupe** (traitement) est donc $72 \div 2 = 36$.
+
+
+##### Calcul de la variance totale
+
+Tout d'abord, il faut calculer la somme des carrés pour la variation totale en prenant le déplacement de chaque point par rapport à la moyenne générale, en l'élevant au carré et en l'additionnant pour toutes les répétitions. On obtient ainsi la somme totale des carrés. En divisant la somme totale des carrés par le nombre total de degrés de liberté (il y a $n -1$ degrés de liberté, et dans ce cas $n = 12$), on obtient le carré moyen @fig-pictorial9.
+
+![Calcul de la somme totale des carrés et de la variation totale.](img/pictorial9.png){#fig-pictorial9 fig-align="center"}
+
+On a donc la somme des carrés totaux :   
+$$(25 + 16 + 4 + 1) + (4 + 1 + 1 + 4) + (25 + 16 + 4 + 1) = 102$$
+
+Et la variance totale est: $102 \div 11 = 9,273$.
+
+##### Calcul du _F_
+
+Enfin, pour obtenir le rapport F, qui compare l'effet du traitement à l'effet de l'erreur, il suffit de diviser la variance entre les groupes (traitement) par la variance à l'intérieur des groupes (erreur). 
+Étant donné que la variance du traitement est de 36 (@fig-pictorial8) et que la variance de l'erreur est de 3,33 (@fig-pictorial7), le rapport F de la variance du traitement / variance de l'erreur est de $36 \div 3,33 = 10,8$.
+
+La table suivante donne les résultats de cette analyse dans un format similaire à celui fourni par la plupart des logiciels statistiques.
+
+| Source de variation | Somme des carrés | ddl | Somme des carrés moyens | F | Probabilité |
+|---------------------|------------------|-----|--------------|---|-------------|
+| Inter-groupe (traitement) | 72 | 2 | 36,0 | 10,8 | 0,004 |
+| Intra-groupe (erreur)  | 30 | 9 | 3,3 | | |
+| Totale  | 102 | 11 | | | |
+
+Vous vous demanderez peut-être pourquoi la somme totale des carrés et la variance totale de l'expérience ont été calculées, puisqu'elles ne sont pas nécessaires pour le rapport _F_ donné ci-dessus. 
+Le calcul a été inclus pour illustrer l'additivité des sommes des carrés et des degrés de liberté. Le tableau 9.2 montre que la somme totale des carrés (102) est la somme des sommes des carrés du traitement (72) et de l'erreur (30). Notez également que le total des degrés de liberté (11) est la somme du traitement (2) et de l'erreur (9) degrés de liberté. Cette additivité des sommes des carrés et des degrés de liberté sera utilisée lors de l'examen de modèles ANOVA plus complexes.
