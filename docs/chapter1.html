@@ -249,7 +249,8 @@ window.Quarto = {
 <a href="#comparaison-de-plus-de-2-moyennes" id="toc-comparaison-de-plus-de-2-moyennes" class="nav-link" data-scroll-target="#comparaison-de-plus-de-2-moyennes"><span class="header-section-number">3.3</span> Comparaison de plus de 2 moyennes</a>
   <ul class="collapse">
 <li><a href="#et-pourquoi-pas-une-s%C3%A9rie-de-tests-de-t" id="toc-et-pourquoi-pas-une-série-de-tests-de-t" class="nav-link" data-scroll-target="#et-pourquoi-pas-une-s%C3%A9rie-de-tests-de-t"><span class="header-section-number">3.3.1</span> Et pourquoi pas une série de tests de <span class="math inline">\(t\)</span> ?</a></li>
-  <li><a href="#analyse-de-variance" id="toc-analyse-de-variance" class="nav-link" data-scroll-target="#analyse-de-variance"><span class="header-section-number">3.3.2</span> Analyse de variance</a></li>
+  <li><a href="#analyse-de-variance-%C3%A0-un-facteur" id="toc-analyse-de-variance-à-un-facteur" class="nav-link" data-scroll-target="#analyse-de-variance-%C3%A0-un-facteur"><span class="header-section-number">3.3.2</span> Analyse de variance à un facteur</a></li>
+  <li><a href="#analyse-de-variance-%C3%A0-deux-facteurs" id="toc-analyse-de-variance-à-deux-facteurs" class="nav-link" data-scroll-target="#analyse-de-variance-%C3%A0-deux-facteurs"><span class="header-section-number">3.3.3</span> Analyse de variance à deux facteurs</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/Ebedthan/biometrie/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -563,8 +564,8 @@ Lire les valeurs critiques (fractiles) de la loi de t avec R
 <p>Pour quatre moyennes de traitement, il y a six comparaisons possibles, de sorte que la probabilité d’absence d’erreur de type 1 est de <span class="math inline">\((0,95)^6 = 0,74\)</span>. La probabilité d’au moins une erreur de type 1 est de 0,26 ou 26%.</p>
 <p>Pour cinq moyens de traitement, il y a dix comparaisons possibles, la probabilité qu’il n’y ait pas d’erreur de type 1 est donc de <span class="math inline">\((0,95)^10  = 0,60\)</span>. La probabilité d’au moins une erreur de type 1 est de 0,40 ou 40 %.</p>
 <p>Ces risques sont inacceptables. Vous avez besoin d’un test qui compare plus de deux moyennes de traitement avec une erreur de type 1 égale à <span class="math inline">\(\alpha\)</span>.</p>
-</section><section id="analyse-de-variance" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="analyse-de-variance">
-<span class="header-section-number">3.3.2</span> Analyse de variance</h3>
+</section><section id="analyse-de-variance-à-un-facteur" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="analyse-de-variance-à-un-facteur">
+<span class="header-section-number">3.3.2</span> Analyse de variance à un facteur</h3>
 <p>L’analyse de la variance a été développée par le statisticien Sir Ronald A. Fisher à partir de 1918. Il s’agit d’une technique très élégante qui peut être appliquée à de nombreux plans d’expérience très complexes.</p>
 <section id="présentation-de-lexemple" class="level4" data-number="3.3.2.1"><h4 data-number="3.3.2.1" class="anchored" data-anchor-id="présentation-de-lexemple">
 <span class="header-section-number">3.3.2.1</span> Présentation de l’exemple</h4>
@@ -768,6 +769,295 @@ Figure&nbsp;3.9: Calcul de la somme totale des carrés et de la variation totale
 </tbody>
 </table>
 <p>Vous vous demanderez peut-être pourquoi la somme totale des carrés et la variance totale de l’expérience ont été calculées, puisqu’elles ne sont pas nécessaires pour le rapport <em>F</em> donné ci-dessus. Le calcul a été inclus pour illustrer l’additivité des sommes des carrés et des degrés de liberté. Le tableau 9.2 montre que la somme totale des carrés (102) est la somme des sommes des carrés du traitement (72) et de l’erreur (30). Notez également que le total des degrés de liberté (11) est la somme du traitement (2) et de l’erreur (9) degrés de liberté. Cette additivité des sommes des carrés et des degrés de liberté sera utilisée lors de l’examen de modèles ANOVA plus complexes.</p>
+<p>Il ne vous reste plus qu’à trouver la valeur critique du rapport <em>F</em>. Cette procédure était autrefois fastidieuse car il y avait deux valeurs de degrés de liberté à prendre en compte - celle associée au carré moyen du traitement et celle associée au carré moyen de l’erreur - et vous deviez rechercher la valeur critique dans un grand nombre de tableaux. Ici, cependant, vous pouvez utiliser un programme de statistiques pour effectuer cette analyse, générer le rapport <em>F</em> et obtenir la probabilité.</p>
+<p>La valeur de probabilité (p-value) présentée dans ce tableau peut être obtenue dans R par la commande:</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span><span class="fl">10.8</span>, <span class="fl">2</span>, <span class="fl">9</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.004058307</code></pre>
+</div>
+</div>
+<p>Cette analyse peut être effectuée de la même manière dans R avec les commandes suivantes:</p>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Chargement des données</span></span>
+<span><span class="va">cancer.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/cancer.csv"</span>, header<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Lancement de l'analyse de variance</span></span>
+<span><span class="va">res.aov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">diameter</span> <span class="op">~</span> <span class="va">drugs</span>, data <span class="op">=</span> <span class="va">cancer.data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Affichage du résultat</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">res.aov</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+drugs        2     72   36.00    10.8 0.00406 **
+Residuals    9     30    3.33                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>On obtient alors un tableau similaire à celui présenté plus haut.</p>
+<p>En conclusion <span class="math inline">\(p = 0,04 &lt; 0,05\)</span>, donc on peut rejeter <span class="math inline">\(H_0\)</span>, ce qui nous permet de parier avec une probabilité <span class="math inline">\(p\)</span> de nous tromper qu’il existe au moins un groupe qui a une moyenne réelle <span class="math inline">\(\mu\)</span> différente des autres.</p>
+</section></section><section id="anova-à-un-facteur-vs-test-de-t-indépendant" class="level4" data-number="3.3.2.3"><h4 data-number="3.3.2.3" class="anchored" data-anchor-id="anova-à-un-facteur-vs-test-de-t-indépendant">
+<span class="header-section-number">3.3.2.3</span> ANOVA à un facteur <em>vs</em> test de <em>t</em> indépendant</h4>
+<p>S’il n’y a que 2 groupes dont les observations sont indépendantes, test de <em>t</em> indépendant et ANOVA 1 sont équivalents.</p>
+<p><span class="math inline">\(F_{obs} = (t_{obs})^2\)</span>, les <span class="math inline">\(p\)</span> sont identiques.</p>
+<p>Les deux tests ont la même <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1 = \mu_2\)</span> mais seul le test de <em>t</em> permet une <span class="math inline">\(H_A\)</span> du type &lt; ou &gt;. Si on veut une telle <span class="math inline">\(H_A\)</span> unidirectionnelle ou tester une différence entre moyennes autre que 0 alors seul le test de <em>t</em> convient.</p>
+</section><section id="comment-savoir-quels-groupes-ont-des-moyennes-différentes" class="level4" data-number="3.3.2.4"><h4 data-number="3.3.2.4" class="anchored" data-anchor-id="comment-savoir-quels-groupes-ont-des-moyennes-différentes">
+<span class="header-section-number">3.3.2.4</span> Comment savoir quels groupes ont des moyennes différentes?</h4>
+<p>Lorsque vous utilisez une ANOVA à facteur unique pour examiner les résultats d’une expérience comportant trois traitements ou plus, un résultat significatif indique seulement qu’un ou plusieurs traitements semblent provenir de populations ayant des moyennes différentes. <strong>Il n’identifie pas les moyennes des traitements particuliers qui semblent provenir de la même population ou de populations différentes.</strong></p>
+<p>Par exemple, une différence significative entre les moyennes des trois traitements A, B et C peut se produire de plusieurs façons. La moyenne A peut être supérieure (ou inférieure) à B et C ; la moyenne B peut être supérieure (ou inférieure) à A et C ; la moyenne C peut être supérieure (ou inférieure) à A et B ; et, enfin, les moyennes A, B et C peuvent toutes être différentes l’une de l’autre.</p>
+<p>Deux stratégies sont alors possibles:</p>
+<ul>
+<li>Les tests de comparaison multiples <em>a posteriori</em> ou encore tests posthoc;<br>
+</li>
+<li>Les comparaison <em>a priori</em> ou encore contrastes <em>a priori</em>.</li>
+</ul>
+<section id="tests-de-comparaison-multiples-a-posteriori" class="level5" data-number="3.3.2.4.1"><h5 data-number="3.3.2.4.1" class="anchored" data-anchor-id="tests-de-comparaison-multiples-a-posteriori">
+<span class="header-section-number">3.3.2.4.1</span> Tests de comparaison multiples <em>a posteriori</em>
+</h5>
+<p>Les tests de comparaisons multiples sont utilisés pour comparer un ensemble de moyennes et les affecter à des groupes qui semblent provenir de la même population. Ces tests sont généralement effectués après qu’une ANOVA I a montré une différence significative entre les traitements. Ils sont appelés tests a posteriori ou post hoc, qui signifient tous deux «après l’événement», où l’«événement» est un résultat significatif de l’ANOVA.</p>
+<p>De nombreux tests de comparaison multiple ont été mis au point, mais tous fonctionnent essentiellement de la même manière.</p>
+<p>La statistique <em>t</em> est calculée en divisant la différence entre deux moyennes par l’erreur standard de cette différence. La statistique de Tukey, <span class="math inline">\(q\)</span>, est calculée en divisant la différence entre deux moyennes par l’erreur standard de la moyenne. La plus petite moyenne est toujours retranchée de la plus grande, ce qui donne un nombre positif : <span class="math display">\[ q = \frac{\bar{X_A} - \bar{X_B}}{SEM} \]</span></p>
+<p>Cette procédure est d’abord utilisée pour comparer la plus grande moyenne à la plus petite. Si la différence est significative, le test se poursuit en comparant la plus grande à la plus petite suivante et ainsi de suite. Si une différence non significative est trouvée, toutes les moyennes comprises dans l’intervalle entre cette paire sont affectées à la même population. La procédure est ensuite répétée, en commençant par la deuxième plus grande et la plus petite moyenne ; elle est répétée à nouveau en commençant par la troisième plus grande et la plus petite moyenne, et ainsi de suite. Finalement, les moyennes seront affectées à un ou plusieurs groupes, chacun contenant celles qui semblent provenir de la même population.</p>
+<p>Pour la statistique de Tukey, vous avez besoin de la SEM (Standard Error Mean, Erreur standard moyenne) et la meilleure façon de l’obtenir est d’utiliser l’erreur quadratique moyenne de l’ANOVA, car il s’agit d’une estimation de la variance de la population, <span class="math inline">\(\sigma^2\)</span>, calculée à partir du déplacement de tous les réplicats de l’expérience par rapport à leurs moyennes de traitement respectives. Par conséquent, étant donné que l’erreur standard d’une moyenne est : <span class="math display">\[ SEM = \frac{\sigma}{\sqrt{n}} = \sqrt{\frac{\sigma^2}{n}}\]</span>.</p>
+<p>L’erreur standard de la moyenne estimée à partir d’une ANOVA est: <span class="math display">\[ SEM = \sqrt{\frac{MS error}{n}} \]</span>.</p>
+<p>La valeur calculée de <em>q</em> sera nulle lorsqu’il n’y a pas de différence entre les moyennes des deux échantillons et augmentera au fur et à mesure que la différence entre les moyennes s’accroît. Si <em>q</em> dépasse la valeur critique, l’hypothèse selon laquelle les moyennes proviennent de la même population est rejetée. La valeur critique de <em>q</em> dépend de la valeur de <span class="math inline">\(\alpha\)</span>, du nombre de degrés de liberté pour l’erreur de MS et du nombre de moyennes testées.</p>
+<p><strong>Test de Tukey avec R</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Chargement des données</span></span>
+<span><span class="va">cancer.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/cancer.csv"</span>, header<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Lancement de l'analyse de variance</span></span>
+<span><span class="va">res.aov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">diameter</span> <span class="op">~</span> <span class="va">drugs</span>, data <span class="op">=</span> <span class="va">cancer.data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Affichage du résultat</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">res.aov</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+drugs        2     72   36.00    10.8 0.00406 **
+Residuals    9     30    3.33                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Test de Tukey</span></span>
+<span><span class="va">tukey</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="va">res.aov</span>, <span class="st">'drugs'</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Resumé du test de Tukey</span></span>
+<span><span class="va">tukey</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = diameter ~ drugs, data = cancer.data)
+
+$drugs
+                   diff        lwr        upr     p adj
+inhibin 4-control    -6 -9.6044637 -2.3955363 0.0030996
+tumostat-control     -3 -6.6044637  0.6044637 0.1032324
+tumostat-inhibin 4    3 -0.6044637  6.6044637 0.1032324</code></pre>
+</div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Graphique du test de Tukey</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">tukey</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="chapter1_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Autres tests</strong></p>
+<p>Il existe de nombreux autres tests de comparaison multiple. Il s’agit notamment des tests LSD, Bonferroni, Scheffé et Student-Newman-Keuls. Les plus couramment utilisés sont les tests de Tukey et de Student-Newman-Keuls (Zar, 1999). La plupart des progiciels statistiques offrent un large choix de ces tests, dont les mérites relatifs sont décrits dans des textes plus avancés.</p>
+</section><section id="tests-a-priori" class="level5" data-number="3.3.2.4.2"><h5 data-number="3.3.2.4.2" class="anchored" data-anchor-id="tests-a-priori">
+<span class="header-section-number">3.3.2.4.2</span> Tests <em>a priori</em>
+</h5>
+<p>Nous avons précédemment discuté sur le danger d’une probabilité accrue d’erreur de type 1 lorsque l’on effectue de nombreuses comparaisons par paire entre trois moyennes ou plus. Ici, cependant, la méthode <em>a posteriori</em> permettant d’identifier les moyennes de traitement qui semblent provenir de la même population utilise de nombreuses comparaisons par paires. Vous pouvez donc être amenés à penser que cette procédure présente également un risque accru d’erreur de type 1. Cependant, celà n’est pas le cas. Tout d’abord, les comparaisons <em>a-posteriori</em> non planifiées ne sont généralement effectuées entre tous les groupes que si l’ANOVA a détecté une différence significative entre les moyennes des traitements. Deuxièmement, les tests <em>a posteriori</em> sont spécifiquement conçus pour prendre en compte le nombre de moyennes comparées et présentent un risque d’erreur de type 1 beaucoup plus faible que le même nombre de tests t. Malheureusement, cela rend les tests de comparaison multiple relativement peu puissants.</p>
+<p>Par exemple, il arrive parfois qu’une ANOVA détecte une différence significative entre les traitements, mais que les tests a posteriori ultérieurs ne parviennent pas à détecter une différence significative entre les moyennes. Au lieu d’effectuer un grand nombre de comparaisons a posteriori non planifiées et sans discernement, une meilleure approche peut consister à effectuer un petit nombre de comparaisons planifiées (a-priori, c’est-à-dire « avant l’événement »). Par exemple, votre hypothèse pourrait être que chacun des deux médicaments expérimentaux utilisés dans l’exemple ci-dessus <strong>réduira</strong> la croissance des tumeurs cérébrales par rapport au contrôle. Une ANOVA permettra de tester les différences entre les traitements avec un coefficient de 0,05 et donnera également une bonne estimation de la variance de l’échantillon à partir de l’erreur systémique, puisque celle-ci a été calculée à partir de tous les individus utilisés dans l’expérience. Toutefois, au lieu d’effectuer un grand nombre de comparaisons imprévues, vous pourriez effectuer deux tests <em>t</em> (unilatéraux) comparant la croissance moyenne des tumeurs dans chaque traitement médicamenteux et dans le contrôle.</p>
+<p>Si vous ne faites qu’une seule comparaison planifiée, la probabilité d’une erreur de type 1 est de 0,05, ce qui est acceptable. Si vous effectuez plusieurs comparaisons <em>a priori</em> <strong>qui ont réellement été planifiées pour des raisons particulières avant l’expérience</strong> (par exemple, pour tester les hypothèses «Inhibin 4 réduit la croissance de la tumeur par rapport au contrôle non traité» et «Tumostat réduit la croissance de la tumeur par rapport au contrôle non traité»), chacune est une hypothèse distincte et différente, de sorte que le risque d’une erreur de type 1 est encore acceptable à 0,05. Ce n’est que lorsque vous effectuez des comparaisons sans discernement que le risque d’erreur de type 1 augmente et que vous devez envisager d’utiliser l’un des tests a posteriori décrits précédemment, qui maintient un taux d’erreur de 0,05.</p>
+<section id="test-de-t-pour-deux-moyennes" class="level6" data-number="3.3.2.4.2.1"><h6 data-number="3.3.2.4.2.1" class="anchored" data-anchor-id="test-de-t-pour-deux-moyennes">
+<span class="header-section-number">3.3.2.4.2.1</span> Test de <em>t</em> pour deux moyennes</h6>
+<p>Le test <em>a priori</em> le plus simple est une comparaison entre deux moyennes. Dans notre exemple, supposons qu’avant de réaliser l’expérience, nous ayons émis l’hypothèse <em>a priori</em> qu’il existe une différence dans le diamètre moyen du test entre les traitement de Inhibin 4 et de contrôle. Cela conduit à comparer les moyennes <span class="math inline">\(\bar{X_A} = 9\)</span> et <span class="math inline">\(\bar{X_B} = 3\)</span>. Pour effectuer une comparaison planifiée après une ANOVA à un facteur, vous utilisez la formule pour un test <em>t</em>, sauf que vous utilisez l’erreur quadratique moyenne (MS error) comme meilleure estimation de <span class="math inline">\(s^2\)</span>: <span class="math display">\[ t_{n_A + n_B - 2} = \frac{\bar{X_A} - \bar{X_B}}{\sqrt{\frac{2 \times MS error}{n}}} \]</span>.</p>
+<p>Le dégré de liberté de cette statistique est le dégré de liberté de l’erreur quadratique moyenne. Dans notre exemple cela donne: <span class="math display">\[ t_6 = \frac{9 - 3}{\sqrt{\frac{2 \times 3,33}{4}}} = 4,649\]</span>.</p>
+<p>Etant donné que la valeur critique unilatérale de 5 % pour t est de 2,446 (p = 0,001), on peut conclure que ces deux moyennes semblent également provenir de populations différentes.</p>
+</section><section id="contrates-pour-deux-moyennes." class="level6" data-number="3.3.2.4.2.2"><h6 data-number="3.3.2.4.2.2" class="anchored" data-anchor-id="contrates-pour-deux-moyennes.">
+<span class="header-section-number">3.3.2.4.2.2</span> Contrates pour deux moyennes.</h6>
+<p>Une autre façon d’envisager la comparaison que nous venons de faire entre les moyennes des Inhibin 4 et de contrôle est de considérer le numérateur de notre test <em>t</em> comme une «combinaison linéaire» de moyennes. Une combinaison linéaire est simplement une somme de valeurs pondérées. Pour cette comparaison, nous attribuons un poids de 1 au traitement Inhibin 4 et un poids de -1 au contrôle. Toutes les autres moyennes ont un poids nul. Nous utilisons la notation psi (<span class="math inline">\(\psi\)</span>) qui indique la somme pondérée des moyennes, avec des pondérations <span class="math inline">\(\alpha_i\)</span> pour chaque moyenne, <span class="math inline">\(\bar{X_i}\)</span>. Pour notre exemple précédent on a :</p>
+<p><span class="math display">\[ \psi = (1) \times 9 + (-1) \times 3 = 6 \]</span>.</p>
+<p>Le test d’hypothèse pour les contrastes peut être effectué sous la forme d’un test <em>t</em> ou d’un test <em>F</em> puisque lorsque <span class="math inline">\(ddl = 1, \mbox{on a} F = t^2\)</span>. Nous utiliserons le test <em>F</em>. Le numérateur du test <em>F</em> est calculé avec les sommes des erreurs quadratiques suivantes : <span class="math display">\[ SC_{contraste} = \frac{\psi^2}{\sum (\alpha_i^2/n_i)} \]</span>. Ce qui équivaut, lorsque la taille des échantillons est la même à: <span class="math display">\[ SC_{contraste} = \frac{\psi^2}{(\sum \alpha_i^2)/n} \]</span>.</p>
+<p>On a donc: <span class="math display">\[ SC_{contraste} =  \frac{6^2}{(1^2 + (-1)^2)/4} = 72\]</span>.</p>
+<p>L’erreur quadratique moyenne est toujours la somme des erreurs quadratiques divisée par les degrés de liberté. Le dégré de liberté pour les contrastes <em>a priori</em> est toujours égal à 1, de sorte que le numérateur du test <em>F</em> est le suivant: <span class="math display">\[ MS_{contraste} = \frac{SC_{contraste}}{1} = SC_{contraste} \]</span>.</p>
+<p>Le dénominateur du test <em>F</em> pour les contrastes <em>a priori</em> est le même que celui du test <em>F</em>. Notre valeur <em>F</em> est donc la suivante: <span class="math display">\[ F(1, ddl_{erreur} = \frac{MS_{contraste}}{MS_{erreur}}) \]</span>.</p>
+<p>Ce qui correspond dans notre exemple à: <span class="math display">\[ F(1, 9) = \frac{72}{3,33} = 21,62\]</span>.</p>
+<p>La valeur de <em>p</em> pour cette valeur de <em>F</em> est 0,001, qui est la même que celle obtenue pour le test de <em>t</em> ci-dessus. Ceci s’explique par le fait que la statistique de <em>F</em> est égale à <span class="math inline">\(t^2\)</span> (<span class="math inline">\(21,62 = 2,44^2\)</span>).</p>
+</section><section id="contrastes-orthogonaux-et-indépendance" class="level6" data-number="3.3.2.4.2.3"><h6 data-number="3.3.2.4.2.3" class="anchored" data-anchor-id="contrastes-orthogonaux-et-indépendance">
+<span class="header-section-number">3.3.2.4.2.3</span> Contrastes orthogonaux et indépendance</h6>
+<p><strong>Contrastes pour groupes de moyennes</strong></p>
+<p>Les contrastes nous permettent également de comparer des groupes de moyennes avec d’autres groupes de moyennes. Dans notre exemple, supposons que nous ayons l’hypothèse préalable que les traitements en général ont un effet différents de celui des contrôles sur les résultats des tests. En d’autres termes, nous voulons comparer la moyenne des deux conditions (tumostat et inhibin 4) avec le contrôle.</p>
+<p>Nos poids seront alors de 1 pour le contrôle, et de -.5 pour le traitement tumostat et -.5 pour le traitement inhibin 4, et de zéro pour les conditions restantes (s’il y en avait). La combinaison linéaire de moyennes correspondante est la suivante:</p>
+<p><span class="math display">\[ \psi = (1) \times 9 + (-0,5) \times 6 + (-0,5) \times 3 = 4,5\]</span>.</p>
+<p>Vous devez vous convaincre que cette valeur, <span class="math inline">\(\psi\)</span>, est la différence entre le contrôle et la moyenne des deux traitements. Elle doit avoir une valeur attendue de zéro pour l’hypothèse nulle. Si la somme de tous les poids est égale à zéro, la valeur attendue du contraste sera égale à zéro sous l’hypothèse nulle.</p>
+<p>L’erreur quadratique moyenne pour ce contraste est: <span class="math display">\[ SS_{contraste} = \frac{\psi^2}{(\sum \alpha_i^2)/2} = \frac{4,5^2}{\frac{(1)^2 + (-0,5)^2 + (-0,5)^2}{4}} =  54\]</span>.</p>
+<p>On a donc <span class="math display">\[ F(1,9) = \frac{54}{3,33} = 16,21\]</span>. La valeur de <em>p</em> pour cette valeur est 0,002.</p>
+<p><strong>Constrates orthogonaux et indépendance</strong></p>
+<p>Nous avons maintenant établi deux contrastes. Nous venons de comparer les effets de l’inhibin 4 et du tumostat à la moyenne des effets du contrôle sur les résultats des tests. Auparavant, nous avons comparé le contrôle et l’inhibin 4. Vous devez comprendre que ces deux contrastes sont <strong>dépendants</strong> simplement parce qu’ils possèdent des groupes en commun.</p>
+<p>Cependant, les contrastes peuvent être <strong>indépendants</strong> s’ils ne partagent aucun groupe en commun. <strong>Et même s’ils partagent des groupes, formellement, deux contrastes sont indépendants si la somme des produits de leurs poids est égale à zéro.</strong> Dans ce cas, les deux contrastes sont dits <strong>orthogonaux</strong>. Dans notre exemple: <span class="math inline">\(c_1 = [1, 0, -1] \mbox{et} c_2 = [1, -0.5, -0.5]\)</span>. La somme des produits est donc: <span class="math inline">\((1)(1) + (0)(-0.5) + (-1)(-0.5) = 1.5 \neq 0\)</span></p>
+<p>Cependant le contraste <span class="math inline">\(c_3=[0.5, -1, 0.5]\)</span> est bel et bien orthogonal au contraste <span class="math inline">\(c_1\)</span>.</p>
+<p>Si deux contrastes sont orthogonaux, les deux tests sont «indépendants». Si deux tests sont indépendants, la probabilité de rejeter un test ne dépend pas de la probabilité de rejeter l’autre.</p>
+<p>Tester des contrastes orthogonaux sur le même ensemble de données revient à mener des expériences complètement distinctes. Comme les contrastes orthogonaux sont indépendants, nous pouvons facilement calculer le taux d’erreur par famille : <span class="math display">\[ FW = 1 - (1 - \alpha)^n \]</span> où <span class="math inline">\(n\)</span> est le nombre de contrastes orthogonaux.</p>
+</section></section></section></section><section id="analyse-de-variance-à-deux-facteurs" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="analyse-de-variance-à-deux-facteurs">
+<span class="header-section-number">3.3.3</span> Analyse de variance à deux facteurs</h3>
+<p>Une ANOVA à facteur unique donne la probabilité que deux échantillons ou plus proviennent de populations ayant la même moyenne. L’ANOVA à facteur unique est utilisée pour analyser des données univariées provenant d’échantillons exposés à différents niveaux ou aspects d’un seul facteur. Par exemple, elle pourrait être utilisée pour comparer la consommation d’oxygène d’une espèce de crabe intertidal (la variable) à deux températures ou plus (le facteur), la croissance de tumeurs cérébrales (la variable) exposées à une série de médicaments (le facteur), ou la résistance aux insecticides d’un papillon de nuit (la variable) provenant de plusieurs endroits différents (le facteur). Cependant, les scientifiques du vivant obtiennent souvent des données univariées en relation avec plus d’un facteur. Des exemples d’expériences à deux facteurs sont la consommation d’oxygène d’un crabe intertidal à plusieurs combinaisons de température et d’humidité, la croissance de tumeurs cérébrales exposées à une série de médicaments et à différents niveaux de radiothérapie, ou la résistance aux insecticides d’un ravageur agricole provenant de différents endroits et de différentes plantes hôtes. Il serait très utile de disposer d’une analyse donnant des rapports <em>F</em> distincts (et la probabilité que les moyennes des traitements proviennent de populations ayant la même moyenne) pour chacun des deux facteurs. C’est ce que fait l’ANOVA à deux facteurs.</p>
+<section id="présentation-de-lexemple-1" class="level4" data-number="3.3.3.1"><h4 data-number="3.3.3.1" class="anchored" data-anchor-id="présentation-de-lexemple-1">
+<span class="header-section-number">3.3.3.1</span> Présentation de l’exemple</h4>
+<p>Les blattes représentent un risque sérieux pour la santé publique, en particulier dans les villes tropicales et subtropicales où l’assainissement est insuffisant. Ces insectes vivent souvent dans les égouts et les canalisations, mais ils se nourrissent beaucoup et infestent fréquemment les zones de stockage et de préparation des aliments. Les blattes urbaines ont un régime alimentaire varié, qui comprend souvent des excréments et d’autres déchets, de sorte qu’elles peuvent contaminer les aliments et, partant, provoquer des maladies chez l’homme.</p>
+<p>Un entomologiste urbain étudiant les moyens de lutte contre les blattes s’est intéressé aux effets de la température et de l’humidité sur l’activité de la blatte <em>Periplaneta americana</em>. L’entomologiste a conçu une méthode pour mesurer l’activité des blattes en plaçant ces insectes individuellement dans des bocaux de verre cylindriques à couvercle ouvert. En les filmant par le haut et en analysant les enregistrements par ordinateur, l’entomologiste a obtenu des données sur la quantité de mouvement de chaque blatte par heure.</p>
+<p>L’entomologiste a mis en place une expérience pour la croissance des blattes à trois températures et trois niveaux d’humidité. Le tableau suivant récapitule la longueur en mm de 27 blattes nourries <em>ad libitum</em> et maintenues dans neuf combinaisons différentes de température et d’humidité.</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Humidité (%)</th>
+<th>Temperature (°C)</th>
+<th>Taille de la blatte (mm)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>33</td>
+<td>20</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>33</td>
+<td>20</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>33</td>
+<td>20</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>33</td>
+<td>30</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>33</td>
+<td>30</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>33</td>
+<td>30</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>33</td>
+<td>40</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>33</td>
+<td>40</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>33</td>
+<td>40</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>66</td>
+<td>20</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>66</td>
+<td>20</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>66</td>
+<td>20</td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td>66</td>
+<td>30</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<td>66</td>
+<td>30</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td>66</td>
+<td>30</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>66</td>
+<td>40</td>
+<td>17</td>
+</tr>
+<tr class="odd">
+<td>66</td>
+<td>40</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>66</td>
+<td>40</td>
+<td>19</td>
+</tr>
+<tr class="odd">
+<td>99</td>
+<td>20</td>
+<td>17</td>
+</tr>
+<tr class="even">
+<td>99</td>
+<td>20</td>
+<td>18</td>
+</tr>
+<tr class="odd">
+<td>99</td>
+<td>20</td>
+<td>19</td>
+</tr>
+<tr class="even">
+<td>99</td>
+<td>30</td>
+<td>21</td>
+</tr>
+<tr class="odd">
+<td>99</td>
+<td>30</td>
+<td>22</td>
+</tr>
+<tr class="even">
+<td>99</td>
+<td>30</td>
+<td>23</td>
+</tr>
+<tr class="odd">
+<td>99</td>
+<td>60</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>99</td>
+<td>60</td>
+<td>26</td>
+</tr>
+<tr class="odd">
+<td>99</td>
+<td>60</td>
+<td>27</td>
+</tr>
+</tbody>
+</table>
+<section id="notion-dinteraction" class="level5" data-number="3.3.3.1.1"><h5 data-number="3.3.3.1.1" class="anchored" data-anchor-id="notion-dinteraction">
+<span class="header-section-number">3.3.3.1.1</span> Notion d’interaction</h5>
+<p>Les expériences qui incluent simultanément les effets de plus d’un facteur sur une variable particulière peuvent être beaucoup plus révélatrices que l’examen de chaque facteur séparément, car vous pouvez détecter certaines combinaisons de facteurs qui ont un <strong>effet synergique</strong> encore appelé <strong>interaction</strong>. En outre, l’examen de plusieurs facteurs à la fois peut permettre de réaliser d’importantes économies de temps et de ressources par rapport à la réalisation d’une série d’expériences et d’analyses distinctes.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">

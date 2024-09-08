@@ -204,7 +204,7 @@ Pour cinq moyens de traitement, il y a dix comparaisons possibles, la probabilit
 
 Ces risques sont inacceptables. Vous avez besoin d'un test qui compare plus de deux moyennes de traitement avec une erreur de type 1 égale à $\alpha$.
 
-### Analyse de variance
+### Analyse de variance à un facteur
 
 L'analyse de la variance a été développée par le statisticien Sir Ronald A. Fisher à partir de 1918. Il s'agit d'une technique très élégante qui peut être appliquée à de nombreux plans d'expérience très complexes.
 
@@ -337,5 +337,224 @@ La table suivante donne les résultats de cette analyse dans un format similaire
 | Intra-groupe (erreur)  | 30 | 9 | 3,3 | | |
 | Totale  | 102 | 11 | | | |
 
+
 Vous vous demanderez peut-être pourquoi la somme totale des carrés et la variance totale de l'expérience ont été calculées, puisqu'elles ne sont pas nécessaires pour le rapport _F_ donné ci-dessus. 
 Le calcul a été inclus pour illustrer l'additivité des sommes des carrés et des degrés de liberté. Le tableau 9.2 montre que la somme totale des carrés (102) est la somme des sommes des carrés du traitement (72) et de l'erreur (30). Notez également que le total des degrés de liberté (11) est la somme du traitement (2) et de l'erreur (9) degrés de liberté. Cette additivité des sommes des carrés et des degrés de liberté sera utilisée lors de l'examen de modèles ANOVA plus complexes.
+
+Il ne vous reste plus qu'à trouver la valeur critique du rapport _F_. Cette procédure était autrefois fastidieuse car il y avait deux valeurs de degrés de liberté à prendre en compte - celle associée au carré moyen du traitement et celle associée au carré moyen de l'erreur - et vous deviez rechercher la valeur critique dans un grand nombre de tableaux. Ici, cependant, vous pouvez utiliser un programme de statistiques pour effectuer cette analyse, générer le rapport _F_ et obtenir la probabilité.
+
+La valeur de probabilité (p-value) présentée dans ce tableau peut être obtenue dans R par la commande:
+
+```{r}
+pf(10.8, 2, 9, lower.tail = FALSE)
+```
+
+
+Cette analyse peut être effectuée de la même manière dans R avec les commandes suivantes:
+
+```{r}
+# Chargement des données
+cancer.data <- read.csv("data/cancer.csv", header=T)
+
+# Lancement de l'analyse de variance
+res.aov <- aov(diameter ~ drugs, data = cancer.data)
+
+# Affichage du résultat
+summary(res.aov)
+```
+
+On obtient alors un tableau similaire à celui présenté plus haut.
+
+En conclusion $p = 0,04 < 0,05$, donc on peut rejeter $H_0$, ce qui nous permet de parier avec une probabilité $p$ de nous tromper qu'il existe au moins un groupe qui a une moyenne réelle $\mu$ différente des autres.
+
+
+#### ANOVA à un facteur _vs_ test de _t_ indépendant
+
+S’il n’y a que 2 groupes dont les observations sont indépendantes, test de _t_ indépendant et ANOVA 1 sont équivalents.
+
+$F_{obs} = (t_{obs})^2$, les $p$ sont identiques.
+
+Les deux tests ont la même $H_0$: $\mu_1 = \mu_2$ mais seul le test de _t_ permet une $H_A$ du type < ou >. 
+Si on veut une telle $H_A$ unidirectionnelle ou tester une différence entre moyennes autre que 0 alors seul le test de _t_ convient.
+
+
+#### Comment savoir quels groupes ont des moyennes différentes?
+
+Lorsque vous utilisez une ANOVA à facteur unique pour examiner les résultats d'une expérience comportant trois traitements ou plus, un résultat significatif indique seulement qu'un ou plusieurs traitements semblent provenir de populations ayant des moyennes différentes. **Il n'identifie pas les moyennes des traitements particuliers qui semblent provenir de la même population ou de populations différentes.** 
+
+Par exemple, une différence significative entre les moyennes des trois traitements A, B et C peut se produire de plusieurs façons. La moyenne A peut être supérieure (ou inférieure) à B et C ; la moyenne B peut être supérieure (ou inférieure) à A et C ; la moyenne C peut être supérieure (ou inférieure) à A et B ; et, enfin, les moyennes A, B et C peuvent toutes être différentes l'une de l'autre.
+
+Deux stratégies sont alors possibles:  
+
+* Les tests de comparaison multiples _a posteriori_ ou encore tests posthoc;  
+* Les comparaison _a priori_ ou encore contrastes _a priori_.
+
+
+##### Tests de comparaison multiples _a posteriori_
+
+Les tests de comparaisons multiples sont utilisés pour comparer un ensemble de moyennes et les affecter à des groupes qui semblent provenir de la même population. Ces tests sont généralement effectués après qu'une ANOVA I a montré une différence significative entre les traitements. Ils sont appelés tests a posteriori ou post hoc, qui signifient tous deux «après l'événement», où l'«événement» est un résultat significatif de l'ANOVA.
+
+De nombreux tests de comparaison multiple ont été mis au point, mais tous fonctionnent essentiellement de la même manière. 
+
+La statistique _t_ est calculée en divisant la différence entre deux moyennes par l'erreur standard de cette différence. La statistique de Tukey, $q$, est calculée en divisant la différence entre deux moyennes par l'erreur standard de la moyenne. La plus petite moyenne est toujours retranchée de la plus grande, ce qui donne un nombre positif : $$ q = \frac{\bar{X_A} - \bar{X_B}}{SEM} $$
+
+Cette procédure est d'abord utilisée pour comparer la plus grande moyenne à la plus petite. Si la différence est significative, le test se poursuit en comparant la plus grande à la plus petite suivante et ainsi de suite. Si une différence non significative est trouvée, toutes les moyennes comprises dans l'intervalle entre cette paire sont affectées à la même population. La procédure est ensuite répétée, en commençant par la deuxième plus grande et la plus petite moyenne ; elle est répétée à nouveau en commençant par la troisième plus grande et la plus petite moyenne, et ainsi de suite. Finalement, les moyennes seront affectées à un ou plusieurs groupes, chacun contenant celles qui semblent provenir de la même population.
+
+Pour la statistique de Tukey, vous avez besoin de la SEM (Standard Error Mean, Erreur standard moyenne) et la meilleure façon de l'obtenir est d'utiliser l'erreur quadratique moyenne de l'ANOVA, car il s'agit d'une estimation de la variance de la population, $\sigma^2$, calculée à partir du déplacement de tous les réplicats de l'expérience par rapport à leurs moyennes de traitement respectives. Par conséquent, étant donné que l'erreur standard d'une moyenne est : $$ SEM = \frac{\sigma}{\sqrt{n}} = \sqrt{\frac{\sigma^2}{n}}$$.
+
+L'erreur standard de la moyenne estimée à partir d'une ANOVA est: $$ SEM = \sqrt{\frac{MS error}{n}} $$.
+
+La valeur calculée de _q_ sera nulle lorsqu'il n'y a pas de différence entre les moyennes des deux échantillons et augmentera au fur et à mesure que la différence entre les moyennes s'accroît. Si _q_ dépasse la valeur critique, l'hypothèse selon laquelle les moyennes proviennent de la même population est rejetée.
+La valeur critique de _q_ dépend de la valeur de $\alpha$, du nombre de degrés de liberté pour l'erreur de MS et du nombre de moyennes testées.
+
+
+**Test de Tukey avec R**
+
+```{r}
+# Chargement des données
+cancer.data <- read.csv("data/cancer.csv", header=T)
+
+# Lancement de l'analyse de variance
+res.aov <- aov(diameter ~ drugs, data = cancer.data)
+
+# Affichage du résultat
+summary(res.aov)
+
+# Test de Tukey
+tukey <- TukeyHSD(res.aov, 'drugs', conf.level = 0.95)
+
+# Resumé du test de Tukey
+tukey
+
+# Graphique du test de Tukey
+plot(tukey)
+```
+
+
+**Autres tests**
+
+Il existe de nombreux autres tests de comparaison multiple. Il s'agit notamment des tests LSD, Bonferroni, Scheffé et Student-Newman-Keuls. Les plus couramment utilisés sont les tests de Tukey et de Student-Newman-Keuls (Zar, 1999). La plupart des progiciels statistiques offrent un large choix de ces tests, dont les mérites relatifs sont décrits dans des textes plus avancés.
+
+##### Tests _a priori_
+
+Nous avons précédemment discuté sur le danger d'une probabilité accrue d'erreur de type 1 lorsque l'on effectue de nombreuses comparaisons par paire entre trois moyennes ou plus. Ici, cependant, la méthode _a posteriori_ permettant d'identifier les moyennes de traitement qui semblent provenir de la même population utilise de nombreuses comparaisons par paires. Vous pouvez donc être amenés à penser que cette procédure présente également un risque accru d'erreur de type 1. 
+Cependant, celà n'est pas le cas.
+Tout d'abord, les comparaisons _a-posteriori_ non planifiées ne sont généralement effectuées entre tous les groupes que si l'ANOVA a détecté une différence significative entre les moyennes des traitements. Deuxièmement, les tests _a posteriori_ sont spécifiquement conçus pour prendre en compte le nombre de moyennes comparées et présentent un risque d'erreur de type 1 beaucoup plus faible que le même nombre de tests t. 
+Malheureusement, cela rend les tests de comparaison multiple relativement peu puissants.
+
+Par exemple, il arrive parfois qu'une ANOVA détecte une différence significative entre les traitements, mais que les tests a posteriori ultérieurs ne parviennent pas à détecter une différence significative entre les moyennes.
+Au lieu d'effectuer un grand nombre de comparaisons a posteriori non planifiées et sans discernement, une meilleure approche peut consister à effectuer un petit nombre de comparaisons planifiées (a-priori, c'est-à-dire « avant l'événement »). Par exemple, votre hypothèse pourrait être que chacun des deux médicaments expérimentaux utilisés dans l'exemple ci-dessus **réduira** la croissance des tumeurs cérébrales par rapport au contrôle. Une ANOVA permettra de tester les différences entre les traitements avec un coefficient de 0,05 et donnera également une bonne estimation de la variance de l'échantillon à partir de l'erreur systémique, puisque celle-ci a été calculée à partir de tous les individus utilisés dans l'expérience. Toutefois, au lieu d'effectuer un grand nombre de comparaisons imprévues, vous pourriez effectuer deux tests _t_ (unilatéraux) comparant la croissance moyenne des tumeurs dans chaque traitement médicamenteux et dans le contrôle.
+
+Si vous ne faites qu'une seule comparaison planifiée, la probabilité d'une erreur de type 1 est de 0,05, ce qui est acceptable. Si vous effectuez plusieurs comparaisons _a priori_ **qui ont réellement été planifiées pour des raisons particulières avant l'expérience** (par exemple, pour tester les hypothèses «Inhibin 4 réduit la croissance de la tumeur par rapport au contrôle non traité» et «Tumostat réduit la croissance de la tumeur par rapport au contrôle non traité»), chacune est une hypothèse distincte et différente, de sorte que le risque d'une erreur de type 1 est encore acceptable à 0,05. Ce n'est que lorsque vous effectuez des comparaisons sans discernement que le risque d'erreur de type 1 augmente et que vous devez envisager d'utiliser l'un des tests a posteriori décrits précédemment, qui maintient un taux d'erreur de 0,05.
+
+###### Test de _t_ pour deux moyennes
+
+Le test _a priori_ le plus simple est une comparaison entre deux moyennes. Dans notre exemple, supposons qu'avant de réaliser l'expérience, nous ayons émis l'hypothèse _a priori_ qu'il existe une différence dans le diamètre moyen du test entre les traitement de Inhibin 4 et de contrôle. Cela conduit à comparer les moyennes $\bar{X_A} = 9$ et $\bar{X_B} = 3$.
+Pour effectuer une comparaison planifiée après une ANOVA à un facteur, vous utilisez la formule pour un test _t_, sauf que vous utilisez l'erreur quadratique moyenne (MS error) comme meilleure estimation de $s^2$: $$ t_{n_A + n_B - 2} = \frac{\bar{X_A} - \bar{X_B}}{\sqrt{\frac{2 \times MS error}{n}}} $$.
+
+Le dégré de liberté de cette statistique est le dégré de liberté de l'erreur quadratique moyenne.
+Dans notre exemple cela donne: $$ t_6 = \frac{9 - 3}{\sqrt{\frac{2 \times 3,33}{4}}} = 4,649$$.
+
+Etant donné que la valeur critique unilatérale de 5 % pour t est de 2,446 (p = 0,001), on peut conclure que ces deux moyennes semblent également provenir de populations différentes.
+
+
+###### Contrates pour deux moyennes.
+
+Une autre façon d'envisager la comparaison que nous venons de faire entre les moyennes des Inhibin 4 et de contrôle est de considérer le numérateur de notre test _t_ comme une «combinaison linéaire» de moyennes. Une combinaison linéaire est simplement une somme de valeurs pondérées. Pour cette comparaison, nous attribuons un poids de 1 au traitement Inhibin 4 et un poids de -1 au contrôle. Toutes les autres moyennes ont un poids nul. Nous utilisons la notation psi ($\psi$) qui indique la somme pondérée des moyennes, avec des pondérations $\alpha_i$ pour chaque moyenne, $\bar{X_i}$.
+Pour notre exemple précédent on a :
+
+$$ \psi = (1) \times 9 + (-1) \times 3 = 6 $$.
+
+Le test d'hypothèse pour les contrastes peut être effectué sous la forme d'un test _t_ ou d'un test _F_ puisque lorsque $ddl = 1, \mbox{on a} F = t^2$. Nous utiliserons le test _F_. Le numérateur du test _F_ est calculé avec les sommes des erreurs quadratiques suivantes :
+$$ SC_{contraste} = \frac{\psi^2}{\sum (\alpha_i^2/n_i)} $$.
+Ce qui équivaut, lorsque la taille des échantillons est la même à: $$ SC_{contraste} = \frac{\psi^2}{(\sum \alpha_i^2)/n} $$.
+
+On a donc: $$ SC_{contraste} =  \frac{6^2}{(1^2 + (-1)^2)/4} = 72$$.
+
+L'erreur quadratique moyenne est toujours la somme des erreurs quadratiques divisée par les degrés de liberté. Le dégré de liberté pour les contrastes _a priori_ est toujours égal à 1, de sorte que le numérateur du test _F_ est le suivant: $$ MS_{contraste} = \frac{SC_{contraste}}{1} = SC_{contraste} $$.
+
+Le dénominateur du test _F_ pour les contrastes _a priori_ est le même que celui du test _F_. Notre valeur _F_ est donc la suivante: $$ F(1, ddl_{erreur} = \frac{MS_{contraste}}{MS_{erreur}}) $$.
+
+Ce qui correspond dans notre exemple à:
+$$ F(1, 9) = \frac{72}{3,33} = 21,62$$.
+
+La valeur de _p_ pour cette valeur de _F_ est 0,001, qui est la même que celle obtenue pour le test de _t_ ci-dessus. Ceci s'explique par le fait que la statistique de _F_ est égale à $t^2$ ($21,62 = 2,44^2$).
+
+###### Contrastes orthogonaux et indépendance
+
+**Contrastes pour groupes de moyennes**
+
+Les contrastes nous permettent également de comparer des groupes de moyennes avec d'autres groupes de moyennes. Dans notre exemple, supposons que nous ayons l'hypothèse préalable que les traitements en général ont un effet différents de celui des contrôles sur les résultats des tests. En d'autres termes, nous voulons comparer la moyenne des deux conditions (tumostat et inhibin 4) avec le contrôle.
+
+Nos poids seront alors de 1 pour le contrôle, et de -.5 pour le traitement tumostat et -.5 pour le traitement inhibin 4, et de zéro pour les conditions restantes (s'il y en avait). La combinaison linéaire de moyennes correspondante est la suivante:
+
+$$ \psi = (1) \times 9 + (-0,5) \times 6 + (-0,5) \times 3 = 4,5$$.
+
+Vous devez vous convaincre que cette valeur, $\psi$, est la différence entre le contrôle et la moyenne des deux traitements. Elle doit avoir une valeur attendue de zéro pour l'hypothèse nulle. Si la somme de tous les poids est égale à zéro, la valeur attendue du contraste sera égale à zéro sous l'hypothèse nulle.
+
+L'erreur quadratique moyenne pour ce contraste est: $$ SS_{contraste} = \frac{\psi^2}{(\sum \alpha_i^2)/2} = \frac{4,5^2}{\frac{(1)^2 + (-0,5)^2 + (-0,5)^2}{4}} =  54$$.
+
+On a donc $$ F(1,9) = \frac{54}{3,33} = 16,21$$. 
+La valeur de _p_ pour cette valeur est 0,002.
+
+**Constrates orthogonaux et indépendance**
+
+Nous avons maintenant établi deux contrastes. Nous venons de comparer les effets de l'inhibin 4 et du tumostat à la moyenne des effets du contrôle sur les résultats des tests. Auparavant, nous avons comparé le contrôle et l'inhibin 4. Vous devez comprendre que ces deux contrastes sont **dépendants** simplement parce qu'ils possèdent des groupes en commun.
+
+
+Cependant, les contrastes peuvent être **indépendants** s'ils ne partagent aucun groupe en commun. **Et même s'ils partagent des groupes, formellement, deux contrastes sont indépendants si la somme des produits de leurs poids est égale à zéro.** Dans ce cas, les deux contrastes sont dits **orthogonaux**. Dans notre exemple: $c_1 = [1, 0, -1] \mbox{et} c_2 = [1, -0.5, -0.5]$. La somme des produits est donc: $(1)(1) + (0)(-0.5) + (-1)(-0.5) = 1.5 \neq 0$
+
+Cependant le contraste $c_3=[0.5, -1, 0.5]$ est bel et bien orthogonal au contraste $c_1$.
+
+Si deux contrastes sont orthogonaux, les deux tests sont «indépendants». Si deux tests sont indépendants, la probabilité de rejeter un test ne dépend pas de la probabilité de rejeter l'autre.
+
+Tester des contrastes orthogonaux sur le même ensemble de données revient à mener des expériences complètement distinctes. Comme les contrastes orthogonaux sont indépendants, nous pouvons facilement calculer le taux d'erreur par famille :
+$$ FW = 1 - (1 - \alpha)^n $$
+où $n$ est le nombre de contrastes orthogonaux.
+
+### Analyse de variance à deux facteurs
+
+Une ANOVA à facteur unique donne la probabilité que deux échantillons ou plus proviennent de populations ayant la même moyenne. L'ANOVA à facteur unique est utilisée pour analyser des données univariées provenant d'échantillons exposés à différents niveaux ou aspects d'un seul facteur. Par exemple, elle pourrait être utilisée pour comparer la consommation d'oxygène d'une espèce de crabe intertidal (la variable) à deux températures ou plus (le facteur), la croissance de tumeurs cérébrales (la variable) exposées à une série de médicaments (le facteur), ou la résistance aux insecticides d'un papillon de nuit (la variable) provenant de plusieurs endroits différents (le facteur).
+Cependant, les scientifiques du vivant obtiennent souvent des données univariées en relation avec plus d'un facteur. Des exemples d'expériences à deux facteurs sont la consommation d'oxygène d'un crabe intertidal à plusieurs combinaisons de température et d'humidité, la croissance de tumeurs cérébrales exposées à une série de médicaments et à différents niveaux de radiothérapie, ou la résistance aux insecticides d'un ravageur agricole provenant de différents endroits et de différentes plantes hôtes. Il serait très utile de disposer d'une analyse donnant des rapports _F_ distincts (et la probabilité que les moyennes des traitements proviennent de populations ayant la même moyenne) pour chacun des deux facteurs. C'est ce que fait l'ANOVA à deux facteurs.
+
+#### Présentation de l'exemple
+
+Les blattes représentent un risque sérieux pour la santé publique, en particulier dans les villes tropicales et subtropicales où l'assainissement est insuffisant. Ces insectes vivent souvent dans les égouts et les canalisations, mais ils se nourrissent beaucoup et infestent fréquemment les zones de stockage et de préparation des aliments. Les blattes urbaines ont un régime alimentaire varié, qui comprend souvent des excréments et d'autres déchets, de sorte qu'elles peuvent contaminer les aliments et, partant, provoquer des maladies chez l'homme. 
+
+Un entomologiste urbain étudiant les moyens de lutte contre les blattes s'est intéressé aux effets de la température et de l'humidité sur l'activité de la blatte _Periplaneta americana_. L'entomologiste a conçu une méthode pour mesurer l'activité des blattes en plaçant ces insectes individuellement dans des bocaux de verre cylindriques à couvercle ouvert. En les filmant par le haut et en analysant les enregistrements par ordinateur, l'entomologiste a obtenu des données sur la quantité de mouvement de chaque blatte par heure.
+
+L'entomologiste a mis en place une expérience pour la croissance des blattes à trois températures et trois niveaux d'humidité. Le tableau suivant récapitule la longueur en mm de 27 blattes nourries _ad libitum_ et maintenues dans neuf combinaisons différentes de température et d'humidité.
+
+| Humidité (%) | Temperature (°C) | Taille de la blatte (mm) |
+|--------------|------------------|--------------------------|
+| 33           | 20               | 1                        |
+| 33           | 20               | 2                        |
+| 33           | 20               | 3                        |
+| 33           | 30               | 5                        |
+| 33           | 30               | 6                        |
+| 33           | 30               | 7                        |
+| 33           | 40               | 9                        |
+| 33           | 40               | 10                       |
+| 33           | 40               | 11                       |
+| 66           | 20               | 9                        |
+| 66           | 20               | 10                       |
+| 66           | 20               | 11                       |
+| 66           | 30               | 13                       |
+| 66           | 30               | 14                       |
+| 66           | 30               | 15                       |
+| 66           | 40               | 17                       |
+| 66           | 40               | 18                       |
+| 66           | 40               | 19                       |
+| 99           | 20               | 17                       |
+| 99           | 20               | 18                       |
+| 99           | 20               | 19                       |
+| 99           | 30               | 21                       |
+| 99           | 30               | 22                       |
+| 99           | 30               | 23                       |
+| 99           | 60               | 25                       |
+| 99           | 60               | 26                       |
+| 99           | 60               | 27                       |
+
+##### Notion d'interaction
+
+Les expériences qui incluent simultanément les effets de plus d'un facteur sur une variable particulière peuvent être beaucoup plus révélatrices que l'examen de chaque facteur séparément, car vous pouvez détecter certaines combinaisons de facteurs qui ont un __effet synergique__ encore appelé __interaction__. En outre, l'examen de plusieurs facteurs à la fois peut permettre de réaliser d'importantes économies de temps et de ressources par rapport à la réalisation d'une série d'expériences et d'analyses distinctes.
