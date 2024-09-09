@@ -591,23 +591,23 @@ Concepts basiques de probabilité
 <li>Test <strong>bidirectionnel</strong>:
 <ul>
 <li>
-<span class="math inline">\(H_0\)</span> : <span class="math inline">\(\mu = \mu_0\)</span> ou <span class="math inline">\(t = 0\)</span>
+<span class="math inline">\(H_0\)</span> : <span class="math inline">\(\mu = \mu_0\)</span><br>
 </li>
 <li>
-<span class="math inline">\(H_A\)</span> : <span class="math inline">\(\mu ≠ \mu_0\)</span> ou <span class="math inline">\(t ≠ 0\)</span>
+<span class="math inline">\(H_A\)</span> : <span class="math inline">\(\mu ≠ \mu_0\)</span><br>
 </li>
 </ul>
 </li>
 <li>Test <strong>unidirectionnel</strong>:
 <ul>
 <li>
-<span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu = \mu_0\)</span> ou <span class="math inline">\(t = 0\)</span>
+<span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu = \mu_0\)</span><br>
 </li>
 <li>
-<span class="math inline">\(H_{A1}\)</span>: <span class="math inline">\(\mu &gt; \mu_0\)</span> ou <span class="math inline">\(t &gt; 0\)</span>
+<span class="math inline">\(H_{A1}\)</span>: <span class="math inline">\(\mu &gt; \mu_0\)</span><br>
 </li>
 <li>
-<span class="math inline">\(H_{A2}\)</span>: <span class="math inline">\(\mu &lt; \mu_0\)</span> ou <span class="math inline">\(t &lt; 0\)</span>
+<span class="math inline">\(H_{A2}\)</span>: <span class="math inline">\(\mu &lt; \mu_0\)</span>
 </li>
 </ul>
 </li>
@@ -621,10 +621,10 @@ Concepts basiques de probabilité
 <p>On peut se tromper de 2 manières:</p>
 <ul>
 <li>
-<span class="math inline">\(\alpha\)</span> (probabilité d’erreur de type I: rejeter <span class="math inline">\(H_0\)</span> à tort) est traditionnellement fixé à 5%. Rien n’empêche de choisir un <span class="math inline">\(\alpha\)</span> plus petit ou plus grand;<br>
+<span class="math inline">\(\alpha\)</span> est la probabilité d’erreur de type I (rejeter <span class="math inline">\(H_0\)</span> à tort) est traditionnellement fixé à 5%. Rien n’empêche de choisir un <span class="math inline">\(\alpha\)</span> plus petit ou plus grand;<br>
 </li>
 <li>
-<span class="math inline">\(1 - \beta\)</span> (probabilité d’erreur de type II: accepter <span class="math inline">\(H_0\)</span> à tort) est la puissance du test. Elle dépend notamment de:
+<span class="math inline">\(\beta\)</span> est la probabilité d’erreur de type II (accepter <span class="math inline">\(H_0\)</span> à tort). La puissance d’un test est la probabilité de prendre la bonne décision et de rejeter l’hypothèse nulle lorsqu’elle est fausse. <span class="math inline">\(1- \beta\)</span> est la puissance du test. Elle dépend notamment de:
 <ul>
 <li>La taille de l’effet: plus l’effet est grand, plus la probabilité de le détecter est grande;</li>
 <li>La variance: plus le paramètre est connu avec précision, plus la probabilité d’en détecter une différence est grande. La précision augmente avec le nombre d’observation.</li>
@@ -633,7 +633,9 @@ Concepts basiques de probabilité
 </ul></section><section id="compromis-entre-alpha-et-beta" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="compromis-entre-alpha-et-beta">
 <span class="header-section-number">2.7</span> Compromis entre <span class="math inline">\(\alpha\)</span> et <span class="math inline">\(\beta\)</span>
 </h2>
-<p>Il existe un compromis entre les probabilités d’erreur de type I (<span class="math inline">\(\alpha\)</span>) et de type II (<span class="math inline">\(\alpha\)</span>). Pour un même jeu de données, si on choisit de diminuer <span class="math inline">\(\alpha\)</span>, on augmentera automatiquement <span class="math inline">\(\beta\)</span>, et inversement.</p>
+<p>Il existe un compromis entre les probabilités d’erreur de type I (<span class="math inline">\(\alpha\)</span>) et de type II (<span class="math inline">\(\beta\)</span>). Pour un même jeu de données, si on choisit de diminuer <span class="math inline">\(\alpha\)</span>, on augmentera automatiquement <span class="math inline">\(\beta\)</span>, et inversement.</p>
+<p>Sans compromettre le risque d’erreur de type 1, le seul moyen pour un chercheur de réduire le risque d’erreur de type 2 à un niveau acceptable et donc de garantir une puissance suffisante est d’augmenter la taille de son échantillon. Chaque chercheur doit se poser la question suivante : « De quelle taille d’échantillon ai-je besoin pour garantir que le risque d’erreur de type 2 est faible et que la puissance est donc élevée ? Il s’agit d’une question importante car les échantillons sont généralement coûteux à prélever, et il est donc inutile d’augmenter la taille de l’échantillon au-delà du point où la puissance atteint un niveau acceptable. Par exemple, si un échantillon de 35 personnes a une puissance de 100 %, il est inutile d’augmenter la taille de l’échantillon. Malheureusement, le seul moyen d’estimer la taille minimale de l’échantillon nécessaire à une expérience est de connaître ou d’avoir de bonnes estimations de la taille de l’effet et de l’écart-type de la ou des populations.</p>
+<p>Souvent, la seule façon de les estimer est de réaliser une expérience pilote avec un échantillon. Pour la plupart des tests, il existe des formules qui utilisent ces statistiques (d’échantillon) pour donner la taille appropriée de l’échantillon pour une puissance souhaitée. Certains logiciels statistiques calculent la puissance d’un test dans le cadre de l’analyse.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/tradeoff.png" class="img-fluid figure-img"></p>
 <figcaption>Le compromis entre l’erreur de type 1 et l’erreur de type 2. (a) fixé à 10 %. (b) L’abaissement à 5 % réduira le risque d’erreur de type 1, mais augmentera le risque d’erreur de type 2. (c) Une réduction à 1 % diminuera encore le risque d’erreur de type 1, mais augmentera fortement le risque d’erreur de type 2. <span class="citation" data-cites="mckillup2011">(<a href="references.html#ref-mckillup2011" role="doc-biblioref">McKillup 2011</a>)</span>.</figcaption></figure>
